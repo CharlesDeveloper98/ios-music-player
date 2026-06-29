@@ -56,12 +56,17 @@ window.onload = () => {
 };
 
 function toggleEdit() {
+    const menu = document.querySelector('.library-menu');
     const editBtn = document.getElementById('edit-text');
     const menuItems = document.querySelectorAll('.library-menu .menu-item');
-    const isEditing = editBtn.innerText === 'Edit';
-
+    
+    // Toggle the editing-mode class on the menu container
+    const isEditing = menu.classList.toggle('editing-mode');
     editBtn.innerText = isEditing ? 'Done' : 'Edit';
-    menuItems.forEach(item => item.classList.toggle('editing', isEditing));
+
+    menuItems.forEach(item => {
+        item.classList.toggle('editing', isEditing);
+    });
 }
 
 // Logic for clicking the red circle
@@ -73,16 +78,17 @@ document.querySelector('.library-menu').addEventListener('click', (e) => {
     let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
 
     if (item.classList.contains('hidden')) {
-        // Add back
+        // Remove 'hidden' class to show it
         item.classList.remove('hidden');
         hiddenItems = hiddenItems.filter(i => i !== id);
     } else {
-        // Hide
+        // Add 'hidden' class to hide it
         item.classList.add('hidden');
         hiddenItems.push(id);
     }
     localStorage.setItem('hiddenLibraryItems', JSON.stringify(hiddenItems));
 });
+
 
 
 
