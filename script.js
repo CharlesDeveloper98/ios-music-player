@@ -1,14 +1,17 @@
 function showPage(pageId) {
-    // Hide all pages
-    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-    // Show selected page
-    document.getElementById(pageId).style.display = 'block';
+    // Hide all pages and remove active-page class
+    document.querySelectorAll('.page').forEach(p => {
+        p.style.display = 'none';
+        p.classList.remove('active-page');
+    });
     
-    // Update active color for tabs
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.remove('active');
-        if(item.textContent.toLowerCase().includes(pageId.split('-')[1])) {
-            item.classList.add('active');
-        }
+    // Show selected page and add active-page class
+    const targetPage = document.getElementById(pageId);
+    targetPage.style.display = 'block';
+    targetPage.classList.add('active-page');
+    
+    // Update active color for tabs... (your existing logic)
+}
+
     });
 }
