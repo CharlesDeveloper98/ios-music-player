@@ -16,3 +16,14 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; ba
 #page-home { 
     display: block; /* Ensures it starts visible */
 }
+
+.page-title { font-size: 34px; font-weight: 800; margin: 10px 0; }
+.section-title { font-size: 22px; font-weight: 700; margin: 20px 0 10px; }
+
+.library-menu { border-top: 1px solid #333; }
+.menu-item { padding: 15px 0; border-bottom: 1px solid #333; font-size: 18px; display: flex; align-items: center; gap: 15px; }
+
+.album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.album-art { width: 100%; aspect-ratio: 1/1; background: #333; border-radius: 8px; }
+.album-name { font-weight: 600; margin-top: 5px; }
+.artist-name { color: #8e8e93; font-size: 14px; }
