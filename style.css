@@ -6,6 +6,22 @@ body {
     padding-bottom: 90px; /* Space for nav */
 }
 
+/* Page Title - Make it huge and bold */
+.page-title { 
+    font-size: 34px; 
+    font-weight: 800; 
+    margin: 30px 0 20px 20px; /* More space to match iOS */
+    letter-spacing: -0.5px;
+}
+
+/* Section Titles - "Recently Added" */
+.section-title { 
+    font-size: 22px; 
+    font-weight: 700; 
+    margin: 30px 20px 15px 20px; 
+}
+
+
 /* Page Styling */
 .page { display: none; padding: 20px; }
 .page.active { display: block; }
@@ -15,20 +31,46 @@ body {
 /* Library Menu */
 .library-menu { border-top: 0.5px solid #333; }
 .menu-item { 
-    padding: 16px 0; 
+    padding: 18px 20px; /* Match the padding in the iOS screenshot */
     border-bottom: 0.5px solid #333; 
-    font-size: 19px; 
+    font-size: 20px; 
     display: flex; 
     align-items: center; 
+    color: #ff3b30; /* Use the iOS red color for icons/text */
 }
 .menu-item svg { margin-right: 15px; color: #ff3b30; width: 22px; }
 .menu-item::after { content: "❯"; margin-left: auto; color: #555; font-size: 16px; }
 
-/* Album Grid */
-.album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+/* Album Grid - Ensuring items have padding */
+.album-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    padding: 0 20px; /* Important for alignment */
+}
+
+.album-name { 
+    font-weight: 600; 
+    font-size: 16px; 
+    margin-top: 10px; 
+}
+
+.artist-name { 
+    color: #8e8e93; 
+    font-size: 14px; 
+    margin-top: 2px;
+}
+
+.menu-item i {
+    width: 28px;  /* Larger icon size */
+    height: 28px;
+    margin-right: 15px;
+}
+
+
+
 .album-art { width: 100%; aspect-ratio: 1/1; background: #333; border-radius: 8px; margin-bottom: 8px; }
-.album-name { font-weight: 500; font-size: 16px; }
-.artist-name { color: #8e8e93; font-size: 14px; }
+
 
 /* Bottom Nav */
 #bottom-nav { 
