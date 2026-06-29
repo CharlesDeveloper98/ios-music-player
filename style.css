@@ -1,3 +1,12 @@
-body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
-#player { width: 300px; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; }
-button { padding: 10px 20px; cursor: pointer; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #000; color: #fff; }
+
+/* The Bottom Nav and Player fixed to bottom */
+#bottom-nav { position: fixed; bottom: 0; width: 100%; display: flex; justify-content: space-around; padding: 15px 0; background: #1c1c1e; border-top: 1px solid #333; }
+#now-playing { position: fixed; bottom: 60px; width: 90%; margin: 0 5%; background: #2c2c2e; padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+
+/* Pages setup */
+.page { display: none; padding: 20px; }
+#page-home { display: block; } /* Show Home by default */
+
+.nav-item { cursor: pointer; color: #8e8e93; }
+.nav-item:hover { color: #ff3b30; }
