@@ -1,11 +1,14 @@
-const navItems = document.querySelectorAll('.nav-item');
-const pages = document.querySelectorAll('.page');
-
-navItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-        // Hide all pages
-        pages.forEach(page => page.style.display = 'none');
-        // Show the selected page
-        pages[index].style.display = 'block';
+function showPage(pageId) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    // Show selected page
+    document.getElementById(pageId).style.display = 'block';
+    
+    // Update active color for tabs
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+        if(item.textContent.toLowerCase().includes(pageId.split('-')[1])) {
+            item.classList.add('active');
+        }
     });
-});
+}
