@@ -8,3 +8,11 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; ba
 .nav-label { font-size: 11px; margin-top: 5px; }
 
 #now-playing { position: fixed; bottom: 90px; left: 10px; right: 10px; height: 60px; background: #2c2c2e; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; color: white; }
+
+.page { 
+    display: none; 
+    padding: 20px; 
+}
+#page-home { 
+    display: block; /* Ensures it starts visible */
+}
