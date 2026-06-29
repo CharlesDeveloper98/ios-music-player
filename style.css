@@ -66,13 +66,39 @@ body {
 .album-name { font-weight: 600; font-size: 16px; margin-top: 10px; }
 .artist-name { color: #8e8e93; font-size: 14px; }
 
-/* Bottom Nav */
-#bottom-nav { 
-    position: fixed; bottom: 0; width: 100%; height: 85px; 
-    background: rgba(28, 28, 30, 0.9); backdrop-filter: blur(20px); 
-    display: flex; justify-content: space-around; align-items: center; 
+/* Update #bottom-nav for blur */
+#bottom-nav {
+    position: fixed; bottom: 0; width: 100%; height: 85px;
+    background: rgba(0, 0, 0, 0.8); /* Changed to black based on requirement */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); /* For iOS support */
+    display: flex; justify-content: space-around; align-items: center;
     border-top: 0.5px solid #333;
 }
+
+/* Ensure all page titles match Library spacing */
+.page h1:first-child, .page .page-title {
+    font-size: 34px !important;
+    font-weight: 800 !important;
+    margin: 40px 20px 20px 20px !important;
+}
+
+/* Edit button style */
+.edit-btn {
+    position: absolute; top: 40px; right: 70px; /* To the left of profile */
+    color: #ff3b30; font-size: 19px; cursor: pointer;
+}
+
+/* Menu items in edit mode */
+.menu-item.editing::before {
+    content: "−";
+    background: #ff3b30; color: white;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-right: 15px; font-weight: bold;
+}
+.hidden { display: none; }
+
 .nav-item { display: flex; flex-direction: column; align-items: center; color: #8e8e93; font-size: 24px; }
 .nav-item.active { color: #ff3b30; }
 .nav-label { font-size: 10px; margin-top: 4px; font-weight: 500; }
