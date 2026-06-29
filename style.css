@@ -50,3 +50,14 @@ body {
     justify-content: space-between; 
     align-items: center;
 }
+
+/* Update the .page selector in your style.css */
+.page { 
+    display: none; /* This hides everything by default */
+    padding: 20px; 
+}
+
+/* This ensures the Home page is the one visible on first load */
+#page-home { 
+    display: block; 
+}
