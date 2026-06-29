@@ -8,34 +8,24 @@
 <body>
 
     <div id="content">
-    <div id="page-home" class="page active-page"><h1>Home Page</h1></div>
-    <div id="page-new" class="page"><h1>New Page</h1></div>
-    <div id="page-library" class="page"><h1>Library Page</h1></div>
+    <div id="page-home" class="page" style="display: block;"><h1>Home</h1></div>
+    <div id="page-new" class="page"><h1>New</h1></div>
+    <div id="page-library" class="page"><h1>Library</h1></div>
     <div id="page-search" class="page"><h1>Search</h1></div>
 </div>
 
-
-    <div id="now-playing">
-    <div class="art">🖼️</div>
-    <div class="song-info">Let Down</div>
+<div id="now-playing">
+    <div class="song-info">Now Playing Title</div>
     <div class="controls">▶ ⏩</div>
 </div>
 
-
-   <nav id="bottom-nav">
-    <div class="nav-item" onclick="showPage('page-home')">
-        <span>🏠</span><span class="nav-label">Home</span>
-    </div>
-    <div class="nav-item" onclick="showPage('page-new')">
-        <span>📱</span><span class="nav-label">New</span>
-    </div>
-    <div class="nav-item" onclick="showPage('page-library')">
-        <span>🎵</span><span class="nav-label">Library</span>
-    </div>
-    <div class="nav-item" onclick="showPage('page-search')">
-        <span>🔍</span><span class="nav-label">Search</span>
-    </div>
+<nav id="bottom-nav">
+    <div class="nav-item" onclick="showPage('page-home')">🏠<div class="nav-label">Home</div></div>
+    <div class="nav-item" onclick="showPage('page-new')">📱<div class="nav-label">New</div></div>
+    <div class="nav-item" onclick="showPage('page-library')">🎵<div class="nav-label">Library</div></div>
+    <div class="nav-item" onclick="showPage('page-search')">🔍<div class="nav-label">Search</div></div>
 </nav>
+
 
 
 
