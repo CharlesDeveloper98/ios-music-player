@@ -1,21 +1,20 @@
 function showPage(pageId) {
-    // 1. Hide all pages
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(p => {
-        p.style.display = 'none';
+    // Hide ALL pages
+    document.querySelectorAll('.page').forEach(page => {
+        page.style.display = 'none';
     });
 
-    // 2. Show the requested page
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-        targetPage.style.display = 'block';
+    // Show the target page
+    const target = document.getElementById(pageId);
+    if (target) {
+        target.style.display = 'block';
     }
 
-    // 3. Optional: Add 'active' class to the clicked tab
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => item.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    // Update Tab Colors (Optional: adds visual feedback)
+    document.querySelectorAll('.nav-item').forEach(item => item.style.color = '#8e8e93');
+    event.currentTarget.style.color = '#ff3b30'; // Apple Music Red
 }
+
 
 
     });
