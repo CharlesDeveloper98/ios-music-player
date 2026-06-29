@@ -10,5 +10,6 @@ function showPage(pageId, element) {
 
 
 
+// Add this line at the bottom of script.js
 lucide.createIcons();
 
