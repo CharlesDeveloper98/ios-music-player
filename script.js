@@ -1,17 +1,22 @@
 function showPage(pageId) {
-    // Hide all pages and remove active-page class
-    document.querySelectorAll('.page').forEach(p => {
+    // 1. Hide all pages
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => {
         p.style.display = 'none';
-        p.classList.remove('active-page');
     });
-    
-    // Show selected page and add active-page class
+
+    // 2. Show the requested page
     const targetPage = document.getElementById(pageId);
-    targetPage.style.display = 'block';
-    targetPage.classList.add('active-page');
-    
-    // Update active color for tabs... (your existing logic)
+    if (targetPage) {
+        targetPage.style.display = 'block';
+    }
+
+    // 3. Optional: Add 'active' class to the clicked tab
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => item.classList.remove('active'));
+    event.currentTarget.classList.add('active');
 }
+
 
     });
 }
