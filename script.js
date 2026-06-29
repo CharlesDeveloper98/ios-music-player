@@ -45,20 +45,45 @@ function showPage(pageId, element) {
     }
 }
 
-function toggleEdit() {
-    const menu = document.querySelector('.library-menu');
-    const editBtn = document.getElementById('edit-text');
-    const items = menu.querySelectorAll('.menu-item');
-    
-    const isEditing = menu.classList.toggle('editing-mode');
-    editBtn.innerText = isEditing ? 'Done' : 'Edit';
-    
-    items.forEach(item => {
-        item.classList.toggle('editing');
-        // Add click listener to remove if in edit mode
-        item.onclick = isEditing ? function() { this.classList.add('hidden'); } : null;
+// Load state on startup
+window.onload = () => {
+    const hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
+    hiddenItems.forEach(id => {
+        const item = document.querySelector(`[data-id="${id}"]`);
+        if (item) item.classList.add('hidden');
     });
+    lucide.createIcons();
+};
+
+function toggleEdit() {
+    const editBtn = document.getElementById('edit-text');
+    const menuItems = document.querySelectorAll('.library-menu .menu-item');
+    const isEditing = editBtn.innerText === 'Edit';
+
+    editBtn.innerText = isEditing ? 'Done' : 'Edit';
+    menuItems.forEach(item => item.classList.toggle('editing', isEditing));
 }
+
+// Logic for clicking the red circle
+document.querySelector('.library-menu').addEventListener('click', (e) => {
+    const item = e.target.closest('.menu-item');
+    if (!item || !item.classList.contains('editing')) return;
+
+    const id = item.getAttribute('data-id');
+    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
+
+    if (item.classList.contains('hidden')) {
+        // Add back
+        item.classList.remove('hidden');
+        hiddenItems = hiddenItems.filter(i => i !== id);
+    } else {
+        // Hide
+        item.classList.add('hidden');
+        hiddenItems.push(id);
+    }
+    localStorage.setItem('hiddenLibraryItems', JSON.stringify(hiddenItems));
+});
+
 
 
 lucide.createIcons();
