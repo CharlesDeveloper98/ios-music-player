@@ -2,32 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>iOS Music Player</title>
 </head>
 <body>
 
     <div id="content">
-    <div id="page-home" class="page" style="display: block;"><h1>Home</h1></div>
-    <div id="page-new" class="page"><h1>New</h1></div>
-    <div id="page-library" class="page"><h1>Library</h1></div>
-    <div id="page-search" class="page"><h1>Search</h1></div>
-</div>
+        <div id="page-home" class="page active"><h1>Home</h1></div>
+        <div id="page-new" class="page"><h1>New</h1></div>
+        <div id="page-library" class="page"><h1>Library</h1></div>
+        <div id="page-search" class="page"><h1>Search</h1></div>
+    </div>
 
-<div id="now-playing">
-    <div class="song-info">Now Playing Title</div>
-    <div class="controls">▶ ⏩</div>
-</div>
+    <div id="now-playing">
+        <div class="song-info">Let Down</div>
+        <div class="controls">▶ ⏩</div>
+    </div>
 
-<nav id="bottom-nav">
-    <div class="nav-item" onclick="showPage('page-home')">🏠<div class="nav-label">Home</div></div>
-    <div class="nav-item" onclick="showPage('page-new')">📱<div class="nav-label">New</div></div>
-    <div class="nav-item" onclick="showPage('page-library')">🎵<div class="nav-label">Library</div></div>
-    <div class="nav-item" onclick="showPage('page-search')">🔍<div class="nav-label">Search</div></div>
-</nav>
-
-
-
+    <nav id="bottom-nav">
+        <div class="nav-item" onclick="showPage('page-home', this)"><span>🏠</span><div class="nav-label">Home</div></div>
+        <div class="nav-item" onclick="showPage('page-new', this)"><span>📱</span><div class="nav-label">New</div></div>
+        <div class="nav-item" onclick="showPage('page-library', this)"><span>🎵</span><div class="nav-label">Library</div></div>
+        <div class="nav-item" onclick="showPage('page-search', this)"><span>🔍</span><div class="nav-label">Search</div></div>
+    </nav>
 
     <script src="script.js"></script>
 </body>
