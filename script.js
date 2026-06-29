@@ -45,5 +45,21 @@ function showPage(pageId, element) {
     }
 }
 
+function toggleEdit() {
+    const menu = document.querySelector('.library-menu');
+    const editBtn = document.getElementById('edit-text');
+    const items = menu.querySelectorAll('.menu-item');
+    
+    const isEditing = menu.classList.toggle('editing-mode');
+    editBtn.innerText = isEditing ? 'Done' : 'Edit';
+    
+    items.forEach(item => {
+        item.classList.toggle('editing');
+        // Add click listener to remove if in edit mode
+        item.onclick = isEditing ? function() { this.classList.add('hidden'); } : null;
+    });
+}
+
+
 lucide.createIcons();
 
