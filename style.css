@@ -23,10 +23,20 @@ body {
     margin: 30px 20px 15px 20px !important; 
 }
 
+/* Profile container adjusted */
 .profile-container {
     position: absolute;
-    top: 35px; /* Adjusted to match top alignment */
+    top: 35px;
     right: 20px;
+    width: 36px;
+    height: 36px;
+    background: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .profile-icon { width: 20px; height: 20px; color: #fff; }
@@ -116,23 +126,32 @@ body {
     opacity: 0.5;
 }
 
-    /* Fix Edit/Done button position */
+  /* Header layout */
 .header-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Keeps title and icon on same line */
     padding: 40px 20px 10px 20px;
-    position: relative; /* Ensure children are positioned relative to this */
+    position: relative;
+    height: 80px; /* Provides consistent space for buttons */
 }
 
+/* Edit button positioned above the profile container */
 .edit-btn {
     position: absolute;
-    top: 40px;
-    right: 75px; /* Aligned to the left of the profile container */
+    top: 5px; /* Sits above the profile container */
+    right: 20px; /* Aligned with the profile container's right edge */
     color: #ff3b30;
-    font-size: 19px;
+    font-size: 14px; /* Slightly smaller for 'edit' label */
     cursor: pointer;
     font-weight: 500;
+}
+
+/* Page Titles */
+.page-title, .header-row h1 {
+    font-size: 34px !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
 }
 
 
