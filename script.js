@@ -1,10 +1,11 @@
-const audio = document.getElementById('audio-element');
-const playPauseBtn = document.getElementById('play-pause');
+const navItems = document.querySelectorAll('.nav-item');
+const pages = document.querySelectorAll('.page');
 
-playPauseBtn.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play();
-    } else {
-        audio.pause();
-    }
+navItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+        // Hide all pages
+        pages.forEach(page => page.style.display = 'none');
+        // Show the selected page
+        pages[index].style.display = 'block';
+    });
 });
