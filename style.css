@@ -27,3 +27,23 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; ba
 .album-art { width: 100%; aspect-ratio: 1/1; background: #333; border-radius: 8px; }
 .album-name { font-weight: 600; margin-top: 5px; }
 .artist-name { color: #8e8e93; font-size: 14px; }
+
+.library-menu {
+    border-top: 1px solid #333;
+    margin-top: 20px;
+}
+.menu-item {
+    padding: 18px 0;
+    border-bottom: 0.5px solid #333; /* Thinner border */
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+/* This adds the little 'arrow' indicator iOS uses */
+.menu-item::after {
+    content: "❯";
+    margin-left: auto;
+    color: #555;
+    font-size: 16px;
+}
