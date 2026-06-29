@@ -1,39 +1,49 @@
-let lastPage = 'page-library';
-
 function showPage(pageId, element) {
-    const oldPage = document.querySelector('.page.active');
-    const newPage = document.getElementById(pageId);
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
     
-    // Animate
-    oldPage.style.transform = 'translateX(-100%)';
-    newPage.style.transform = 'translateX(0)';
-    newPage.classList.add('active');
-    
-    setTimeout(() => {
-        oldPage.classList.remove('active');
-        oldPage.style.transform = '';
-    }, 300);
-
-    if (element) {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        element.classList.add('active');
-        lastPage = pageId;
-    }
-    lucide.createIcons();
+    // Update Nav active class
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
 }
 
-function openSettings() { showPage('page-settings'); }
-function goBack() { showPage(lastPage); }
-function triggerFileSelect(e) { e.preventDefault(); document.getElementById('photo-upload').click(); }
+// 1. Open Settings on single click
+function openSettings() {
+    showPage('page-settings', null);
+}
 
+// 2. Trigger file upload on long press (Right-click or hold)
+function triggerFileSelect(e) {
+    e.preventDefault(); // Stop default browser menu
+    document.getElementById('photo-upload').click();
+}
+
+// 3. Handle image selection
 function previewFile(input) {
     const file = input.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = (e) => {
-            document.querySelectorAll('.profile-container').forEach(c => 
-                c.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover;">`);
-        };
+        reader.onload = function(e) {
+            const containers = document.querySelectorAll('.profile-container');
+            containers.forEach(c => {
+                c.innerHTML = `<img src="${e.target.result}" class="profile-img">`;
+            });
+        }
         reader.readAsDataURL(file);
     }
 }
+
+// Updated showPage to handle the settings page correctly
+function showPage(pageId, element) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    
+    if (element) {
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        element.classList.add('active');
+    }
+}
+
+lucide.createIcons();
+
