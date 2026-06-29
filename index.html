@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>iOS Music Player</title>
     <link rel="stylesheet" href="style.css">
+    <title>iOS Music Player</title>
 </head>
 <body>
-    <div id="player">
-        <h1>My Music</h1>
-        <audio id="audio-element" src="song.mp3"></audio>
-        <button id="play-pause">Play/Pause</button>
+
+    <div id="content">
+        <div id="page-home" class="page"><h1>Home Page</h1></div>
+        <div id="page-new" class="page"><h1>New Page</h1></div>
+        <div id="page-library" class="page"><h1>Library Page</h1></div>
     </div>
+
+    <div id="now-playing">
+        <div class="song-info">Now Playing: Let Down</div>
+        <div class="controls">▶ ⏩</div>
+    </div>
+
+    <nav id="bottom-nav">
+        <div class="nav-item">Home</div>
+        <div class="nav-item">New</div>
+        <div class="nav-item">Library</div>
+    </nav>
+
     <script src="script.js"></script>
 </body>
 </html>
