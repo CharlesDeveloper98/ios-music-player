@@ -83,13 +83,18 @@ body {
     margin: 40px 20px 20px 20px !important;
 }
 
-/* Edit button style */
+/* Change Edit button position to be over the profile */
 .edit-btn {
-    position: absolute; top: 40px; right: 70px; /* To the left of profile */
-    color: #ff3b30; font-size: 19px; cursor: pointer;
+    position: absolute; 
+    top: 40px; 
+    right: 65px; /* Adjust as needed to sit above/near profile */
+    color: #ff3b30; 
+    font-size: 19px; 
+    cursor: pointer;
+    z-index: 10;
 }
 
-/* Menu items in edit mode */
+/* Edit mode: Minus symbol */
 .menu-item.editing::before {
     content: "−";
     background: #ff3b30; color: white;
@@ -97,7 +102,17 @@ body {
     display: flex; align-items: center; justify-content: center;
     margin-right: 15px; font-weight: bold;
 }
-.hidden { display: none; }
+
+/* Hidden items in Edit mode: Plus symbol */
+.menu-item.editing.hidden {
+    display: flex !important;
+    opacity: 0.5;
+}
+.menu-item.editing.hidden::before {
+    content: "+";
+    background: #34c759; /* Green for add */
+}
+
 
 .nav-item { display: flex; flex-direction: column; align-items: center; color: #8e8e93; font-size: 24px; }
 .nav-item.active { color: #ff3b30; }
