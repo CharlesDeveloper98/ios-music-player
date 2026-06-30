@@ -34,16 +34,22 @@ function previewFile(input) {
     }
 }
 
-// Updated showPage to handle the settings page correctly
+// The existing showPage function works perfectly with the CSS animation above
 function showPage(pageId, element) {
+    // Hide all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
     
+    // Add active class
+    const targetPage = document.getElementById(pageId);
+    targetPage.classList.add('active');
+    
+    // Update Nav active class
     if (element) {
         document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
         element.classList.add('active');
     }
 }
+
 
 // Load state on startup
 window.onload = () => {
