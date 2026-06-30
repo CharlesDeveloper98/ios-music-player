@@ -61,19 +61,21 @@ window.onload = () => {
     lucide.createIcons();
 };
 
+// Ensure toggleEdit only runs on the library page
 function toggleEdit() {
-    const menu = document.querySelector('.library-menu');
-    const editBtn = document.getElementById('edit-text');
-    const menuItems = document.querySelectorAll('.library-menu .menu-item');
+    const page = document.getElementById('page-library');
+    const menu = page.querySelector('.library-menu');
+    const editBtn = page.querySelector('#edit-text');
+    const menuItems = menu.querySelectorAll('.menu-item');
     
-    // Toggle the editing-mode class on the menu container
     const isEditing = menu.classList.toggle('editing-mode');
     editBtn.innerText = isEditing ? 'Done' : 'Edit';
-
+    
     menuItems.forEach(item => {
         item.classList.toggle('editing', isEditing);
     });
 }
+
 
 // Logic for clicking the red circle
 document.querySelector('.library-menu').addEventListener('click', (e) => {
