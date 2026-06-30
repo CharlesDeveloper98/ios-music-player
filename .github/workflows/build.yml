@@ -17,22 +17,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install Cordova
         run: npm install -g cordova
 
-            - name: Create Cordova Project
+      - name: Create Cordova Project
         run: |
-          cordova create myApp com.charles.music "Music"
+          cordova create myApp com.charles.musicplayer "Music Player"
           rm -rf myApp/www/*
-          # Copy your main files
+          # Copying all necessary files to the www directory
           cp index.html myApp/www/
-          cp style.css myApp/www/
           cp script.js myApp/www/
-          # If you have an images folder, copy it too
-          # cp -r images/ myApp/www/
-
+          cp style.css myApp/www/
 
       - name: Setup Android Platform
         run: |
@@ -47,5 +44,5 @@ jobs:
       - name: Upload Finished APK
         uses: actions/upload-artifact@v4
         with:
-          name: Music-APK
+          name: Music-Player-APK
           path: myApp/platforms/android/app/build/outputs/apk/debug/app-debug.apk
