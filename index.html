@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
     <title>iOS Music Player</title>
 </head>
@@ -10,11 +11,19 @@
 
     <div id="content">
         <div id="page-home" class="page active">
-            <div class="header-row"><h1>Home</h1></div>
+            <div class="header-row">
+                <h1>Home</h1>
+                <div class="profile-container" onclick="openSettings()" oncontextmenu="triggerFileSelect(event)">
+                    <i data-lucide="user" class="profile-icon"></i>
+                    <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
+                </div>
+            </div>
         </div>
 
         <div id="page-new" class="page">
-            <div class="header-row"><h1>New</h1></div>
+            <div class="header-row">
+                <h1>New</h1>
+            </div>
         </div>
 
         <div id="page-library" class="page">
@@ -22,43 +31,79 @@
                 <h1 class="page-title">Library</h1>
                 <div class="header-actions">
                     <span class="edit-btn" onclick="toggleEdit()" id="edit-text">Edit</span>
+                    <div class="profile-container" onclick="openSettings()">
+                        <i data-lucide="user" class="profile-icon"></i>
+                    </div>
                 </div>
             </div>
+            
+            <div class="library-menu">
+                <div class="menu-item" data-id="playlists"><i data-lucide="music"></i> Playlists</div>
+                <div class="menu-item" data-id="artists"><i data-lucide="mic-2"></i> Artists</div>
+                <div class="menu-item" data-id="albums"><i data-lucide="disc"></i> Albums</div>
+                <div class="menu-item" data-id="songs"><i data-lucide="music-4"></i> Songs</div>
+                <div class="menu-item" data-id="downloaded"><i data-lucide="arrow-down-circle"></i> Downloaded</div>
             </div>
 
+            <h2 class="section-title">Recently Added</h2>
+            <div class="album-grid">
+                <div class="album">
+                    <div class="album-art"></div>
+                    <div class="album-name">Magic 2</div>
+                    <div class="artist-name">Nas</div>
+                </div>
+                <div class="album">
+                    <div class="album-art"></div>
+                    <div class="album-name">King's Disease III</div>
+                    <div class="artist-name">Nas</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-settings" class="page">
+            <h1 class="page-title">Settings</h1>
+            <div class="menu-item" onclick="showPage('page-home', document.querySelector('.nav-item'))">Back to Home</div>
+        </div>
+
         <div id="page-search" class="page">
-            <div class="header-row"><h1>Search</h1></div>
+            <div class="header-row">
+                <h1>Search</h1>
+            </div>
         </div>
     </div>
 
     <div class="mini-player">
-        <div class="mini-art"></div>
-        <div class="mini-info">
-            <div class="mini-title">Unknown Art</div>
-        </div>
-        <div class="mini-controls">
-            <img src="https://img.icons8.com/ios/24/ffffff/play--v1.png" class="mini-icon">
-            <img src="https://img.icons8.com/ios/24/ffffff/fast-forward.png" class="mini-icon">
-        </div>
+    <div class="mini-art"></div>
+    <div class="mini-info">
+        <div class="mini-title">Unknown Art</div>
+        <div class="mini-sub">Not Playing</div>
+    </div>
+   <div class="mini-controls">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/play--v1.png" class="mini-icon" alt="Play">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/fast-forward.png" class="mini-icon" alt="Forward">
+</div>
+
     </div>
 
     <nav id="bottom-nav">
         <div class="nav-item active" onclick="showPage('page-home', this)">
-            <img src="https://img.icons8.com/ios/24/8e8e93/home.png" class="nav-icon">
+            <i data-lucide="home"></i>
             <div class="nav-label">Home</div>
         </div>
         <div class="nav-item" onclick="showPage('page-new', this)">
-            <img src="https://img.icons8.com/ios/24/8e8e93/square.png" class="nav-icon">
+            <i data-lucide="layout-grid"></i>
             <div class="nav-label">New</div>
         </div>
         <div class="nav-item" onclick="showPage('page-library', this)">
-            <img src="https://img.icons8.com/ios/24/8e8e93/music-library.png" class="nav-icon">
+            <i data-lucide="library"></i>
             <div class="nav-label">Library</div>
         </div>
         <div class="nav-item" onclick="showPage('page-search', this)">
-            <img src="https://img.icons8.com/ios/24/8e8e93/search.png" class="nav-icon">
+            <i data-lucide="search"></i>
             <div class="nav-label">Search</div>
         </div>
     </nav>
+
+    <script src="script.js"></script>
 </body>
 </html>
