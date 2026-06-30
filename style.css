@@ -7,9 +7,23 @@ body {
     padding-bottom: 120px; 
 }
 
-/* Page Setup */
-.page { display: none; padding: 0; }
-.page.active { display: block; }
+/* Smooth transition animation for pages */
+.page {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.page.active {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 
 /* Titles */
 .page-title { 
@@ -23,11 +37,11 @@ body {
     margin: 30px 20px 15px 20px !important; 
 }
 
-/* Profile container adjusted */
+/* Profile container adjusted to be on the header line */
 .profile-container {
-    position: absolute;
-    top: 35px;
-    right: 20px;
+    position: relative; /* Changed from absolute to keep in flow */
+    top: 0;
+    right: 0;
     width: 36px;
     height: 36px;
     background: #333;
@@ -37,6 +51,7 @@ body {
     justify-content: center;
     cursor: pointer;
     overflow: hidden;
+    margin-left: 10px;
 }
 
 .profile-icon { width: 20px; height: 20px; color: #fff; }
@@ -126,25 +141,14 @@ body {
     opacity: 0.5;
 }
 
-  /* Header layout */
+/* Header refinement */
 .header-row {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Keeps title and icon on same line */
-    padding: 40px 20px 10px 20px;
+    align-items: center;
+    padding: 20px 20px 10px 20px; /* Shifted up to match iOS */
     position: relative;
-    height: 80px; /* Provides consistent space for buttons */
-}
-
-/* Edit button positioned above the profile container */
-.edit-btn {
-    position: absolute;
-    top: 5px; /* Sits above the profile container */
-    right: 20px; /* Aligned with the profile container's right edge */
-    color: #ff3b30;
-    font-size: 14px; /* Slightly smaller for 'edit' label */
-    cursor: pointer;
-    font-weight: 500;
+    height: 60px;
 }
 
 /* Page Titles */
@@ -152,6 +156,18 @@ body {
     font-size: 34px !important;
     font-weight: 800 !important;
     margin: 0 !important;
+    padding-left: 0;
+}
+
+/* Edit button - Made larger and placed directly above profile */
+.edit-btn {
+    position: absolute;
+    top: -30px; /* Positioned above profile */
+    right: 20px;
+    color: #ff3b30;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 
