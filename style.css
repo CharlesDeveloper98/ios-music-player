@@ -1,156 +1,22 @@
-/* Base Styles */
-body { 
-    margin: 0; 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-    background: #000; 
-    color: #fff; 
-    padding-bottom: 120px; 
-}
+body { margin: 0; font-family: -apple-system, sans-serif; background: #000; color: #fff; padding-bottom: 120px; }
 
-/* Improved iOS Page Transition */
-.page {
-    display: none;
-    opacity: 0;
-}
-.page.active {
-    display: block;
-    animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
+.page { display: none; opacity: 0; }
+.page.active { display: block; animation: slideIn 0.3s forwards; }
 
 @keyframes slideIn {
     from { opacity: 0; transform: translateX(20px); }
     to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Titles */
-.page-title { 
-    font-size: 34px !important; 
-    font-weight: 800 !important; 
-    margin: 40px 20px 20px 20px !important; 
-}
-.section-title { 
-    font-size: 22px !important; 
-    font-weight: 700 !important; 
-    margin: 30px 20px 15px 20px !important; 
-}
-
-/* Profile container adjusted to be on the header line */
-.profile-container {
-    position: relative; /* Changed from absolute to keep in flow */
-    top: 0;
-    right: 0;
-    width: 36px;
-    height: 36px;
-    background: #333;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    overflow: hidden;
-    margin-left: 10px;
-}
-
-.profile-icon { width: 20px; height: 20px; color: #fff; }
-.profile-img { width: 100%; height: 100%; object-fit: cover; }
-
-
-/* Library Menu */
-.library-menu { border-top: 0.5px solid #333; }
-.menu-item { 
-    padding: 16px 20px; 
-    border-bottom: 0.5px solid #333; 
-    font-size: 19px; 
-    display: flex; 
-    align-items: center; 
-    color: #ff3b30; 
-}
-/* Fix Icon spacing */
-.menu-item i {
-    width: 28px !important;
-    height: 28px !important;
-    margin-right: 20px !important; /* Increased space */
-    stroke-width: 2.5px;
-}
-.menu-item::after { content: "❯"; margin-left: auto; color: #555; font-size: 16px; }
-
-/* Album Grid */
-.album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 20px; }
-.album-art { width: 100%; aspect-ratio: 1/1; background: #333; border-radius: 8px; }
-.album-name { font-weight: 600; font-size: 16px; margin-top: 10px; }
-.artist-name { color: #8e8e93; font-size: 14px; }
-
-/* Update #bottom-nav for blur */
-#bottom-nav {
-    position: fixed; bottom: 0; width: 100%; height: 85px;
-    background: rgba(0, 0, 0, 0.8); /* Changed to black based on requirement */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px); /* For iOS support */
-    display: flex; justify-content: space-around; align-items: center;
-    border-top: 0.5px solid #333;
-}
-
-/* Ensure all page titles match Library spacing */
-.page h1:first-child, .page .page-title {
-    font-size: 34px !important;
-    font-weight: 800 !important;
-    margin: 40px 20px 20px 20px !important;
-}
-
-/* Change Edit button position to be over the profile */
-.edit-btn {
-    color: #ff3b30;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-/* Edit mode: Minus symbol */
-.menu-item.editing::before {
-    content: "−";
-    background: #ff3b30; color: white;
-    width: 20px; height: 20px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin-right: 15px; font-weight: bold;
-}
-
-/* Hidden items in Edit mode: Plus symbol */
-.menu-item.editing.hidden {
-    display: flex !important;
-    opacity: 0.5;
-}
-.menu-item.editing.hidden::before {
-    content: "+";
-    background: #34c759; /* Green for add */
-}
-
-        /* Update the hidden state logic */
-.menu-item.hidden {
-    display: none !important;
-}
-
-/* Edit mode logic - Ensure the hidden item shows up during edit only */
-.editing-mode .menu-item.hidden {
-    display: flex !important;
-    opacity: 0.5;
-}
-
-/* Header alignment to match menu items (padding: 20px) */
+/* Header */
 .header-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Align title and actions to bottom */
-    padding: 20px 20px 10px 20px; 
+    align-items: flex-end;
+    padding: 20px 20px 10px 20px;
     height: 80px;
 }
 
-/* Wrapper for Edit + Profile */
 .header-actions {
     display: flex;
     flex-direction: column;
@@ -158,33 +24,40 @@ body {
     gap: 5px;
 }
 
+.page-title, .header-row h1 { font-size: 34px; font-weight: 800; margin: 0; }
 
-/* Page Titles */
-.page-title, .header-row h1 {
-    font-size: 34px !important;
-    font-weight: 800 !important;
-    margin: 0 !important;
-    padding-left: 0;
+.edit-btn { color: #ff3b30; font-size: 17px; font-weight: 600; cursor: pointer; }
+
+.profile-container {
+    width: 36px; height: 36px; background: #333; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; overflow: hidden;
 }
 
-/* Edit button - Made larger and placed directly above profile */
-.edit-btn {
-    position: absolute;
-    top: -30px; /* Positioned above profile */
-    right: 20px;
-    color: #ff3b30;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
+.profile-icon { width: 20px; height: 20px; color: #fff; }
+.profile-img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Menu */
+.library-menu { border-top: 0.5px solid #333; margin-top: 10px; }
+.menu-item { 
+    padding: 16px 20px; border-bottom: 0.5px solid #333; 
+    font-size: 19px; display: flex; align-items: center; color: #ff3b30; 
 }
+.menu-item i { margin-right: 20px; stroke-width: 2.5px; }
+.menu-item::after { content: "❯"; margin-left: auto; color: #555; }
 
+.menu-item.hidden { display: none !important; }
+.editing-mode .menu-item.hidden { display: flex !important; opacity: 0.5; }
+.menu-item.editing::before { content: "−"; background: #ff3b30; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
+.editing-mode .menu-item.hidden::before { content: "+"; background: #34c759; }
 
+/* Navigation */
+#bottom-nav {
+    position: fixed; bottom: 0; width: 100%; height: 85px;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
+    display: flex; justify-content: space-around; align-items: center;
+    border-top: 0.5px solid #333;
+}
 .nav-item { display: flex; flex-direction: column; align-items: center; color: #8e8e93; font-size: 24px; }
 .nav-item.active { color: #ff3b30; }
-.nav-label { font-size: 10px; margin-top: 4px; font-weight: 500; }
-
-/* Now Playing */
-#now-playing { 
-    position: fixed; bottom: 90px; left: 10px; right: 10px; height: 60px; 
-    background: #2c2c2e; border-radius: 12px; display: flex; align-items: center; padding: 0 15px;
-}
+.nav-label { font-size: 10px; margin-top: 4px; }
