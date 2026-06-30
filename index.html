@@ -10,13 +10,7 @@
 
     <div id="content">
         <div id="page-home" class="page active">
-            <div class="header-row">
-                <h1>Home</h1>
-                <div class="profile-container" onclick="openSettings()" oncontextmenu="triggerFileSelect(event)">
-                    <img src="https://img.icons8.com/ios-filled/24/ffffff/user.png" class="profile-icon">
-                    <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
-                </div>
-            </div>
+            <div class="header-row"><h1>Home</h1></div>
         </div>
 
         <div id="page-new" class="page">
@@ -28,68 +22,43 @@
                 <h1 class="page-title">Library</h1>
                 <div class="header-actions">
                     <span class="edit-btn" onclick="toggleEdit()" id="edit-text">Edit</span>
-                    <div class="profile-container" onclick="openSettings()">
-                        <img src="https://img.icons8.com/ios-filled/24/ffffff/user.png" class="profile-icon">
-                    </div>
                 </div>
             </div>
-            
-            <div class="library-menu">
-                <div class="menu-item" data-id="playlists"><img src="https://img.icons8.com/ios-filled/24/ff3b30/music-library.png" class="menu-icon"> Playlists</div>
-                <div class="menu-item" data-id="artists"><img src="https://img.icons8.com/ios-filled/24/ff3b30/microphone.png" class="menu-icon"> Artists</div>
-                <div class="menu-item" data-id="albums"><img src="https://img.icons8.com/ios-filled/24/ff3b30/compact-disc.png" class="menu-icon"> Albums</div>
-                <div class="menu-item" data-id="songs"><img src="https://img.icons8.com/ios-filled/24/ff3b30/music.png" class="menu-icon"> Songs</div>
-                <div class="menu-item" data-id="downloaded"><img src="https://img.icons8.com/ios-filled/24/ff3b30/download--v1.png" class="menu-icon"> Downloaded</div>
             </div>
 
-            <h2 class="section-title">Recently Added</h2>
-            <div class="album-grid">
-                <div class="album">
-                    <div class="album-art"></div>
-                    <div class="album-name">Magic 2</div>
-                    <div class="artist-name">Nas</div>
-                </div>
-                <div class="album">
-                    <div class="album-art"></div>
-                    <div class="album-name">King's Disease III</div>
-                    <div class="artist-name">Nas</div>
-                </div>
-            </div>
+        <div id="page-search" class="page">
+            <div class="header-row"><h1>Search</h1></div>
         </div>
-
-        </div>
+    </div>
 
     <div class="mini-player">
         <div class="mini-art"></div>
         <div class="mini-info">
             <div class="mini-title">Unknown Art</div>
-            <div class="mini-sub">Not Playing</div>
         </div>
         <div class="mini-controls">
-            <img src="https://img.icons8.com/ios-filled/24/ffffff/play--v1.png" class="mini-icon">
-            <img src="https://img.icons8.com/ios-filled/24/ffffff/fast-forward.png" class="mini-icon">
+            <img src="https://img.icons8.com/ios/24/ffffff/play--v1.png" class="mini-icon">
+            <img src="https://img.icons8.com/ios/24/ffffff/fast-forward.png" class="mini-icon">
         </div>
     </div>
 
     <nav id="bottom-nav">
         <div class="nav-item active" onclick="showPage('page-home', this)">
-            <img src="https://img.icons8.com/ios-filled/24/8e8e93/home.png" class="nav-icon">
+            <img src="https://img.icons8.com/ios/24/8e8e93/home.png" class="nav-icon">
             <div class="nav-label">Home</div>
         </div>
         <div class="nav-item" onclick="showPage('page-new', this)">
-            <img src="https://img.icons8.com/ios-filled/24/8e8e93/view-module.png" class="nav-icon">
+            <img src="https://img.icons8.com/ios/24/8e8e93/square.png" class="nav-icon">
             <div class="nav-label">New</div>
         </div>
         <div class="nav-item" onclick="showPage('page-library', this)">
-            <img src="https://img.icons8.com/ios-filled/24/8e8e93/music-library.png" class="nav-icon">
+            <img src="https://img.icons8.com/ios/24/8e8e93/music-library.png" class="nav-icon">
             <div class="nav-label">Library</div>
         </div>
         <div class="nav-item" onclick="showPage('page-search', this)">
-            <img src="https://img.icons8.com/ios-filled/24/8e8e93/search.png" class="nav-icon">
+            <img src="https://img.icons8.com/ios/24/8e8e93/search.png" class="nav-icon">
             <div class="nav-label">Search</div>
         </div>
     </nav>
-
-    <script src="script.js"></script>
 </body>
 </html>
