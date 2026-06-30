@@ -22,15 +22,17 @@ jobs:
       - name: Install Cordova
         run: npm install -g cordova
 
-      - name: Create Cordova Project
+            - name: Create Cordova Project
         run: |
-          # Changed ID to com.charles.music and Name to "Music"
           cordova create myApp com.charles.music "Music"
           rm -rf myApp/www/*
-          cp -r index.html myApp/www/
-          # Copy your CSS, JS, and image folders if you have them:
-          # cp -r style.css script.js myApp/www/
-          # cp -r assets myApp/www/ 
+          # Copy your main files
+          cp index.html myApp/www/
+          cp style.css myApp/www/
+          cp script.js myApp/www/
+          # If you have an images folder, copy it too
+          # cp -r images/ myApp/www/
+
 
       - name: Setup Android Platform
         run: |
