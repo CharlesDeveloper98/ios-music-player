@@ -7,16 +7,19 @@ body {
     padding-bottom: 120px; 
 }
 
-/* Smooth transition animation for pages */
+/* Improved iOS Page Transition */
 .page {
     display: none;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
 }
 .page.active {
     display: block;
-    opacity: 1;
-    animation: fadeIn 0.3s forwards;
+    animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeIn {
@@ -102,13 +105,10 @@ body {
 
 /* Change Edit button position to be over the profile */
 .edit-btn {
-    position: absolute; 
-    top: 40px; 
-    right: 65px; /* Adjust as needed to sit above/near profile */
-    color: #ff3b30; 
-    font-size: 19px; 
+    color: #ff3b30;
+    font-size: 17px;
+    font-weight: 600;
     cursor: pointer;
-    z-index: 10;
 }
 
 /* Edit mode: Minus symbol */
@@ -141,15 +141,23 @@ body {
     opacity: 0.5;
 }
 
-/* Header refinement */
+/* Header alignment to match menu items (padding: 20px) */
 .header-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px 10px 20px; /* Shifted up to match iOS */
-    position: relative;
-    height: 60px;
+    align-items: flex-end; /* Align title and actions to bottom */
+    padding: 20px 20px 10px 20px; 
+    height: 80px;
 }
+
+/* Wrapper for Edit + Profile */
+.header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
 
 /* Page Titles */
 .page-title, .header-row h1 {
