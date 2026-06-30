@@ -67,4 +67,5 @@ document.querySelector('.library-menu').addEventListener('click', (e) => {
     localStorage.setItem('hiddenLibraryItems', JSON.stringify(hiddenItems));
 });
 
+// Add this at the bottom of your script
 lucide.createIcons();
