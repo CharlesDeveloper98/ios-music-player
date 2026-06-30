@@ -51,6 +51,38 @@ body { margin: 0; font-family: -apple-system, sans-serif; background: #000; colo
 .menu-item.editing::before { content: "−"; background: #ff3b30; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
 .editing-mode .menu-item.hidden::before { content: "+"; background: #34c759; }
 
+/* Container anchored above bottom nav */
+.mini-player {
+    position: fixed;
+    bottom: 85px; /* Matches the height of your bottom-nav */
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: #1c1c1e;
+    border-bottom: 0.5px solid #333;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 99;
+}
+
+.mini-art {
+    width: 44px;
+    height: 44px;
+    background: #333;
+    border-radius: 6px;
+    margin-right: 12px;
+}
+
+.mini-info { flex: 1; }
+.mini-title { font-size: 16px; font-weight: 500; color: #fff; }
+.mini-sub { font-size: 13px; color: #8e8e93; }
+
+.mini-controls { display: flex; gap: 20px; color: #fff; }
+.mini-controls i { width: 24px; height: 24px; }
+
+
+
 /* Navigation */
 #bottom-nav {
     position: fixed; bottom: 0; width: 100%; height: 85px;
