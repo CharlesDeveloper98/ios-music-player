@@ -39,33 +39,28 @@ window.onload = () => {
 };
 
 function toggleEdit() {
-    const page = document.getElementById('page-library');
-    const menu = page.querySelector('.library-menu');
-    const editBtn = page.querySelector('#edit-text');
-    const menuItems = menu.querySelectorAll('.menu-item');
-    
+    const menu = document.querySelector('.library-menu');
+    const editBtn = document.getElementById('edit-text');
     const isEditing = menu.classList.toggle('editing-mode');
-    editBtn.innerText = isEditing ? 'Done' : 'Edit';
     
-    menuItems.forEach(item => item.classList.toggle('editing', isEditing));
+    editBtn.innerText = isEditing ? 'Done' : 'Edit';
+    menu.querySelectorAll('.menu-item').forEach(item => {
+        item.classList.toggle('editing', isEditing);
+    });
 }
 
+// Logic for showing/hiding on click
 document.querySelector('.library-menu').addEventListener('click', (e) => {
     const item = e.target.closest('.menu-item');
     if (!item || !item.classList.contains('editing')) return;
 
-    const id = item.getAttribute('data-id');
-    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
-
-    if (item.classList.contains('hidden')) {
-        item.classList.remove('hidden');
-        hiddenItems = hiddenItems.filter(i => i !== id);
+    if (item.classList.contains('hidden-default')) {
+        item.classList.remove('hidden-default');
     } else {
-        item.classList.add('hidden');
-        hiddenItems.push(id);
+        item.classList.add('hidden-default');
     }
-    localStorage.setItem('hiddenLibraryItems', JSON.stringify(hiddenItems));
 });
+
 
 // Add this at the bottom of your script
 lucide.createIcons();
