@@ -51,21 +51,23 @@ body { margin: 0; font-family: -apple-system, sans-serif; background: #000; colo
 .menu-item.editing::before { content: "−"; background: #ff3b30; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
 .editing-mode .menu-item.hidden::before { content: "+"; background: #34c759; }
 
-/* Container anchored above bottom nav */
+/* iOS-style floating mini-player container */
 .mini-player {
     position: fixed;
-    bottom: 85px; /* Matches the height of your bottom-nav */
-    left: 0;
-    right: 0;
+    bottom: 95px; /* Slightly higher to sit above the navigation bar comfortably */
+    left: 10px;   /* Margin from the left edge */
+    right: 10px;  /* Margin from the right edge */
     height: 64px;
-    background: #1c1c1e;
-    border-bottom: 0.5px solid #333;
+    background: #2c2c2e; /* iOS dark mode grey */
+    border-radius: 12px;  /* Soft rounded corners */
     display: flex;
     align-items: center;
     padding: 0 16px;
     z-index: 99;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
 }
 
+/* Ensure the art matches the new container height */
 .mini-art {
     width: 44px;
     height: 44px;
@@ -74,12 +76,14 @@ body { margin: 0; font-family: -apple-system, sans-serif; background: #000; colo
     margin-right: 12px;
 }
 
-.mini-info { flex: 1; }
-.mini-title { font-size: 16px; font-weight: 500; color: #fff; }
+/* Typography adjustment */
+.mini-title { font-size: 15px; font-weight: 500; color: #fff; }
 .mini-sub { font-size: 13px; color: #8e8e93; }
 
-.mini-controls { display: flex; gap: 20px; color: #fff; }
-.mini-controls i { width: 24px; height: 24px; }
+/* Control icon styling */
+.mini-controls { display: flex; gap: 15px; color: #fff; }
+.mini-controls i { width: 22px; height: 22px; }
+
 
 
 
