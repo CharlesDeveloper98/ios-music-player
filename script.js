@@ -143,6 +143,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+const tabContainer = document.getElementById('tab-container');
+const selector = document.getElementById('active-selector');
+let isDragging = false;
+
+tabContainer.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    selector.classList.add('expanded');
+});
+
+tabContainer.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const touchX = e.touches[0].clientX - tabContainer.getBoundingClientRect().left;
+    const tabWidth = tabContainer.offsetWidth / 3;
+    
+    // Constrain within the 3 main tabs
+    const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
+    
+    // Move selector instantly while dragging
+    selector.style.left = `${(index * tabWidth) + 5}px`;
+    
+    // Highlight icon visually
+    document.querySelectorAll('.nav-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+    });
+});
+
+tabContainer.addEventListener('touchend', (e) => {
+    isDragging = false;
+    selector.classList.remove('expanded');
+    
+    // Snap to the closest tab center
+    const touchX = e.changedTouches[0].clientX - tabContainer.getBoundingClientRect().left;
+    const tabWidth = tabContainer.offsetWidth / 3;
+    const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
+    
+    const pages = ['page-home', 'page-new', 'page-library'];
+    const navItems = document.querySelectorAll('.main-tabs .nav-item');
+    showPage(pages[index], navItems[index], index);
+});
+
+
         
 
 
