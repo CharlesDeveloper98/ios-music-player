@@ -71,19 +71,25 @@ document.querySelector('.library-menu').addEventListener('click', (e) => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Default visible items if nothing saved
-    const defaults = ['playlists', 'artists', 'albums', 'songs', 'downloaded'];
-    let visibleItems = JSON.parse(localStorage.getItem('visibleLibrary')) || defaults;
+    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
 
     function renderMenu() {
+        const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
         document.querySelectorAll('.menu-item').forEach(item => {
             const id = item.getAttribute('data-id');
-            const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
+            const isHidden = hiddenItems.includes(id);
             
+            // Remove old status icons
+            item.querySelectorAll('.status-icon').forEach(el => el.remove());
+
             if (isEditing) {
-                item.classList.add('visible');
+                const icon = document.createElement('div');
+                icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
+                icon.innerText = isHidden ? '+' : '-';
+                item.prepend(icon);
+                item.classList.toggle('dull', isHidden);
             } else {
-                item.classList.toggle('visible', visibleItems.includes(id));
+                item.style.display = isHidden ? 'none' : 'flex';
             }
         });
     }
@@ -96,23 +102,25 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMenu();
     };
 
-    // Logic to toggle add/remove
-    document.querySelectorAll('.menu-item').forEach(item => {
-        item.addEventListener('click', () => {
-            if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
-            const id = item.getAttribute('data-id');
-            if (visibleItems.includes(id)) {
-                visibleItems = visibleItems.filter(i => i !== id);
-            } else {
-                visibleItems.push(id);
-            }
-            localStorage.setItem('visibleLibrary', JSON.stringify(visibleItems));
-            renderMenu();
-        });
+    document.querySelector('.library-menu').addEventListener('click', (e) => {
+        if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
+        const item = e.target.closest('.menu-item');
+        if (!item) return;
+
+        const id = item.getAttribute('data-id');
+        if (hiddenItems.includes(id)) {
+            hiddenItems = hiddenItems.filter(i => i !== id);
+        } else {
+            hiddenItems.push(id);
+        }
+        localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
+        renderMenu();
     });
 
     renderMenu();
 });
+
+
 
         
 
