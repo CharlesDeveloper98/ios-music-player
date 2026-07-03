@@ -93,25 +93,26 @@
 
     </div>
 
-  <!-- Replace your existing <nav id="bottom-nav"> with this -->
-<nav id="bottom-nav">
-    <div class="main-tabs">
-        <div class="nav-item active" onclick="showPage('page-home', this)">
-            <i data-lucide="home" class="nav-icon"></i><span class="nav-label">Home</span>
+ <nav id="bottom-nav">
+    <div class="main-tabs" id="tab-container">
+        <div class="tab-selector" id="active-selector"></div>
+        <div class="nav-item active" onclick="showPage('page-home', this, 0)">
+            <i data-lucide="home"></i><span class="nav-label">Home</span>
         </div>
-        <div class="nav-item" onclick="showPage('page-new', this)">
-            <i data-lucide="layout-grid" class="nav-icon"></i><span class="nav-label">New</span>
+        <div class="nav-item" onclick="showPage('page-new', this, 1)">
+            <i data-lucide="layout-grid"></i><span class="nav-label">New</span>
         </div>
-        <div class="nav-item" onclick="showPage('page-library', this)">
-            <i data-lucide="library" class="nav-icon"></i><span class="nav-label">Library</span>
+        <div class="nav-item" onclick="showPage('page-library', this, 2)">
+            <i data-lucide="library"></i><span class="nav-label">Library</span>
         </div>
     </div>
     <div class="search-tab">
-        <div class="nav-item" onclick="showPage('page-search', this)">
-            <i data-lucide="search" class="nav-icon"></i>
+        <div class="nav-item" onclick="showPage('page-search', this, 3)">
+            <i data-lucide="search"></i>
         </div>
     </div>
 </nav>
+
 
 
 
