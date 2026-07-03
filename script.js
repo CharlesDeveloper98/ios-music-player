@@ -160,12 +160,13 @@ tabContainer.addEventListener('touchmove', (e) => {
     // Constrain within the 3 main tabs
     const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
     
-    // Move selector instantly while dragging
+   // Add a slight springy transition to the selector movement
+    selector.style.transition = "left 0.2s ease-out, width 0.2s ease-out";
     selector.style.left = `${(index * tabWidth) + 5}px`;
     
-    // Highlight icon visually
+    // Logic to "reflect" the icon as the selector passes
     document.querySelectorAll('.nav-item').forEach((item, i) => {
-        item.classList.toggle('active', i === index);
+        item.style.opacity = (i === index) ? "1" : "0.5";
     });
 });
 
