@@ -38,6 +38,25 @@ body {
   font-family: 'MyCustomFont', sans-serif;
 }
 
+/* 1. Large Titles (Headers) - Make these Bold */
+.page-title, .header-row h1 { 
+    font-weight: 700; /* This will automatically pick up your bold.otf */
+}
+
+/* 2. Section Headers (e.g., Recently Added) - Make these Semibold */
+.section-title { 
+    font-weight: 600; /* This will automatically pick up your semibold.otf */
+}
+
+/* 3. Menu Items / Navigation Labels - Use Medium */
+.menu-item, .nav-label { 
+    font-weight: 500; /* This will automatically pick up your medium.otf */
+}
+
+/* 4. Small details - Use Regular (already covered by body) */
+.mini-sub { 
+    font-weight: 400; 
+}
 
 
 
