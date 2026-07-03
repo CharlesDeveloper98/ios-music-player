@@ -160,6 +160,16 @@ body { margin: 0; font-family: -apple-system, sans-serif; background: #000; colo
     border-radius: 14px;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 0;
+    transition: left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 0.3s ease;
+}
+
+/* Bubble effect when held/active */
+.tab-selector.expanded {
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(30px);
 }
 
 
