@@ -9,14 +9,15 @@ function showPage(pageId, element, index) {
 
     // 3. Move the Liquid Selector (Only for main tabs 0-2)
     const selector = document.getElementById('active-selector');
+    const container = document.getElementById('tab-container');
+    
+    // There are 4 items total in your layout (3 main + 1 search)
+    // Adjust logic if "Search" is handled separately
     if (index <= 2) {
-        const container = document.getElementById('tab-container');
         const tabWidth = container.offsetWidth / 3;
-        selector.style.left = `${(index * tabWidth) + 5}px`;
-        selector.style.width = `${tabWidth - 10}px`;
+        selector.style.left = `${(index * tabWidth)}px`;
+        selector.style.width = `${tabWidth}px`;
         selector.style.opacity = "1";
-    } else {
-        selector.style.opacity = "0"; // Hide when clicking Search
     }
 }
 
