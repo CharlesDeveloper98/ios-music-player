@@ -70,6 +70,52 @@ document.querySelector('.library-menu').addEventListener('click', (e) => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Default visible items if nothing saved
+    const defaults = ['playlists', 'artists', 'albums', 'songs', 'downloaded'];
+    let visibleItems = JSON.parse(localStorage.getItem('visibleLibrary')) || defaults;
+
+    function renderMenu() {
+        document.querySelectorAll('.menu-item').forEach(item => {
+            const id = item.getAttribute('data-id');
+            const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
+            
+            if (isEditing) {
+                item.classList.add('visible');
+            } else {
+                item.classList.toggle('visible', visibleItems.includes(id));
+            }
+        });
+    }
+
+    window.toggleEdit = () => {
+        const menu = document.querySelector('.library-menu');
+        const btn = document.getElementById('edit-text');
+        menu.classList.toggle('editing-mode');
+        btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
+        renderMenu();
+    };
+
+    // Logic to toggle add/remove
+    document.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+            if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
+            const id = item.getAttribute('data-id');
+            if (visibleItems.includes(id)) {
+                visibleItems = visibleItems.filter(i => i !== id);
+            } else {
+                visibleItems.push(id);
+            }
+            localStorage.setItem('visibleLibrary', JSON.stringify(visibleItems));
+            renderMenu();
+        });
+    });
+
+    renderMenu();
+});
+
+        
+
 
 // Add this at the bottom of your script
 lucide.createIcons();
