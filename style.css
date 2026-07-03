@@ -11,25 +11,25 @@ body {
 /* Example of how to define them in style.css */
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/regular.otf');
+  src: url('/fonts/regular.otf');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/medium.otf');
+  src: url('/fonts/medium.otf');
   font-weight: 500;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/semibold.otf');
+  src: url('/fonts/semibold.otf');
   font-weight: 600;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/bold.otf');
+  src: url('/fonts/bold.otf');
   font-weight: 700;
 }
 
