@@ -23,7 +23,7 @@ body {
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/semibolf.otf');
+  src: url('fonts/semibold.otf');
   font-weight: 600;
 }
 
