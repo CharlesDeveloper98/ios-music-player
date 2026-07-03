@@ -1,12 +1,33 @@
-function showPage(pageId, element) {
+function showPage(pageId, element, index) {
+    // 1. Switch pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     
-    if (element) {
-        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-        element.classList.add('active');
+    // 2. Update Nav States
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
+
+    // 3. Move the Liquid Selector (Only for main tabs 0-2)
+    const selector = document.getElementById('active-selector');
+    if (index <= 2) {
+        const container = document.getElementById('tab-container');
+        const tabWidth = container.offsetWidth / 3;
+        selector.style.left = `${(index * tabWidth) + 5}px`;
+        selector.style.width = `${tabWidth - 10}px`;
+        selector.style.opacity = "1";
+    } else {
+        selector.style.opacity = "0"; // Hide when clicking Search
     }
 }
+
+// Initial position on load
+window.addEventListener('DOMContentLoaded', () => {
+    const selector = document.getElementById('active-selector');
+    const container = document.getElementById('tab-container');
+    selector.style.width = `${(container.offsetWidth / 3) - 10}px`;
+    selector.style.left = "5px";
+});
+
 
 function openSettings() {
     showPage('page-settings', null);
