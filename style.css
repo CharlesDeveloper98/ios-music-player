@@ -238,7 +238,7 @@ body {
     background: var(--glass-bg);
     backdrop-filter: blur(20px) saturate(180%);
     border: 0.5px solid var(--glass-border);
-    border-radius: 20px !important; /* Perfect rounding */
+    border-radius: 36px !important; /* Perfect rounding */
     overflow: hidden;
 }
 
