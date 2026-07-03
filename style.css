@@ -153,32 +153,32 @@ body {
 .minus { background: var(--ios-red); color: white; }
 .plus { background: #333; color: var(--ios-red); }
 
-/* Apply to your specific elements */
+/* Glass Effect Containers */
 .mini-player, .main-tabs, .search-tab {
-    @extend .glass-container;
-}
-
-/* Liquid Glass Container Style */
-.glass-container {
-    background: rgba(255, 255, 255, 0.08); /* iOS 26 light tint */
+    background: var(--glass-bg);
     backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 0.5px solid rgba(255, 255, 255, 0.2);
-    border-radius: 24px; /* Matches iOS rounded containers */
-}
-
-
-
-/* The Tab Selector (Liquid Effect) */
-.tab-selector {
-    background: rgba(255, 255, 255, 0.25);
+    border: 0.5px solid var(--glass-border);
     border-radius: 20px;
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); /* Liquid feel */
 }
 
+/* The Animated Tab Selector */
+.tab-selector {
+    position: absolute;
+    top: 8px; bottom: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 0;
+    transition: left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 0.3s ease;
+}
+
+/* Bubble effect when held/active */
 .tab-selector.expanded {
-    transform: scale(1.1, 1.2); /* Expand on hold like iOS */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(30px);
 }
 
 
