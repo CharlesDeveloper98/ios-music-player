@@ -8,6 +8,39 @@ body {
     -webkit-tap-highlight-color: transparent; /* Removes blue tap flash */
 }
 
+/* Example of how to define them in style.css */
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/regular.otf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/medium.otf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/semibolf.otf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/bold.otf');
+  font-weight: 700;
+}
+
+/* Then apply it to your body */
+body {
+  font-family: 'MyCustomFont', sans-serif;
+}
+
+
+
+
 
 :root { 
     --ios-red: #ff3b30;
