@@ -8,33 +8,38 @@ body {
     -webkit-tap-highlight-color: transparent; /* Removes blue tap flash */
 }
 
-/* Example of how to define them in style.css */
+/* Define the font family clearly */
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/regular.otf');
+  src: url('fonts/regular.otf') format('opentype');
   font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/medium.otf');
+  src: url('fonts/medium.otf') format('opentype');
   font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/semibold.otf');
+  src: url('fonts/semibold.otf') format('opentype');
   font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('fonts/bold.otf');
+  src: url('fonts/bold.otf') format('opentype');
   font-weight: 700;
+  font-style: normal;
 }
 
-/* Then apply it to your body */
+/* Force application to body and ensure no system font override */
 body {
+  /* Remove -apple-system to stop it from taking over */
   font-family: 'MyCustomFont', sans-serif;
 }
 
