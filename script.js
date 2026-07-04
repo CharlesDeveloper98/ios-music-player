@@ -50,7 +50,8 @@ function closeSettings() {
 
 // Ensure sub-pages handle taps correctly
 function openSubPage(id) { 
-    document.getElementById(id).classList.add('active'); 
+    const page = document.getElementById(id);
+    if(page) page.classList.add('active'); 
 }
 
 function closeSubPage(id) { 
@@ -98,7 +99,8 @@ function setTheme(theme) {
 }
 
 function toggleThemeMenu() {
-    document.getElementById('theme-options').classList.toggle('show');
+    const options = document.getElementById('theme-options');
+    if(options) options.classList.toggle('show');
 }
 
 function openSubPage(id) { document.getElementById(id).classList.add('active'); }
