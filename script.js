@@ -142,18 +142,20 @@ function toggleEdit() {
         const actionBtn = item.querySelector('.edit-action');
         const chevron = item.querySelector('.chevron-action');
         
-        // Update Action Icon
-        actionBtn.innerHTML = isEditing ? (isHidden ? '<div class="plus">+</div>' : '<div class="minus">-</div>') : '';
+        // Update Action Icon: show minus if visible, plus if hidden
+        actionBtn.innerHTML = isEditing ? 
+            `<div class="${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
         
         // Update Chevron to Reorder if editing
-        chevron.innerHTML = isEditing ? '<i data-lucide="grip-vertical"></i>' : '<i data-lucide="chevron-right"></i>';
-        
-        // Apply dull class if removed
-        item.classList.toggle('dull', isHidden);
+        chevron.innerHTML = isEditing ? 
+            `<i data-lucide="grip-vertical"></i>` : 
+            `<i data-lucide="chevron-right"></i>`;
     });
     
-    lucide.createIcons(); // Re-render icons after change
+    // Refresh Lucide icons to render the new elements
+    lucide.createIcons();
 }
+
 
 
 
