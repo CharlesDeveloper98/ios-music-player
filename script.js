@@ -1,16 +1,16 @@
-// --- Navigation & Tab Logic ---
+let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
+let menuOrder = JSON.parse(localStorage.getItem('libraryOrder')) || null;
+
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     
-    if (element) {
-        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-        element.classList.add('active');
-    }
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    if (element) element.classList.add('active');
 
     const selector = document.getElementById('active-selector');
-    if (selector && index !== undefined) {
-        const container = document.getElementById('tab-container');
+    const container = document.getElementById('tab-container');
+    if (selector && container) {
         const tabWidth = container.offsetWidth / 3;
         selector.style.left = `${(index * tabWidth) + 5}px`;
         selector.style.width = `${tabWidth - 10}px`;
@@ -18,22 +18,29 @@ function showPage(pageId, element, index) {
     }
 }
 
-// --- Library Edit & Drag Logic ---
-let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
-
 function renderMenu() {
     const menu = document.getElementById('library-menu');
-    if (!menu) return;
     const isEditing = menu.classList.contains('editing-mode');
+    const items = Array.from(menu.querySelectorAll('.menu-item'));
     
-    document.querySelectorAll('.menu-item').forEach(item => {
+    // Apply Order
+    if (menuOrder) {
+        menuOrder.forEach(id => {
+            const item = items.find(i => i.dataset.id === id);
+            if (item) menu.appendChild(item);
+        });
+    }
+
+    items.forEach(item => {
         const id = item.dataset.id;
         const isHidden = hiddenItems.includes(id);
         const action = item.querySelector('.edit-action');
         
+        item.classList.toggle('dull', isHidden && !isEditing);
+        item.style.display = (isHidden && !isEditing) ? 'none' : 'flex';
+        
         action.innerHTML = isEditing ? 
             `<div class="status-icon ${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
-        item.setAttribute('draggable', isEditing);
     });
 }
 
@@ -46,67 +53,35 @@ function toggleEdit() {
 }
 
 // Drag & Drop
-const menu = document.getElementById('library-menu');
 let draggedItem = null;
+const menu = document.getElementById('library-menu');
+menu.addEventListener('dragstart', (e) => { draggedItem = e.target.closest('.menu-item'); });
+menu.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    const target = e.target.closest('.menu-item');
+    if (!target || target === draggedItem) return;
+    const after = [...menu.querySelectorAll('.menu-item')].indexOf(target) > [...menu.querySelectorAll('.menu-item')].indexOf(draggedItem) ? target.nextSibling : target;
+    menu.insertBefore(draggedItem, after);
+});
+menu.addEventListener('dragend', () => {
+    menuOrder = [...menu.querySelectorAll('.menu-item')].map(i => i.dataset.id);
+    localStorage.setItem('libraryOrder', JSON.stringify(menuOrder));
+});
 
-if (menu) {
-    menu.addEventListener('dragstart', (e) => {
-        draggedItem = e.target.closest('.menu-item');
-    });
-
-    menu.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        const target = e.target.closest('.menu-item');
-        if (!target || target === draggedItem) return;
-
-        const items = [...menu.querySelectorAll('.menu-item')];
-        const dragIdx = items.indexOf(draggedItem);
-        const targetIdx = items.indexOf(target);
-
-        if (targetIdx === 0 || targetIdx === items.length - 1) return; // Optional constraint
-        
-        const after = targetIdx > dragIdx ? target.nextSibling : target;
-        menu.insertBefore(draggedItem, after);
-    });
-
-    menu.addEventListener('click', (e) => {
-        const icon = e.target.closest('.status-icon');
-        if (!icon) return;
-        const id = icon.closest('.menu-item').dataset.id;
-        hiddenItems = hiddenItems.includes(id) ? hiddenItems.filter(i => i !== id) : [...hiddenItems, id];
-        localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
-        renderMenu();
-    });
-}
-
-// --- Profile & Settings ---
-function initProfileInteraction() {
-    const profiles = document.querySelectorAll('.profile-container');
-    profiles.forEach(profile => {
-        profile.onclick = () => openSettings();
-        profile.oncontextmenu = (e) => { e.preventDefault(); document.getElementById('photo-upload').click(); };
-    });
-}
-
-function openSettings() { document.getElementById('page-settings').classList.add('active'); }
-function closeSettings() { document.getElementById('page-settings').classList.remove('active'); }
-
-// --- Initialization ---
-window.addEventListener('DOMContentLoaded', () => {
-    initProfileInteraction();
+// Click for +/-
+menu.addEventListener('click', (e) => {
+    const icon = e.target.closest('.status-icon');
+    if (!icon) return;
+    const id = icon.closest('.menu-item').dataset.id;
+    hiddenItems = hiddenItems.includes(id) ? hiddenItems.filter(i => i !== id) : [...hiddenItems, id];
+    localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
     renderMenu();
-    
-    // Tab Swipe Setup
-    const tabContainer = document.getElementById('tab-container');
-    if (tabContainer) {
-        tabContainer.addEventListener('touchend', (e) => {
-            const touchX = e.changedTouches[0].clientX - tabContainer.getBoundingClientRect().left;
-            const index = Math.floor(touchX / (tabContainer.offsetWidth / 3));
-            const pages = ['page-home', 'page-new', 'page-library'];
-            const navItems = document.querySelectorAll('.nav-item');
-            showPage(pages[index], navItems[index], index);
-        });
-    }
+});
 
+window.addEventListener('DOMContentLoaded', () => {
+    // Initial Setup
+    const homeTab = document.querySelector('.nav-item');
+    showPage('page-home', homeTab, 0);
+    renderMenu();
     lucide.createIcons();
 });
