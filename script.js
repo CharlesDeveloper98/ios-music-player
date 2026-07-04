@@ -20,27 +20,40 @@ function showPage(pageId, element, index) {
     }
 }
 
-// --- Profile / Settings ---
+// --- Updated Profile Interaction ---
+function initProfileInteraction() {
+    const profiles = document.querySelectorAll('.profile-container');
+    profiles.forEach(profile => {
+        // Tap to open settings
+        profile.addEventListener('click', () => openSettings());
+        
+        // Hold to prompt image upload
+        profile.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            document.getElementById('photo-upload').click();
+        });
+    });
+}
+
 function openSettings() {
-    showPage('page-settings', null);
+    const settings = document.getElementById('page-settings');
+    settings.classList.add('active');
+    document.body.classList.add('settings-open');
+    lucide.createIcons();
 }
 
-function triggerFileSelect(e) {
-    e.preventDefault();
-    document.getElementById('photo-upload').click();
+function closeSettings() {
+    const settings = document.getElementById('page-settings');
+    settings.classList.remove('active');
+    document.body.classList.remove('settings-open');
 }
 
-function previewFile(input) {
-    const file = input.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const containers = document.querySelectorAll('.profile-container');
-            containers.forEach(c => c.innerHTML = `<img src="${e.target.result}" class="profile-img">`);
-        };
-        reader.readAsDataURL(file);
-    }
-}
+// Call initProfileInteraction inside your DOMContentLoaded
+window.addEventListener('DOMContentLoaded', () => {
+    // ... existing code ...
+    initProfileInteraction();
+});
+
 
 // --- Library Edit Mode Logic ---
 let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || ['tv-movies', 'music-videos', 'genres', 'compilations', 'composers'];
