@@ -55,19 +55,18 @@ function renderMenu() {
         const id = item.getAttribute('data-id');
         const isHidden = hiddenItems.includes(id);
         
-        // CRITICAL: Remove all existing status icons first
-        const existingIcons = item.querySelectorAll('.status-icon');
-        existingIcons.forEach(icon => icon.remove());
+        // 1. Remove ONLY the status icons we injected
+        item.querySelectorAll('.status-icon').forEach(icon => icon.remove());
 
         if (isEditing) {
+            // 2. Add exactly one icon
             const icon = document.createElement('div');
             icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
             icon.innerText = isHidden ? '+' : '-';
-            // Prepend the icon to the start of the menu item
             item.prepend(icon);
             item.style.display = 'flex';
         } else {
-            // In normal mode, only show if not hidden
+            // 3. Normal mode: respect hidden state
             item.style.display = isHidden ? 'none' : 'flex';
         }
     });
