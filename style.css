@@ -108,6 +108,41 @@ body {
     cursor: pointer; overflow: hidden;
 }
 
+/* New Settings Page Styles */
+#page-settings {
+    position: fixed;
+    top: 60px; /* Does not reach the status bar */
+    left: 0; right: 0; bottom: 0;
+    background: #000;
+    z-index: 2000;
+    transform: translateY(100%); /* Start hidden off-screen */
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-top: 20px;
+}
+
+#page-settings.active {
+    transform: translateY(0);
+}
+
+.close-settings {
+    width: 30px; height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-left: 20px; cursor: pointer;
+}
+
+/* Hide containers when Settings is open */
+body.settings-open .mini-player, 
+body.settings-open #bottom-nav {
+    display: none;
+}
+
+
+
 /* Update global icon sizes */
 .profile-icon { width: 24px; height: 24px; }
 .menu-icon { width: 28px; height: 28px; margin-right: 20px; }
