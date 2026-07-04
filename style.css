@@ -167,11 +167,8 @@ body.settings-open #bottom-nav {
 
 /* Ensure the container is ready for the dynamic icon */
 /* Fix for the UI menu item tap target */
-.menu-item {
-    display: flex;
-    align-items: center;
-    padding: 16px 20px;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.menu-item { 
+    display: flex; align-items: center; padding: 16px 20px; transition: all 0.3s ease; 
 }
 
 .menu-item.visible { display: flex; align-items: center; }
@@ -194,6 +191,7 @@ body.settings-open #bottom-nav {
 
 /* The edit-action ( +/- ) starts with 0 width */
 .edit-action { width: 0; overflow: hidden; transition: width 0.3s ease; }
+
 
 /* When editing, expand the edit-action and fade/hide the chevron */
 .editing-mode .edit-action { width: 30px; }
@@ -276,8 +274,11 @@ body.settings-open #bottom-nav {
     flex-shrink: 0;
 }
 
-.minus { background: #ff3b30; color: white; }
-.plus { background: #34c759; color: white; }
+.minus { background: #ff3b30; }
+.plus { background: #34c759; }
+
+.dull { opacity: 0.3; }
+.chevron-action { transition: opacity 0.3s; }
 
 /* Glass Effect Containers */
 .mini-player, .main-tabs, .search-tab {
