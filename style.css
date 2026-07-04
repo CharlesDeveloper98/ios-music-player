@@ -314,17 +314,23 @@ body.settings-open #bottom-nav {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1500; /* Stays behind Settings (z-index 2000) but above everything else */
-    display: none; /* Hidden by default */
-    pointer-events: none; /* Allows the page to stay non-interactive */
+    /* Ensure it is behind the settings page (z-index 2000) 
+       but above everything else (z-index 1500) */
+    z-index: 1500; 
+    display: none; 
+    /* CRITICAL: This ensures taps pass through the overlay when it is not active */
+    pointer-events: none; 
+    transition: backdrop-filter 0.3s ease;
 }
 
-/* This targets the overlay when the body has the 'settings-open' class */
+/* Only activate pointer events when the settings page is open */
 body.settings-open #settings-overlay {
     display: block;
     backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.3); /* Adds a slight dimming effect for better readability */
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: auto; /* Now it can block interaction */
 }
+
 
 
 
