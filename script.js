@@ -1,34 +1,26 @@
+// --- Navigation Logic ---
 function showPage(pageId, element, index) {
-    // 1. Switch pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     
-    // 2. Update Nav States
-    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-    element.classList.add('active');
+    if (element) {
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        element.classList.add('active');
+    }
 
-    // 3. Move the Liquid Selector (Only for main tabs 0-2)
     const selector = document.getElementById('active-selector');
-    if (index <= 2) {
+    if (index !== undefined && index <= 2) {
         const container = document.getElementById('tab-container');
         const tabWidth = container.offsetWidth / 3;
         selector.style.left = `${(index * tabWidth) + 5}px`;
         selector.style.width = `${tabWidth - 10}px`;
         selector.style.opacity = "1";
     } else {
-        selector.style.opacity = "0"; // Hide when clicking Search
+        selector.style.opacity = "0";
     }
 }
 
-// Initial position on load
-window.addEventListener('DOMContentLoaded', () => {
-    const selector = document.getElementById('active-selector');
-    const container = document.getElementById('tab-container');
-    selector.style.width = `${(container.offsetWidth / 3) - 10}px`;
-    selector.style.left = "5px";
-});
-
-
+// --- Profile / Settings ---
 function openSettings() {
     showPage('page-settings', null);
 }
@@ -50,18 +42,34 @@ function previewFile(input) {
     }
 }
 
-window.onload = () => {
-    // Load persisted state from localStorage
-    const hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
+// --- Library Edit Mode Logic ---
+let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || ['tv-movies', 'music-videos', 'genres', 'compilations', 'composers'];
+
+function renderMenu() {
+    const menu = document.querySelector('.library-menu');
+    if (!menu) return;
+    
+    const isEditing = menu.classList.contains('editing-mode');
+    
     document.querySelectorAll('.menu-item').forEach(item => {
         const id = item.getAttribute('data-id');
-        // If it's in the hidden list, add the class
-        if (hiddenItems.includes(id)) {
-            item.classList.add('hidden');
+        const isHidden = hiddenItems.includes(id);
+        
+        // Clear old icons
+        const existingIcon = item.querySelector('.status-icon');
+        if (existingIcon) existingIcon.remove();
+
+        if (isEditing) {
+            const icon = document.createElement('div');
+            icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
+            icon.innerText = isHidden ? '+' : '-';
+            item.prepend(icon);
+            item.style.display = 'flex';
+        } else {
+            item.style.display = isHidden ? 'none' : 'flex';
         }
     });
-    lucide.createIcons();
-};
+}
 
 function toggleEdit() {
     const menu = document.querySelector('.library-menu');
@@ -71,14 +79,14 @@ function toggleEdit() {
     renderMenu();
 }
 
-// Update the click handler for the library menu
+// --- Event Listeners ---
 document.querySelector('.library-menu').addEventListener('click', (e) => {
     if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
     
-    const iconClick = e.target.closest('.status-icon');
-    if (!iconClick) return;
+    const icon = e.target.closest('.status-icon');
+    if (!icon) return;
 
-    const item = iconClick.closest('.menu-item');
+    const item = icon.closest('.menu-item');
     const id = item.getAttribute('data-id');
     
     if (hiddenItems.includes(id)) {
@@ -91,112 +99,39 @@ document.querySelector('.library-menu').addEventListener('click', (e) => {
     renderMenu();
 });
 
-// Run on load
-document.addEventListener('DOMContentLoaded', () => {
-    renderMenu();
-});
-
-
-
-// Ensure hiddenItems is defined
-let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || ['tv-movies', 'music-videos', 'genres', 'compilations', 'composers'];
-
-function renderMenu() {
-    const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
-    
-    document.querySelectorAll('.menu-item').forEach(item => {
-        const id = item.getAttribute('data-id');
-        const isHidden = hiddenItems.includes(id);
-        
-        // Remove existing status icons before re-rendering
-        const existingIcon = item.querySelector('.status-icon');
-        if (existingIcon) existingIcon.remove();
-
-        if (isEditing) {
-            // Create the single icon based on current state
-            const icon = document.createElement('div');
-            icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
-            icon.innerText = isHidden ? '+' : '-';
-            item.prepend(icon);
-            item.style.display = 'flex'; // Ensure visible in edit mode
-        } else {
-            // Normal mode: hide the item if it's in the hidden list
-            item.style.display = isHidden ? 'none' : 'flex';
-        }
-    });
-}
-
-    window.toggleEdit = () => {
-        const menu = document.querySelector('.library-menu');
-        const btn = document.getElementById('edit-text');
-        menu.classList.toggle('editing-mode');
-        btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
-        renderMenu();
-    };
-
-    document.querySelector('.library-menu').addEventListener('click', (e) => {
-        if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
-        const item = e.target.closest('.menu-item');
-        if (!item) return;
-
-        const id = item.getAttribute('data-id');
-        if (hiddenItems.includes(id)) {
-            hiddenItems = hiddenItems.filter(i => i !== id);
-        } else {
-            hiddenItems.push(id);
-        }
-        localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
-        renderMenu();
-    });
-
-    renderMenu();
-});
-
-
-
+// --- Tab Swiping/Dragging Logic ---
 const tabContainer = document.getElementById('tab-container');
 const selector = document.getElementById('active-selector');
 let isDragging = false;
 
-tabContainer.addEventListener('touchstart', (e) => {
-    isDragging = true;
-    selector.classList.add('expanded');
-});
+tabContainer.addEventListener('touchstart', () => { isDragging = true; selector.classList.add('expanded'); });
 
 tabContainer.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
     const touchX = e.touches[0].clientX - tabContainer.getBoundingClientRect().left;
     const tabWidth = tabContainer.offsetWidth / 3;
-    
-    // Constrain within the 3 main tabs
     const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
-    
-    // Move selector instantly while dragging
     selector.style.left = `${(index * tabWidth) + 5}px`;
-    
-    // Highlight icon visually
-    document.querySelectorAll('.nav-item').forEach((item, i) => {
-        item.classList.toggle('active', i === index);
-    });
 });
 
 tabContainer.addEventListener('touchend', (e) => {
     isDragging = false;
     selector.classList.remove('expanded');
-    
-    // Snap to the closest tab center
     const touchX = e.changedTouches[0].clientX - tabContainer.getBoundingClientRect().left;
     const tabWidth = tabContainer.offsetWidth / 3;
     const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
-    
     const pages = ['page-home', 'page-new', 'page-library'];
     const navItems = document.querySelectorAll('.main-tabs .nav-item');
     showPage(pages[index], navItems[index], index);
 });
 
-
-        
-
-
-// Add this at the bottom of your script
-lucide.createIcons();
+// --- Initialization ---
+window.addEventListener('DOMContentLoaded', () => {
+    const selector = document.getElementById('active-selector');
+    const container = document.getElementById('tab-container');
+    selector.style.width = `${(container.offsetWidth / 3) - 10}px`;
+    selector.style.left = "5px";
+    
+    renderMenu();
+    lucide.createIcons();
+});
