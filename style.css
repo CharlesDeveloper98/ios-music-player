@@ -194,12 +194,6 @@ body {
     border: 0.5px solid rgba(255, 255, 255, 0.1);
 }
 
-#page-library {
-    height: 100vh;
-    overflow-y: auto;
-    padding-bottom: 150px; /* Ensure content can scroll behind the player */
-}
-
 
 
 
