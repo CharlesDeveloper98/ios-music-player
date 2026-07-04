@@ -70,6 +70,10 @@ body {
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
+/* Dark Theme Menu Containers */
+.settings-content { background: #1d1d1d; border-radius: 12px; margin: 20px; padding: 10px; }
+
+
 .page { display: none; opacity: 0; }
 .page.active { 
     display: block; 
@@ -284,6 +288,27 @@ body.settings-open #bottom-nav {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(30px);
 }
+
+
+/* Smooth Slide-up Modal */
+.page-sub {
+    position: fixed; top: 100%; left: 0; right: 0; bottom: 0;
+    background: #000; z-index: 3000;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.page-sub.active { transform: translateY(-100%); }
+
+/* Liquid Glass Bubble Effect */
+.close-btn, .back-btn {
+    width: 36px; height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+}
+
+
 
 
 /* Bottom Navigation Layout */
