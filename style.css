@@ -1,12 +1,17 @@
 body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; }
 
+
+font-family: 'MyCustomFont', sans-serif;
+
 /* Add this to style.css */
-body {
+
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
     -webkit-tap-highlight-color: transparent; /* Removes blue tap flash */
 }
+
+
 
 /* Define the font family clearly */
 @font-face {
@@ -37,11 +42,6 @@ body {
   font-style: normal;
 }
 
-/* Force application to body and ensure no system font override */
-body {
-  /* Remove -apple-system to stop it from taking over */
-  font-family: 'MyCustomFont', sans-serif;
-}
 
 /* 1. Large Titles (Headers) - Make these Bold */
 .page-title, .header-row h1 { 
@@ -308,27 +308,21 @@ body.settings-open #bottom-nav {
     cursor: pointer;
 }
 
+/* Fix overlay stacking */
 #settings-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Ensure it is behind the settings page (z-index 2000) 
-       but above everything else (z-index 1500) */
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 1500; 
-    display: none; 
-    /* CRITICAL: This ensures taps pass through the overlay when it is not active */
-    pointer-events: none; 
-    transition: backdrop-filter 0.3s ease;
+    pointer-events: none; /* Crucial: ignored when not open */
+    background: transparent;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-/* Only activate pointer events when the settings page is open */
 body.settings-open #settings-overlay {
     display: block;
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.3);
-    pointer-events: auto; /* Now it can block interaction */
+    pointer-events: auto; /* Re-enabled only when settings are open */
 }
 
 
