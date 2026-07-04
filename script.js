@@ -168,17 +168,50 @@ function setupDragAndDrop() {
 }
 
 function toggleEdit() {
-    const menu = document.querySelector('.library-menu');
+    const menu = document.getElementById('library-menu');
+    const btn = document.getElementById('edit-text');
     const isEditing = menu.classList.toggle('editing-mode');
     
-    // Toggle visibility and add draggable attribute to items
+    btn.innerText = isEditing ? 'Done' : 'Edit';
+    
     document.querySelectorAll('.menu-item').forEach(item => {
-        item.setAttribute('draggable', isEditing);
+        const id = item.dataset.id;
+        const isHidden = hiddenItems.includes(id);
         const action = item.querySelector('.edit-action');
-        // Logic to inject the plus/minus as seen in 1001006752.jpg
-        action.innerHTML = isEditing ? `<div class="status-icon ${hiddenItems.includes(item.dataset.id) ? 'plus' : 'minus'}">
-            ${hiddenItems.includes(item.dataset.id) ? '+' : '-'}</div>` : '';
+        
+        action.innerHTML = isEditing ? 
+            `<div class="status-icon ${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
+        
+        item.setAttribute('draggable', isEditing);
     });
+}
+
+// Drag & Drop Constraint Logic
+let draggedItem = null;
+const menu = document.getElementById('library-menu');
+
+menu.addEventListener('dragstart', (e) => {
+    draggedItem = e.target.closest('.menu-item');
+});
+
+menu.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    const target = e.target.closest('.menu-item');
+    if (!target || target === draggedItem) return;
+
+    const items = [...menu.querySelectorAll('.menu-item')];
+    const dragIdx = items.indexOf(draggedItem);
+    const targetIdx = items.indexOf(target);
+
+    // Constraint: Uppermost cannot move up, Downmost cannot move down
+    if ((targetIdx === 0 && dragIdx > 0) || (targetIdx === items.length - 1 && dragIdx < items.length - 1)) {
+        menu.insertBefore(draggedItem, targetIdx === 0 ? items[0] : null);
+    } else {
+        const after = targetIdx > dragIdx ? target.nextSibling : target;
+        menu.insertBefore(draggedItem, after);
+    }
+});
+
     
     lucide.createIcons();
 }
