@@ -80,7 +80,6 @@ let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
 
 function renderMenu() {
     const menu = document.getElementById('library-menu');
-    if (!menu) return;
     const isEditing = menu.classList.contains('editing-mode');
     
     document.querySelectorAll('.menu-item').forEach(item => {
@@ -88,28 +87,27 @@ function renderMenu() {
         const isHidden = hiddenItems.includes(id);
         const action = item.querySelector('.edit-action');
         
-        item.classList.toggle('dull', isHidden && !isEditing);
-        item.style.display = (isHidden && !isEditing) ? 'none' : 'flex';
-        
+        // Update Add/Remove button
         action.innerHTML = isEditing ? 
-            `<div class="status-icon ${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
-        item.setAttribute('draggable', isEditing);
+            `<div class="status-icon ${isHidden ? 'plus' : 'minus'}" style="background:${isHidden ? '#34c759' : '#ff3b30'}">
+                ${isHidden ? '+' : '-'}
+            </div>` : '';
+            
+        item.style.opacity = (isHidden && !isEditing) ? '0' : '1';
+        item.style.display = (isHidden && !isEditing) ? 'none' : 'flex';
     });
+    lucide.createIcons();
 }
 
-// --- Library Edit Mode ---
+// Ensure toggleEdit refreshes the UI
 function toggleEdit() {
     const menu = document.getElementById('library-menu');
     const btn = document.getElementById('edit-text');
-    const isEditing = menu.classList.toggle('editing-mode');
-    
-    btn.innerText = isEditing ? 'Done' : 'Edit';
-    
-    // Hide/Show recorder/chevron based on Edit state
-    document.querySelectorAll('.menu-item').forEach(item => {
-        item.setAttribute('draggable', isEditing);
-    });
+    menu.classList.toggle('editing-mode');
+    btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
+    renderMenu();
 }
+
 
 
 // Drag & Drop
