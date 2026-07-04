@@ -365,7 +365,19 @@ body.settings-open #bottom-nav {
 }
 
 /* Ensure visibility of icons even when not editing */
-.item-content { display: flex; align-items: center; flex: 1; }
+.item-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.item-content i {
+    margin-right: 15px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+}
+
 
 
 
