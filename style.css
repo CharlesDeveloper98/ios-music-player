@@ -114,14 +114,7 @@ body {
 .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; }
 .profile-img { width: 100%; height: 100%; object-fit: cover; }
 
-.library-menu { 
-    border-top: 0.5px solid #333; 
-    margin-top: 10px; 
-    /* This creates the fade effect from the top down to the music player area */
-    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-    padding-bottom: 20px; /* Provides space for the fade */
-}
+.library-menu { border-top: 0.5px solid #333; margin-top: 10px; }
 
 
 .menu-item i { margin-right: 20px; stroke-width: 2.5px; }
