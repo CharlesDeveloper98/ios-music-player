@@ -1,12 +1,13 @@
-// Persistent Reorder Logic
+// --- Persistent Reorder Logic ---
 function saveOrder() {
     const items = [...document.querySelectorAll('.menu-item')];
     const order = items.map(item => item.dataset.id);
     localStorage.setItem('libraryOrder', JSON.stringify(order));
 }
 
-// Initialize Order on Load
+// --- Initialization ---
 window.addEventListener('DOMContentLoaded', () => {
+    // Load Library Order
     const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
     const menu = document.getElementById('library-menu');
     if (savedOrder && menu) {
@@ -15,19 +16,30 @@ window.addEventListener('DOMContentLoaded', () => {
             if (item) menu.appendChild(item);
         });
     }
-    // Default to Home
+
+    // Initialize UI features
+    initProfileInteraction();
+    renderMenu();
+    lucide.createIcons();
+    
+    // Set default page and liquid tabs
     showPage('page-home', document.querySelector('.nav-item'), 0);
+    initDragTabs();
 });
 
-// Liquid Tab Selector Logic
+// --- Liquid Tab Selector Logic ---
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     
+    updateSelector(index);
+}
+
+function updateSelector(index) {
     const selector = document.getElementById('active-selector');
     const container = document.getElementById('tab-container');
-
-    if (index <= 2) { // Only show on Home, New, Library
+    
+    if (index <= 2) { // Only show/move on Home, New, Library
         selector.style.opacity = "1";
         const tabWidth = container.offsetWidth / 3;
         selector.style.left = `${(index * tabWidth) + 5}px`;
@@ -37,9 +49,27 @@ function showPage(pageId, element, index) {
     }
 }
 
-// Drag & Drop (Updated to save state)
-// Add 'saveOrder()' inside the 'dragend' event listener in your existing logic
+// Liquid Drag Logic
+function initDragTabs() {
+    const selector = document.getElementById('active-selector');
+    let isDragging = false;
 
+    const startDrag = () => {
+        isDragging = true;
+        selector.classList.add('dragging');
+    };
+
+    const stopDrag = () => {
+        isDragging = false;
+        selector.classList.remove('dragging');
+    };
+
+    selector.addEventListener('mousedown', startDrag);
+    window.addEventListener('mouseup', stopDrag);
+    // Add touch support for mobile
+    selector.addEventListener('touchstart', startDrag);
+    window.addEventListener('touchend', stopDrag);
+}
 
 // --- Library Edit & Drag Logic ---
 let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
@@ -54,11 +84,9 @@ function renderMenu() {
         const isHidden = hiddenItems.includes(id);
         const action = item.querySelector('.edit-action');
         
-        // Update visibility and "dull" state
         item.classList.toggle('dull', isHidden && !isEditing);
         item.style.display = (isHidden && !isEditing) ? 'none' : 'flex';
         
-        // Update edit controls
         action.innerHTML = isEditing ? 
             `<div class="status-icon ${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
         item.setAttribute('draggable', isEditing);
@@ -85,6 +113,7 @@ if (menu) {
 
     menu.addEventListener('dragend', () => {
         draggedItem.classList.remove('dragging');
+        saveOrder(); // Save position after dropping
     });
 
     menu.addEventListener('dragover', (e) => {
@@ -125,9 +154,6 @@ function closeSettings() {
     document.body.classList.remove('settings-open');
 }
 
-// --- Initialization ---
-window.addEventListener('DOMContentLoaded', () => {
-    initProfileInteraction();
-    renderMenu();
-    lucide.createIcons();
-});
+// Add this at the bottom of your script
+lucide.createIcons();
+
