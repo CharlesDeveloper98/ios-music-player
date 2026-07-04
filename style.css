@@ -1,15 +1,17 @@
 body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; }
 
-
+body {
 font-family: 'MyCustomFont', sans-serif;
+}
 
 /* Add this to style.css */
-
+body {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
     -webkit-tap-highlight-color: transparent; /* Removes blue tap flash */
 }
+
 
 
 
