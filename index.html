@@ -74,12 +74,15 @@
         <div class="close-btn" onclick="closeSettings()"><i data-lucide="x"></i></div>
         <h1>Settings</h1>
     </div>
-    <div class="settings-content">
-        <div class="setting-group-title">Appearance</div>
-        <div class="menu-item" onclick="openSubPage('page-ui')">
-            <span>UI</span> <i data-lucide="chevron-right"></i>
-        </div>
+    <!-- Inside #page-settings -->
+<div class="settings-content">
+    <div class="setting-group-title">Appearance</div>
+    <!-- Add 'pointer-events: auto' and ensure the div is the primary trigger -->
+    <div class="menu-item" onclick="openSubPage('page-ui')" style="pointer-events: auto; cursor: pointer;">
+        <span>UI</span> 
+        <i data-lucide="chevron-right"></i>
     </div>
+</div>
 </div>
 
 <div id="page-ui" class="page-sub">
