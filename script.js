@@ -91,66 +91,53 @@ document.querySelector('.library-menu').addEventListener('click', (e) => {
 });
 
 
-// At the top, define initial hidden state
-let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary') || '[]');
-
-function renderMenu() {
-    const menu = document.querySelector('.library-menu');
-    const isEditing = menu.classList.contains('editing-mode');
-    const editBtn = document.getElementById('edit-text');
-    
-    editBtn.innerText = isEditing ? 'Done' : 'Edit';
-
-    document.querySelectorAll('.menu-item').forEach(item => {
-        const id = item.getAttribute('data-id');
-        const isHidden = hiddenItems.includes(id);
-
-        // Remove existing control icons
-        const existingControls = item.querySelector('.control-icon');
-        if (existingControls) existingControls.remove();
-
-        if (isEditing) {
-            item.style.display = 'flex'; // Show everything in edit mode
-            const control = document.createElement('span');
-            control.className = 'control-icon';
-            control.innerText = isHidden ? '+' : '-';
-            control.style.color = isHidden ? '#34c759' : '#ff3b30'; // Green plus, Red minus
-            item.prepend(control);
-        } else {
-            // Normal mode: hide the item if it's in the hidden list
-            item.style.display = isHidden ? 'none' : 'flex';
-        }
-    });
-}
-
-function toggleEdit() {
-    const menu = document.querySelector('.library-menu');
-    menu.classList.toggle('editing-mode');
-    renderMenu();
-}
-
-// Handle clicks for toggling visibility
-document.querySelector('.library-menu').addEventListener('click', (e) => {
-    const menu = document.querySelector('.library-menu');
-    if (!menu.classList.contains('editing-mode')) return;
-
-    const item = e.target.closest('.menu-item');
-    if (!item) return;
-
-    const id = item.getAttribute('data-id');
-    
-    if (hiddenItems.includes(id)) {
-        hiddenItems = hiddenItems.filter(i => i !== id);
-    } else {
-        hiddenItems.push(id);
-    }
-    
-    localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
-    renderMenu();
-});
-
-// Initial call on load
 document.addEventListener('DOMContentLoaded', () => {
+    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
+
+    function renderMenu() {
+        const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
+        document.querySelectorAll('.menu-item').forEach(item => {
+            const id = item.getAttribute('data-id');
+            const isHidden = hiddenItems.includes(id);
+            
+            // Remove old status icons
+            item.querySelectorAll('.status-icon').forEach(el => el.remove());
+
+            if (isEditing) {
+                const icon = document.createElement('div');
+                icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
+                icon.innerText = isHidden ? '+' : '-';
+                item.prepend(icon);
+                item.classList.toggle('dull', isHidden);
+            } else {
+                item.style.display = isHidden ? 'none' : 'flex';
+            }
+        });
+    }
+
+    window.toggleEdit = () => {
+        const menu = document.querySelector('.library-menu');
+        const btn = document.getElementById('edit-text');
+        menu.classList.toggle('editing-mode');
+        btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
+        renderMenu();
+    };
+
+    document.querySelector('.library-menu').addEventListener('click', (e) => {
+        if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
+        const item = e.target.closest('.menu-item');
+        if (!item) return;
+
+        const id = item.getAttribute('data-id');
+        if (hiddenItems.includes(id)) {
+            hiddenItems = hiddenItems.filter(i => i !== id);
+        } else {
+            hiddenItems.push(id);
+        }
+        localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
+        renderMenu();
+    });
+
     renderMenu();
 });
 
