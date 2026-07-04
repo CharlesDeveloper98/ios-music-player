@@ -65,55 +65,66 @@ window.onload = () => {
 
 function toggleEdit() {
     const menu = document.querySelector('.library-menu');
-    const editBtn = document.getElementById('edit-text');
-    const isEditing = menu.classList.toggle('editing-mode');
-    editBtn.innerText = isEditing ? 'Done' : 'Edit';
+    const btn = document.getElementById('edit-text');
+    menu.classList.toggle('editing-mode');
+    btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
+    renderMenu();
 }
 
+// Update the click handler for the library menu
 document.querySelector('.library-menu').addEventListener('click', (e) => {
-    const menu = document.querySelector('.library-menu');
-    if (!menu.classList.contains('editing-mode')) return;
+    if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
+    
+    const iconClick = e.target.closest('.status-icon');
+    if (!iconClick) return;
 
-    const item = e.target.closest('.menu-item');
-    if (!item) return;
-
+    const item = iconClick.closest('.menu-item');
     const id = item.getAttribute('data-id');
-    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
-
-    if (item.classList.contains('hidden')) {
-        item.classList.remove('hidden');
+    
+    if (hiddenItems.includes(id)) {
         hiddenItems = hiddenItems.filter(i => i !== id);
     } else {
-        item.classList.add('hidden');
         hiddenItems.push(id);
     }
-    localStorage.setItem('hiddenLibraryItems', JSON.stringify(hiddenItems));
+    
+    localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
+    renderMenu();
+});
+
+// Run on load
+document.addEventListener('DOMContentLoaded', () => {
+    renderMenu();
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
 
-    function renderMenu() {
-        const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
-        document.querySelectorAll('.menu-item').forEach(item => {
-            const id = item.getAttribute('data-id');
-            const isHidden = hiddenItems.includes(id);
-            
-            // Remove old status icons
-            item.querySelectorAll('.status-icon').forEach(el => el.remove());
+// Ensure hiddenItems is defined
+let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || ['tv-movies', 'music-videos', 'genres', 'compilations', 'composers'];
 
-            if (isEditing) {
-                const icon = document.createElement('div');
-                icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
-                icon.innerText = isHidden ? '+' : '-';
-                item.prepend(icon);
-                item.classList.toggle('dull', isHidden);
-            } else {
-                item.style.display = isHidden ? 'none' : 'flex';
-            }
-        });
-    }
+function renderMenu() {
+    const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
+    
+    document.querySelectorAll('.menu-item').forEach(item => {
+        const id = item.getAttribute('data-id');
+        const isHidden = hiddenItems.includes(id);
+        
+        // Remove existing status icons before re-rendering
+        const existingIcon = item.querySelector('.status-icon');
+        if (existingIcon) existingIcon.remove();
+
+        if (isEditing) {
+            // Create the single icon based on current state
+            const icon = document.createElement('div');
+            icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
+            icon.innerText = isHidden ? '+' : '-';
+            item.prepend(icon);
+            item.style.display = 'flex'; // Ensure visible in edit mode
+        } else {
+            // Normal mode: hide the item if it's in the hidden list
+            item.style.display = isHidden ? 'none' : 'flex';
+        }
+    });
+}
 
     window.toggleEdit = () => {
         const menu = document.querySelector('.library-menu');
