@@ -55,21 +55,24 @@ function renderMenu() {
         const id = item.getAttribute('data-id');
         const isHidden = hiddenItems.includes(id);
         
-        // Clear old icons
-        const existingIcon = item.querySelector('.status-icon');
-        if (existingIcon) existingIcon.remove();
+        // CRITICAL: Remove all existing status icons first
+        const existingIcons = item.querySelectorAll('.status-icon');
+        existingIcons.forEach(icon => icon.remove());
 
         if (isEditing) {
             const icon = document.createElement('div');
             icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
             icon.innerText = isHidden ? '+' : '-';
+            // Prepend the icon to the start of the menu item
             item.prepend(icon);
             item.style.display = 'flex';
         } else {
+            // In normal mode, only show if not hidden
             item.style.display = isHidden ? 'none' : 'flex';
         }
     });
 }
+
 
 function toggleEdit() {
     const menu = document.querySelector('.library-menu');
