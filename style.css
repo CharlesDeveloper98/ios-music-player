@@ -11,28 +11,28 @@ body {
 /* Define the font family clearly */
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('/fonts/regular.otf') format('opentype');
+  src: url('fonts/regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('/fonts/medium.otf') format('opentype');
+  src: url('fonts/medium.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('/fonts/semibold.otf') format('opentype');
+  src: url('fonts/semibold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('/fonts/bold.otf') format('opentype');
+  src: url('fonts/bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
 }
@@ -62,8 +62,6 @@ body {
 .mini-sub { 
     font-weight: 400; 
 }
-
-
 
 
 :root { 
@@ -121,27 +119,13 @@ body {
 
 .menu-item i { margin-right: 20px; stroke-width: 2.5px; }
 /* Icons */
-.menu-item i { 
-    color: #ff3b30; /* iOS Red */
-    margin-right: 20px; /* Space between icon and text */
-}
+.menu-item i { color: var(--ios-red); } /* Icons stay red */
             
-/* Ensure the Chevron aligns right */
-.menu-item::after { 
-    content: "❯"; 
-    margin-left: auto; 
-    color: #555; 
-}
+.menu-item::after { content: "❯"; margin-left: auto; color: #555; }
 
-/* Library Menu Items - Red Icon, White Text */
-.menu-item { 
-    display: flex; 
-    align-items: center; 
-    padding: 16px 20px; 
-    color: #fff; 
-    font-size: 18px;
-}
 
+/* Library Edit Mode Styling */
+.menu-item { display: flex; align-items: center; padding: 16px 20px; color: #fff; }
 
 .menu-item.visible { display: flex; align-items: center; }
 .library-menu.editing-mode .menu-item { display: flex; opacity: 0.5; }
@@ -157,15 +141,6 @@ body {
     border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; 
 }
 .editing-mode .menu-item.hidden-default::before { content: "+"; background: #34c759; }
-
-/* Control Icons in Edit Mode */
-.control-icon {
-    font-size: 24px;
-    font-weight: bold;
-    margin-right: 15px;
-    width: 25px;
-    text-align: center;
-}
 
 
 /* Library Menu Persistence Fix */
@@ -238,8 +213,7 @@ body {
     background: var(--glass-bg);
     backdrop-filter: blur(20px) saturate(180%);
     border: 0.5px solid var(--glass-border);
-    border-radius: 36px !important; /* Perfect rounding */
-    overflow: hidden;
+    border-radius: 36px;
 }
 
 /* The Animated Tab Selector */
