@@ -291,8 +291,15 @@ body.settings-open #bottom-nav {
 }
 
 
-/* Reorder handle placement */
-.reorder-handle { margin-left: auto; color: #555; }
+/* Hide Reorder handle by default, show Chevron */
+.reorder-handle { display: none !important; }
+.chevron-icon { display: block; color: #555; }
+
+/* In Edit mode, show Reorder handle, hide Chevron */
+.editing-mode .reorder-handle { display: flex !important; cursor: grab; }
+.editing-mode .chevron-icon { display: none; }
+
+
 
 .editing-mode .reorder-handle { 
     opacity: 1 !important; 
