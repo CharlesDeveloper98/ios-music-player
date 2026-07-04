@@ -181,15 +181,11 @@ body {
     left: 10px; 
     right: 10px;
     height: 60px; 
-    /* The key is here: The background color is partially transparent */
-    background: rgba(44, 44, 46, 0.6); 
-    /* This applies the blur effect to whatever is BEHIND this element */
+    /* Use a semi-transparent background to allow the blur to show */
+    background: rgba(28, 28, 30, 0.7); 
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-radius: 12px;
-    display: flex; 
-    align-items: center; 
-    padding: 0 15px; 
     z-index: 999;
     border: 0.5px solid rgba(255, 255, 255, 0.1);
 }
@@ -270,13 +266,26 @@ body {
     backdrop-filter: blur(30px);
 }
 
+.main-tabs, .search-tab {
+    background: rgba(28, 28, 30, 0.7); /* Match the mini-player opacity */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
 
 
 /* Bottom Navigation Layout */
 #bottom-nav {
-    position: fixed; bottom: 20px; left: 10px; right: 10px;
-    display: flex; gap: 10px; z-index: 1000; height: 70px;
-}
+    position: fixed; 
+    bottom: 20px; 
+    left: 10px; 
+    right: 10px;
+    display: flex; 
+    gap: 10px; 
+    z-index: 1000; 
+    height: 70px;
+    }
+
 
 .main-tabs {
     flex: 1; display: flex; position: relative; padding: 0 10px;
