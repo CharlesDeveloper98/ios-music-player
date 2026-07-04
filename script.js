@@ -27,10 +27,14 @@ window.addEventListener('DOMContentLoaded', () => {
     initDragTabs();
 });
 
-// --- Liquid Tab Selector Logic ---
+// --- Navigation Logic ---
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
+    
+    // Update red icon color
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    element.classList.add('active');
     
     updateSelector(index);
 }
@@ -39,15 +43,15 @@ function updateSelector(index) {
     const selector = document.getElementById('active-selector');
     const container = document.getElementById('tab-container');
     
-    if (index <= 2) { // Only show/move on Home, New, Library
+    if (index === 3) { // Search Tab
+        selector.style.opacity = "0"; // Disappear
+    } else {
         selector.style.opacity = "1";
         const tabWidth = container.offsetWidth / 3;
         selector.style.left = `${(index * tabWidth) + 5}px`;
-        selector.style.width = `${tabWidth - 10}px`;
-    } else {
-        selector.style.opacity = "0"; // Disappear on Search
     }
 }
+
 
 // Liquid Drag Logic
 function initDragTabs() {
@@ -93,13 +97,20 @@ function renderMenu() {
     });
 }
 
+// --- Library Edit Mode ---
 function toggleEdit() {
     const menu = document.getElementById('library-menu');
     const btn = document.getElementById('edit-text');
     const isEditing = menu.classList.toggle('editing-mode');
+    
     btn.innerText = isEditing ? 'Done' : 'Edit';
-    renderMenu();
+    
+    // Hide/Show recorder/chevron based on Edit state
+    document.querySelectorAll('.menu-item').forEach(item => {
+        item.setAttribute('draggable', isEditing);
+    });
 }
+
 
 // Drag & Drop
 const menu = document.getElementById('library-menu');
