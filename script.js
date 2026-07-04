@@ -1,23 +1,45 @@
-// --- Navigation & Tab Logic ---
+// Persistent Reorder Logic
+function saveOrder() {
+    const items = [...document.querySelectorAll('.menu-item')];
+    const order = items.map(item => item.dataset.id);
+    localStorage.setItem('libraryOrder', JSON.stringify(order));
+}
+
+// Initialize Order on Load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
+    const menu = document.getElementById('library-menu');
+    if (savedOrder && menu) {
+        savedOrder.forEach(id => {
+            const item = menu.querySelector(`[data-id="${id}"]`);
+            if (item) menu.appendChild(item);
+        });
+    }
+    // Default to Home
+    showPage('page-home', document.querySelector('.nav-item'), 0);
+});
+
+// Liquid Tab Selector Logic
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     
-    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-    if (element) element.classList.add('active');
-
     const selector = document.getElementById('active-selector');
-    // If index is 3 (Search), hide the selector
-    if (selector && index !== undefined && index <= 2) {
-        const container = document.getElementById('tab-container');
+    const container = document.getElementById('tab-container');
+
+    if (index <= 2) { // Only show on Home, New, Library
+        selector.style.opacity = "1";
         const tabWidth = container.offsetWidth / 3;
         selector.style.left = `${(index * tabWidth) + 5}px`;
         selector.style.width = `${tabWidth - 10}px`;
-        selector.style.opacity = "1";
-    } else if (selector) {
-        selector.style.opacity = "0";
+    } else {
+        selector.style.opacity = "0"; // Disappear on Search
     }
 }
+
+// Drag & Drop (Updated to save state)
+// Add 'saveOrder()' inside the 'dragend' event listener in your existing logic
+
 
 // --- Library Edit & Drag Logic ---
 let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
