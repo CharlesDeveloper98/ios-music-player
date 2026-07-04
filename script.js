@@ -20,6 +20,16 @@ function showPage(pageId, element, index) {
     }
 }
 
+
+// Load saved profile picture on startup
+window.addEventListener('DOMContentLoaded', () => {
+    const savedImg = localStorage.getItem('profilePic');
+    if (savedImg) {
+        document.querySelectorAll('.profile-container').forEach(c => {
+            c.innerHTML = `<img src="${savedImg}" class="profile-img">`;
+        });
+    }
+
 // --- Updated Profile Interaction ---
 function initProfileInteraction() {
     const profiles = document.querySelectorAll('.profile-container');
@@ -53,6 +63,37 @@ window.addEventListener('DOMContentLoaded', () => {
     // ... existing code ...
     initProfileInteraction();
 });
+
+function previewFile(input) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const dataUrl = e.target.result;
+            localStorage.setItem('profilePic', dataUrl); // Save to memory
+            document.querySelectorAll('.profile-container').forEach(c => {
+                c.innerHTML = `<img src="${dataUrl}" class="profile-img">`;
+            });
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function setTheme(theme) {
+    localStorage.setItem('app-theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('theme-label').innerText = theme.charAt(0).toUpperCase() + theme.slice(1);
+    document.getElementById('theme-options').classList.remove('show');
+}
+
+function toggleThemeMenu() {
+    document.getElementById('theme-options').classList.toggle('show');
+}
+
+function openSubPage(id) { document.getElementById(id).classList.add('active'); }
+function closeSubPage(id) { document.getElementById(id).classList.remove('active'); }
+
+    
 
 
 // --- Library Edit Mode Logic ---
