@@ -132,10 +132,26 @@ function renderMenu() {
 function toggleEdit() {
     const menu = document.querySelector('.library-menu');
     const btn = document.getElementById('edit-text');
-    menu.classList.toggle('editing-mode');
-    btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
-    renderMenu();
+    const isEditing = menu.classList.toggle('editing-mode');
+    
+    btn.innerText = isEditing ? 'Done' : 'Edit';
+    
+    // Update icons based on state
+    document.querySelectorAll('.menu-item').forEach(item => {
+        const id = item.getAttribute('data-id');
+        const isHidden = hiddenItems.includes(id);
+        const actionBtn = item.querySelector('.edit-action');
+        
+        // Update the +/- icon based on your current hiddenItems array
+        actionBtn.innerHTML = isHidden ? 
+            `<div class="plus-icon">+</div>` : 
+            `<div class="minus-icon">-</div>`;
+            
+        // Apply dull class if item is marked as "removed" (hidden)
+        item.classList.toggle('dull', isHidden);
+    });
 }
+
 
 // --- Library Event Listener ---
 const libMenu = document.querySelector('.library-menu');
