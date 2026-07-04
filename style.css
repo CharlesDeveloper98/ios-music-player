@@ -173,7 +173,11 @@ body.settings-open #bottom-nav {
     padding: 16px 20px; 
     color: #fff; 
     position: relative; 
-    cursor: pointer; /* Ensures tap recognition */
+    cursor: pointer; 
+    /* Prevent text selection during tap */
+    -webkit-user-select: none; 
+    user-select: none;
+    /* Visual feedback for the tap */
     -webkit-tap-highlight-color: rgba(255,255,255,0.1); 
 }
 
@@ -316,22 +320,27 @@ body.settings-open #bottom-nav {
     transform: translateY(0);
 }
 
-/* Ensure settings content is interactive */
+/* Fix for the UI menu item tap target */
 .settings-content { 
     position: relative; 
     z-index: 2005; 
-    pointer-events: auto; 
+    pointer-events: auto; /* Ensures taps pass through to children */
 }
 
 
 
-/* Smooth Slide-up Modal */
+/* Ensure the sub-page overlays correctly */
 .page-sub {
-    position: fixed; top: 100%; left: 0; right: 0; bottom: 0;
-    background: #000; z-index: 3000;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: fixed; 
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000; 
+    z-index: 3000;
+    transform: translateY(100%); /* Hidden by default */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.page-sub.active { transform: translateY(-100%); }
+.page-sub.active { 
+    transform: translateY(0); /* Slides up to cover screen */
+}
 
 /* Liquid Glass Bubble Effect */
 .close-btn, .back-btn {
