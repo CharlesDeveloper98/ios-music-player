@@ -155,10 +155,11 @@ body.settings-open #bottom-nav {
 .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; }
 .profile-img { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- Library Menu Refinement --- */
+/* --- Library Layout --- */
 .library-menu {
     padding: 0 20px;
-    margin-top: 10px;
+    /* Aligns menu items under the 'L' of Library title */
+    margin-left: 0; 
 }
 
 .menu-item i { 
@@ -199,7 +200,7 @@ body.settings-open #bottom-nav {
 .editing-mode .menu-item.hidden-default::before { content: "+"; background: #34c759; }
 
 /* Hide the arrow (chevron) when in edit mode */
-.editing-mode .menu-item::after { display: none; }
+.editing-mode .menu-item::after { display: block; content: "☰"; opacity: 0.5; }
 
 /* Edit action: Minus/Plus container */
 .edit-action { width: 30px; display: flex; align-items: center; }
@@ -317,21 +318,23 @@ body.settings-open #bottom-nav {
 }
 
 
+/* --- Liquid Tab Selector & Bubble --- */
 .tab-selector {
     position: absolute;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    height: 44px;
+    top: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smoother movement */
+    backdrop-filter: blur(10px);
     z-index: 0;
-    pointer-events: none;
-}
+ }
 
-/* Liquid Bubble Animation */
+/* Liquid bubble expansion during interaction */
 .tab-selector.dragging {
-    transform: scale(1.15);
-    background: rgba(255, 255, 255, 0.25);
-    filter: blur(2px); /* Creates the "liquid" look */
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.35);
+    filter: blur(4px);
 }
 
 /* Bubble effect when held/active */
@@ -378,6 +381,12 @@ body.settings-open #bottom-nav {
     justify-content: center;
 }
 
+/* Reorder movement styling */
+.menu-item.dragging {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
 
 
 
