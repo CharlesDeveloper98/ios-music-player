@@ -136,21 +136,25 @@ function toggleEdit() {
     
     btn.innerText = isEditing ? 'Done' : 'Edit';
     
-    // Update icons based on state
     document.querySelectorAll('.menu-item').forEach(item => {
         const id = item.getAttribute('data-id');
         const isHidden = hiddenItems.includes(id);
         const actionBtn = item.querySelector('.edit-action');
+        const chevron = item.querySelector('.chevron-action');
         
-        // Update the +/- icon based on your current hiddenItems array
-        actionBtn.innerHTML = isHidden ? 
-            `<div class="plus-icon">+</div>` : 
-            `<div class="minus-icon">-</div>`;
-            
-        // Apply dull class if item is marked as "removed" (hidden)
+        // Update Action Icon
+        actionBtn.innerHTML = isEditing ? (isHidden ? '<div class="plus">+</div>' : '<div class="minus">-</div>') : '';
+        
+        // Update Chevron to Reorder if editing
+        chevron.innerHTML = isEditing ? '<i data-lucide="grip-vertical"></i>' : '<i data-lucide="chevron-right"></i>';
+        
+        // Apply dull class if removed
         item.classList.toggle('dull', isHidden);
     });
+    
+    lucide.createIcons(); // Re-render icons after change
 }
+
 
 
 // --- Library Event Listener ---
