@@ -245,7 +245,7 @@ body {
 /* The Animated Tab Selector */
 .tab-selector {
     position: absolute;
-    top: 11px; bottom: 11px;
+    top: 5px; bottom: 5px;
     background: rgba(255, 255, 255, 0.15);
     border-radius: 33px;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
