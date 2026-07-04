@@ -27,14 +27,10 @@ window.addEventListener('DOMContentLoaded', () => {
     initDragTabs();
 });
 
-// --- Navigation Logic ---
+// --- Liquid Tab Selector Logic ---
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
-    
-    // Update red icon color
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    element.classList.add('active');
     
     updateSelector(index);
 }
@@ -43,15 +39,15 @@ function updateSelector(index) {
     const selector = document.getElementById('active-selector');
     const container = document.getElementById('tab-container');
     
-    if (index === 3) { // Search Tab
-        selector.style.opacity = "0"; // Disappear
-    } else {
+    if (index <= 2) { // Only show/move on Home, New, Library
         selector.style.opacity = "1";
         const tabWidth = container.offsetWidth / 3;
         selector.style.left = `${(index * tabWidth) + 5}px`;
+        selector.style.width = `${tabWidth - 10}px`;
+    } else {
+        selector.style.opacity = "0"; // Disappear on Search
     }
 }
-
 
 // Liquid Drag Logic
 function initDragTabs() {
@@ -80,6 +76,7 @@ let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
 
 function renderMenu() {
     const menu = document.getElementById('library-menu');
+    if (!menu) return;
     const isEditing = menu.classList.contains('editing-mode');
     
     document.querySelectorAll('.menu-item').forEach(item => {
@@ -87,28 +84,22 @@ function renderMenu() {
         const isHidden = hiddenItems.includes(id);
         const action = item.querySelector('.edit-action');
         
-        // Update Add/Remove button
-        action.innerHTML = isEditing ? 
-            `<div class="status-icon ${isHidden ? 'plus' : 'minus'}" style="background:${isHidden ? '#34c759' : '#ff3b30'}">
-                ${isHidden ? '+' : '-'}
-            </div>` : '';
-            
-        item.style.opacity = (isHidden && !isEditing) ? '0' : '1';
+        item.classList.toggle('dull', isHidden && !isEditing);
         item.style.display = (isHidden && !isEditing) ? 'none' : 'flex';
+        
+        action.innerHTML = isEditing ? 
+            `<div class="status-icon ${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
+        item.setAttribute('draggable', isEditing);
     });
-    lucide.createIcons();
 }
 
-// Ensure toggleEdit refreshes the UI
 function toggleEdit() {
     const menu = document.getElementById('library-menu');
     const btn = document.getElementById('edit-text');
-    menu.classList.toggle('editing-mode');
-    btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
+    const isEditing = menu.classList.toggle('editing-mode');
+    btn.innerText = isEditing ? 'Done' : 'Edit';
     renderMenu();
 }
-
-
 
 // Drag & Drop
 const menu = document.getElementById('library-menu');
@@ -165,4 +156,3 @@ function closeSettings() {
 
 // Add this at the bottom of your script
 lucide.createIcons();
-
