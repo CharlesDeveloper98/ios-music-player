@@ -15,6 +15,8 @@ function showPage(pageId, element, index) {
         selector.style.left = `${(index * tabWidth) + 5}px`;
         selector.style.width = `${tabWidth - 10}px`;
         selector.style.opacity = "1";
+    } else {
+        selector.style.opacity = "0";
     }
 }
 
