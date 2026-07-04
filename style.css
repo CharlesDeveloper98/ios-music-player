@@ -181,14 +181,26 @@ body {
     left: 10px; 
     right: 10px;
     height: 60px; 
-    background: rgba(44, 44, 46, 0.8); /* Slightly more transparent */
+    /* The key is here: The background color is partially transparent */
+    background: rgba(44, 44, 46, 0.6); 
+    /* This applies the blur effect to whatever is BEHIND this element */
     backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-radius: 12px;
     display: flex; 
     align-items: center; 
     padding: 0 15px; 
     z-index: 999;
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
 }
+
+#page-library {
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 150px; /* Ensure content can scroll behind the player */
+}
+
+
 
 
 /* Ensure the art matches the new container height */
