@@ -129,32 +129,60 @@ function renderMenu() {
     });
 }
 
+// Add to renderMenu or initialization
+function setupDragAndDrop() {
+    const menu = document.querySelector('.library-menu');
+    let draggedItem = null;
+
+    menu.addEventListener('dragstart', (e) => {
+        if (!menu.classList.contains('editing-mode')) return;
+        draggedItem = e.target.closest('.menu-item');
+        e.dataTransfer.effectAllowed = 'move';
+    });
+
+    menu.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const targetItem = e.target.closest('.menu-item');
+        if (!targetItem || targetItem === draggedItem) return;
+
+        const allItems = Array.from(menu.querySelectorAll('.menu-item'));
+        const index = allItems.indexOf(targetItem);
+        const draggedIndex = allItems.indexOf(draggedItem);
+
+        // Constraint: Uppermost cannot move up, Downmost cannot move down
+        if (index === 0 && draggedIndex > 0) {
+            menu.insertBefore(draggedItem, allItems[0]);
+        } else if (index === allItems.length - 1 && draggedIndex < allItems.length - 1) {
+            menu.appendChild(draggedItem);
+        } else {
+            // Standard drag
+            const rect = targetItem.getBoundingClientRect();
+            const midpoint = rect.top + rect.height / 2;
+            if (e.clientY < midpoint) {
+                menu.insertBefore(draggedItem, targetItem);
+            } else {
+                menu.insertBefore(draggedItem, targetItem.nextSibling);
+            }
+        }
+    });
+}
+
 function toggleEdit() {
     const menu = document.querySelector('.library-menu');
-    const btn = document.getElementById('edit-text');
     const isEditing = menu.classList.toggle('editing-mode');
     
-    btn.innerText = isEditing ? 'Done' : 'Edit';
-    
+    // Toggle visibility and add draggable attribute to items
     document.querySelectorAll('.menu-item').forEach(item => {
-        const id = item.getAttribute('data-id');
-        const isHidden = hiddenItems.includes(id);
-        const actionBtn = item.querySelector('.edit-action');
-        const chevron = item.querySelector('.chevron-action');
-        
-        // Update Action Icon: show minus if visible, plus if hidden
-        actionBtn.innerHTML = isEditing ? 
-            `<div class="${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
-        
-        // Update Chevron to Reorder if editing
-        chevron.innerHTML = isEditing ? 
-            `<i data-lucide="grip-vertical"></i>` : 
-            `<i data-lucide="chevron-right"></i>`;
+        item.setAttribute('draggable', isEditing);
+        const action = item.querySelector('.edit-action');
+        // Logic to inject the plus/minus as seen in 1001006752.jpg
+        action.innerHTML = isEditing ? `<div class="status-icon ${hiddenItems.includes(item.dataset.id) ? 'plus' : 'minus'}">
+            ${hiddenItems.includes(item.dataset.id) ? '+' : '-'}</div>` : '';
     });
     
-    // Refresh Lucide icons to render the new elements
     lucide.createIcons();
 }
+
 
 
 
