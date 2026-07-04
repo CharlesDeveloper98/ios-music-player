@@ -1,4 +1,4 @@
-// --- Navigation Logic ---
+// --- Navigation & Tab Logic ---
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
@@ -15,8 +15,6 @@ function showPage(pageId, element, index) {
         selector.style.left = `${(index * tabWidth) + 5}px`;
         selector.style.width = `${tabWidth - 10}px`;
         selector.style.opacity = "1";
-    } else {
-        selector.style.opacity = "0";
     }
 }
 
@@ -24,25 +22,54 @@ function showPage(pageId, element, index) {
 function initProfileInteraction() {
     const profiles = document.querySelectorAll('.profile-container');
     profiles.forEach(profile => {
-        profile.addEventListener('click', () => openSettings());
-        profile.addEventListener('contextmenu', (e) => {
+        // Only open settings on click
+        profile.onclick = (e) => {
+            // Ensure we don't trigger if the click was actually a hold/contextmenu
+            openSettings();
+        };
+        
+        // Trigger file select ONLY on hold
+        profile.oncontextmenu = (e) => {
             e.preventDefault();
             document.getElementById('photo-upload').click();
-        });
+        };
     });
 }
 
 function openSettings() {
-    const settings = document.getElementById('page-settings');
-    settings.classList.add('active');
+    document.getElementById('page-settings').classList.add('active');
     document.body.classList.add('settings-open');
 }
 
 function closeSettings() {
-    const settings = document.getElementById('page-settings');
-    settings.classList.remove('active');
+    document.getElementById('page-settings').classList.remove('active');
     document.body.classList.remove('settings-open');
 }
+
+// Ensure sub-pages handle taps correctly
+function openSubPage(id) { 
+    document.getElementById(id).classList.add('active'); 
+}
+
+function closeSubPage(id) { 
+    document.getElementById(id).classList.remove('active'); 
+}
+
+// --- Tab Swiping ---
+const tabContainer = document.getElementById('tab-container');
+tabContainer.addEventListener('touchend', (e) => {
+    const touchX = e.changedTouches[0].clientX - tabContainer.getBoundingClientRect().left;
+    const tabWidth = tabContainer.offsetWidth / 3;
+    const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
+    const pages = ['page-home', 'page-new', 'page-library'];
+    const navItems = document.querySelectorAll('.main-tabs .nav-item');
+    showPage(pages[index], navItems[index], index);
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    initProfileInteraction();
+    renderMenu();
+});
 
 function previewFile(input) {
     const file = input.files[0];
