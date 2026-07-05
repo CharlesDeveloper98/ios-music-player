@@ -31,19 +31,28 @@ window.addEventListener('DOMContentLoaded', () => {
 
 let permissions = { notification: false, music: false };
 
-function togglePermission(type) {
+function togglePermission(type, btnElement) {
     permissions[type] = true;
-    const btn = document.querySelector(`#${type}-block .action-btn`);
-    btn.innerText = "Accessed";
-    btn.classList.add('accessed');
     
-    // Check if both are allowed to enable continue button
+    // Change button to "Accessed" (Green)
+    btnElement.innerText = "Accessed";
+    btnElement.style.backgroundColor = "#34c759"; // Green color
+    btnElement.style.pointerEvents = "none"; // Disable further clicks
+    
+    // Enable Continue button if both are true
     if (permissions.notification && permissions.music) {
         const contBtn = document.getElementById('continue-btn');
-        contBtn.classList.remove('disabled');
+        contBtn.classList.remove('disabled'); // Ensure this CSS makes it look active
         contBtn.disabled = false;
+        contBtn.style.opacity = "1";
     }
 }
+
+function enterApp() {
+    // Hide the permission overlay completely
+    document.getElementById('startup-overlay').style.display = 'none';
+}
+
 
 
 
