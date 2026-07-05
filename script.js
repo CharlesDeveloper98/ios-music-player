@@ -92,6 +92,21 @@ function renderSongs() {
 }
 
 
+function openSongsPage() {
+    const songs = [/* Your music data */].sort((a, b) => a.title.localeCompare(b.title));
+    const container = document.getElementById('song-list-container');
+    
+    // Grouping by letter for alphabetical rendering
+    container.innerHTML = songs.map(song => `
+        <div class="song-row" onclick="play('${song.url}')">
+            <img src="${song.art}" class="thumb">
+            <div class="info">
+                <div class="title">${song.title}</div>
+                <div class="artist">${song.artist}</div>
+            </div>
+        </div>
+    `).join('');
+}
 
 
 
