@@ -193,6 +193,25 @@
       <!-- Add this overlay div -->
     <div id="settings-overlay"></div>
 
+    
+
+    <div id="startup-overlay" class="overlay-full">
+    <div class="glass-popup">
+        <div id="notification-block">
+            <h3>Notification</h3>
+            <p>Allow access to your notification</p>
+            <button class="action-btn" onclick="togglePermission('notification')">Allow</button>
+        </div>
+        <div id="music-block">
+            <h3>Music</h3>
+            <p>Access your Music</p>
+            <button class="action-btn" onclick="togglePermission('music')">Allow</button>
+        </div>
+        <button id="continue-btn" class="continue-btn disabled" disabled onclick="enterApp()">Continue</button>
+    </div>
+</div>
+
+
 
 <!-- Permission Popups -->
 <div id="permission-overlay" class="hidden">
