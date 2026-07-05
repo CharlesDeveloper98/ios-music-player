@@ -1,10 +1,79 @@
-body { margin: 0; font-family: -apple-system, sans-serif; background: #000; color: #fff; padding-bottom: 120px; }
+body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; }
+
+body {
+font-family: 'MyCustomFont', sans-serif;
+}
+
+/* Add this to style.css */
+body {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    -webkit-tap-highlight-color: transparent; /* Removes blue tap flash */
+}
+
+
+
+
+/* Define the font family clearly */
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+/* 1. Large Titles (Headers) - Make these Bold */
+.page-title, .header-row h1 { 
+    font-weight: 700; /* This will automatically pick up your bold.otf */
+}
+
+/* 2. Section Headers (e.g., Recently Added) - Make these Semibold */
+.section-title { 
+    font-weight: 600; /* This will automatically pick up your semibold.otf */
+}
+
+/* 3. Menu Items / Navigation Labels - Use Medium */
+.menu-item, .nav-label { 
+    font-weight: 500; /* This will automatically pick up your medium.otf */
+}
+
+/* 4. Small details - Use Regular (already covered by body) */
+.mini-sub { 
+    font-weight: 400; 
+}
+
 
 :root { 
     --ios-red: #ff3b30;
     --glass-bg: rgba(40, 40, 40, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
 }
+
+/* Dark Theme Menu Containers */
+.settings-content { background: #1d1d1d; border-radius: 12px; margin: 20px; padding: 10px; }
 
 .page { display: none; opacity: 0; }
 .page.active { 
@@ -43,6 +112,86 @@ body { margin: 0; font-family: -apple-system, sans-serif; background: #000; colo
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; overflow: hidden;
 }
+
+
+/* Improved iOS Smooth Animation */
+#page-settings {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000;
+    z-index: 2000;
+    transform: translateY(100%); 
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother spring-like feel */
+    border-radius: 20px 20px 0 0;
+}
+
+#page-settings.active {
+    transform: translateY(0);
+}
+
+/* Fix for the UI menu item tap target */
+.settings-content { 
+    position: relative; 
+    z-index: 2005; 
+    pointer-events: auto; /* Ensures taps pass through to children */
+}
+
+.close-settings {
+    width: 30px; height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-left: 20px; cursor: pointer;
+}
+
+/* Hide containers when Settings is open */
+body.settings-open .mini-player, 
+body.settings-open #bottom-nav {
+    display: none;
+}
+
+/* Ensure the sub-page overlays correctly */
+.page-sub {
+    position: fixed; 
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000; 
+    z-index: 3000;
+    transform: translateY(100%); /* Hidden by default */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.page-sub.active { 
+    transform: translateY(0); /* Slides up to cover screen */
+}
+
+/* Liquid Glass Bubble Effect */
+.close-btn, .back-btn {
+    width: 36px; height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+}
+
+/* Fix overlay stacking */
+#settings-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1500; 
+    pointer-events: none; /* Crucial: ignored when not open */
+    background: transparent;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+body.settings-open #settings-overlay {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    pointer-events: auto; /* Re-enabled only when settings are open */
+}
+
+
 
 /* Update global icon sizes */
 .profile-icon { width: 24px; height: 24px; }
