@@ -28,6 +28,27 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+let permissions = { notification: false, music: false };
+
+function togglePermission(type) {
+    permissions[type] = true;
+    const btn = document.querySelector(`#${type}-block .action-btn`);
+    btn.innerText = "Accessed";
+    btn.classList.add('accessed');
+    
+    // Check if both are allowed to enable continue button
+    if (permissions.notification && permissions.music) {
+        const contBtn = document.getElementById('continue-btn');
+        contBtn.classList.remove('disabled');
+        contBtn.disabled = false;
+    }
+}
+
+
+
+
+
 // On Load: Check Permissions
 window.addEventListener('DOMContentLoaded', () => {
     if (!localStorage.getItem('permissionsGranted')) {
