@@ -67,11 +67,42 @@
                 </div>
             </div>
         </div>
+        
 
-        <div id="page-settings" class="page">
-            <h1 class="page-title">Settings</h1>
-            <div class="menu-item" onclick="showPage('page-home', document.querySelector('.nav-item'))">Back to Home</div>
+       <div id="page-settings" class="page">
+    <div class="settings-header">
+        <div class="close-btn" onclick="closeSettings()"><i data-lucide="x"></i></div>
+        <h1>Settings</h1>
+    </div>
+    <!-- Inside #page-settings -->
+<div class="settings-content">
+    <div class="setting-group-title">Appearance</div>
+    <!-- Add 'pointer-events: auto' and ensure the div is the primary trigger -->
+    <div class="menu-item" onclick="openSubPage('page-ui')" style="pointer-events: auto; cursor: pointer;">
+        <span>UI</span> 
+        <i data-lucide="chevron-right"></i>
+    </div>
+</div>
+</div>
+
+<div id="page-ui" class="page-sub">
+    <div class="settings-header">
+        <div class="back-btn" onclick="closeSubPage('page-ui')"><i data-lucide="chevron-left"></i></div>
+        <h1>UI</h1>
+    </div>
+    <div class="settings-content">
+        <div class="menu-item" onclick="toggleThemeMenu()">
+            <span>Theme</span> <span id="theme-label">System</span>
         </div>
+        <div id="theme-options" class="theme-dropdown">
+            <div onclick="setTheme('system')">System</div>
+            <div onclick="setTheme('light')">Light</div>
+            <div onclick="setTheme('dark')">Dark</div>
+        </div>
+    </div>
+</div>
+
+        
 
         <div id="page-search" class="page">
             <div class="header-row">
@@ -117,5 +148,9 @@
 
 
     <script src="script.js"></script>
+
+     <!-- Add this overlay div -->
+    <div id="settings-overlay"></div>
+    
 </body>
 </html>
