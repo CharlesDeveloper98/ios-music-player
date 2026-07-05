@@ -93,41 +93,6 @@ function toggleEdit() {
     renderMenu();
 }
 
-// Drag & Drop
-const menu = document.getElementById('library-menu');
-let draggedItem = null;
-
-if (menu) {
-    menu.addEventListener('dragstart', (e) => {
-        draggedItem = e.target.closest('.menu-item');
-        draggedItem.classList.add('dragging');
-    });
-
-    menu.addEventListener('dragend', () => {
-        draggedItem.classList.remove('dragging');
-        saveOrder(); // Save position after dropping
-    });
-
-    menu.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        const target = e.target.closest('.menu-item');
-        if (!target || target === draggedItem) return;
-
-        const items = [...menu.querySelectorAll('.menu-item')];
-        const after = items.indexOf(target) > items.indexOf(draggedItem) ? target.nextSibling : target;
-        menu.insertBefore(draggedItem, after);
-    });
-
-    menu.addEventListener('click', (e) => {
-        const icon = e.target.closest('.status-icon');
-        if (!icon) return;
-        const id = icon.closest('.menu-item').dataset.id;
-        hiddenItems = hiddenItems.includes(id) ? hiddenItems.filter(i => i !== id) : [...hiddenItems, id];
-        localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
-        renderMenu();
-    });
-}
-
    
 
 const tabContainer = document.getElementById('tab-container');
