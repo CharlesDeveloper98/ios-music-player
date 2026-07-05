@@ -1,3 +1,10 @@
+   // Initialize UI features
+    initProfileInteraction();
+    renderMenu();
+    lucide.createIcons();
+
+
+
 function showPage(pageId, element, index) {
     // 1. Switch pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -183,6 +190,24 @@ tabContainer.addEventListener('touchend', (e) => {
     showPage(pages[index], navItems[index], index);
 });
 
+
+// --- Profile & Settings ---
+function initProfileInteraction() {
+    const profiles = document.querySelectorAll('.profile-container');
+    profiles.forEach(profile => {
+        profile.onclick = () => openSettings();
+    });
+}
+
+function openSettings() { 
+    document.getElementById('page-settings').classList.add('active');
+    document.body.classList.add('settings-open');
+}
+
+function closeSettings() { 
+    document.getElementById('page-settings').classList.remove('active');
+    document.body.classList.remove('settings-open');
+}
 
         
 
