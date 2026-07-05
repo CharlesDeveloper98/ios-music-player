@@ -215,7 +215,6 @@ body.settings-open #settings-overlay {
 .menu-item.visible { display: flex; align-items: center; }
 .library-menu.editing-mode .menu-item { display: flex; opacity: 0.5; }
 
-.menu-item.dull { opacity: 0.3; } /* When added back (plus state) */
 
 
 /* Menu Editing Styles */
@@ -227,6 +226,20 @@ body.settings-open #settings-overlay {
 }
 .editing-mode .menu-item.hidden-default::before { content: "+"; background: #34c759; }
 
+/* Hide the arrow (chevron) when in edit mode */
+.editing-mode .menu-item::after { display: none; }
+
+/* Edit action: Minus/Plus container */
+.edit-action { width: 30px; display: flex; align-items: center; }
+
+.editing-mode .edit-action { width: 30px; opacity: 1; }
+
+
+.editing-mode .chevron-action { transform: translateX(20px); opacity: 0; }
+
+/* Dull styling for removed items */
+.menu-item.dull { opacity: 0.3; }
+.menu-item.active-item { opacity: 1.0; }
 
 /* Library Menu Persistence Fix */
 .menu-item.hidden { display: none !important; }
@@ -248,6 +261,8 @@ body.settings-open #settings-overlay {
     justify-content: center; 
     margin-right: 15px; 
 }
+
+
 
 /* Floating Music Container (Matches 1001006582.jpg) */
 .mini-player {
@@ -290,8 +305,17 @@ body.settings-open #settings-overlay {
     display: flex; align-items: center; justify-content: center;
     margin-right: 15px; font-weight: bold; font-size: 18px;
 }
-.minus { background: var(--ios-red); color: white; }
-.plus { background: #333; color: var(--ios-red); }
+
+.minus { background: #ff3b30; }
+.plus { background: #34c759; }
+
+.editing-mode .reorder-handle { 
+    opacity: 1 !important; 
+    width: 30px !important; 
+    display: flex !important; 
+    cursor: grab;
+}
+
 
 /* Glass Effect Containers */
 .mini-player, .main-tabs, .search-tab {
