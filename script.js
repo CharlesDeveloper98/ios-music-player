@@ -1,253 +1,191 @@
-// --- Persistent Reorder Logic ---
-function saveOrder() {
-    const items = [...document.querySelectorAll('.menu-item')];
-    const order = items.map(item => item.dataset.id);
-    localStorage.setItem('libraryOrder', JSON.stringify(order));
-}
-
-// --- Initialization ---
-window.addEventListener('DOMContentLoaded', () => {
-    // Load Library Order
-    const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
-    const menu = document.getElementById('library-menu');
-    if (savedOrder && menu) {
-        savedOrder.forEach(id => {
-            const item = menu.querySelector(`[data-id="${id}"]`);
-            if (item) menu.appendChild(item);
-        });
-    }
-
-    // Initialize UI features
-    initProfileInteraction();
-    renderMenu();
-    lucide.createIcons();
-    
-    // Set default page and liquid tabs
-    showPage('page-home', document.querySelector('.nav-item'), 0);
-    initDragTabs();
-});
-
-
-
-let permissions = { notification: false, music: false };
-
-function togglePermission(type, btnElement) {
-    permissions[type] = true;
-    
-    // Change button to "Accessed" (Green)
-    btnElement.innerText = "Accessed";
-    btnElement.style.backgroundColor = "#34c759"; // Green color
-    btnElement.style.pointerEvents = "none"; // Disable further clicks
-    
-    // Enable Continue button if both are true
-    if (permissions.notification && permissions.music) {
-        const contBtn = document.getElementById('continue-btn');
-        contBtn.classList.remove('disabled'); // Ensure this CSS makes it look active
-        contBtn.disabled = false;
-        contBtn.style.opacity = "1";
-    }
-}
-
-function enterApp() {
-    // Hide the permission overlay completely
-    document.getElementById('startup-overlay').style.display = 'none';
-}
-
-
-
-
-
-
-// On Load: Check Permissions
-window.addEventListener('DOMContentLoaded', () => {
-    if (!localStorage.getItem('permissionsGranted')) {
-        document.getElementById('permission-overlay').classList.remove('hidden');
-    }
-});
-
-function grantPermission(type) {
-    // Logic to handle permission
-    document.getElementById(`${type}-popup`).style.display = 'none';
-    if (document.querySelectorAll('.glass-popup[style*="display: none"]').length === 2) {
-        localStorage.setItem('permissionsGranted', 'true');
-        document.getElementById('permission-overlay').style.display = 'none';
-    }
-}
-
-// Navigate to Songs Detail
-function openSongs() {
-    const page = document.getElementById('page-songs-detail');
-    page.classList.add('active');
-    renderSongs();
-}
-
-function renderSongs() {
-    const songs = [
-        { title: "All I Ask", artist: "Adele" },
-        { title: "Hello", artist: "Adele" },
-        { title: "I Miss You", artist: "Adele" }
-    ].sort((a, b) => a.title.localeCompare(b.title));
-
-    const list = document.getElementById('song-list');
-    list.innerHTML = songs.map(song => `
-        <div class="song-item" onclick="playSong('${song.title}')">
-            <div class="song-art"></div>
-            <div>
-                <div class="title">${song.title}</div>
-                <div class="artist">${song.artist}</div>
-            </div>
-        </div>
-    `).join('');
-}
-
-
-function openSongsPage() {
-    const songs = [/* Your music data */].sort((a, b) => a.title.localeCompare(b.title));
-    const container = document.getElementById('song-list-container');
-    
-    // Grouping by letter for alphabetical rendering
-    container.innerHTML = songs.map(song => `
-        <div class="song-row" onclick="play('${song.url}')">
-            <img src="${song.art}" class="thumb">
-            <div class="info">
-                <div class="title">${song.title}</div>
-                <div class="artist">${song.artist}</div>
-            </div>
-        </div>
-    `).join('');
-}
-
-
-
-
-
-
-// --- Liquid Tab Selector Logic ---
 function showPage(pageId, element, index) {
+    // 1. Switch pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     
-    updateSelector(index);
-}
+    // 2. Update Nav States
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
 
-function updateSelector(index) {
+    // 3. Move the Liquid Selector (Only for main tabs 0-2)
     const selector = document.getElementById('active-selector');
-    const container = document.getElementById('tab-container');
-    
-    if (index <= 2) { // Only show/move on Home, New, Library
-        selector.style.opacity = "1";
+    if (index <= 2) {
+        const container = document.getElementById('tab-container');
         const tabWidth = container.offsetWidth / 3;
         selector.style.left = `${(index * tabWidth) + 5}px`;
         selector.style.width = `${tabWidth - 10}px`;
+        selector.style.opacity = "1";
     } else {
-        selector.style.opacity = "0"; // Disappear on Search
+        selector.style.opacity = "0"; // Hide when clicking Search
     }
 }
 
-// Liquid Drag Logic
-function initDragTabs() {
+// Initial position on load
+window.addEventListener('DOMContentLoaded', () => {
     const selector = document.getElementById('active-selector');
-    let isDragging = false;
+    const container = document.getElementById('tab-container');
+    selector.style.width = `${(container.offsetWidth / 3) - 10}px`;
+    selector.style.left = "5px";
+});
 
-    const startDrag = () => {
-        isDragging = true;
-        selector.classList.add('dragging');
-    };
 
-    const stopDrag = () => {
-        isDragging = false;
-        selector.classList.remove('dragging');
-    };
-
-    selector.addEventListener('mousedown', startDrag);
-    window.addEventListener('mouseup', stopDrag);
-    // Add touch support for mobile
-    selector.addEventListener('touchstart', startDrag);
-    window.addEventListener('touchend', stopDrag);
+function openSettings() {
+    showPage('page-settings', null);
 }
 
-// --- Library Edit & Drag Logic ---
-let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
+function triggerFileSelect(e) {
+    e.preventDefault();
+    document.getElementById('photo-upload').click();
+}
 
-function renderMenu() {
-    const menu = document.getElementById('library-menu');
-    if (!menu) return;
-    const isEditing = menu.classList.contains('editing-mode');
-    
+function previewFile(input) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const containers = document.querySelectorAll('.profile-container');
+            containers.forEach(c => c.innerHTML = `<img src="${e.target.result}" class="profile-img">`);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+window.onload = () => {
+    // Load persisted state from localStorage
+    const hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
     document.querySelectorAll('.menu-item').forEach(item => {
-        const id = item.dataset.id;
-        const isHidden = hiddenItems.includes(id);
-        const action = item.querySelector('.edit-action');
-        
-        item.classList.toggle('dull', isHidden && !isEditing);
-        item.style.display = (isHidden && !isEditing) ? 'none' : 'flex';
-        
-        action.innerHTML = isEditing ? 
-            `<div class="status-icon ${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
-        item.setAttribute('draggable', isEditing);
+        const id = item.getAttribute('data-id');
+        // If it's in the hidden list, add the class
+        if (hiddenItems.includes(id)) {
+            item.classList.add('hidden');
+        }
     });
-}
+    lucide.createIcons();
+};
 
 function toggleEdit() {
-    const menu = document.getElementById('library-menu');
-    const btn = document.getElementById('edit-text');
+    const menu = document.querySelector('.library-menu');
+    const editBtn = document.getElementById('edit-text');
     const isEditing = menu.classList.toggle('editing-mode');
-    btn.innerText = isEditing ? 'Done' : 'Edit';
-    renderMenu();
+    editBtn.innerText = isEditing ? 'Done' : 'Edit';
 }
 
-// Drag & Drop
-const menu = document.getElementById('library-menu');
-let draggedItem = null;
+document.querySelector('.library-menu').addEventListener('click', (e) => {
+    const menu = document.querySelector('.library-menu');
+    if (!menu.classList.contains('editing-mode')) return;
 
-if (menu) {
-    menu.addEventListener('dragstart', (e) => {
-        draggedItem = e.target.closest('.menu-item');
-        draggedItem.classList.add('dragging');
-    });
+    const item = e.target.closest('.menu-item');
+    if (!item) return;
 
-    menu.addEventListener('dragend', () => {
-        draggedItem.classList.remove('dragging');
-        saveOrder(); // Save position after dropping
-    });
+    const id = item.getAttribute('data-id');
+    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
 
-    menu.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        const target = e.target.closest('.menu-item');
-        if (!target || target === draggedItem) return;
+    if (item.classList.contains('hidden')) {
+        item.classList.remove('hidden');
+        hiddenItems = hiddenItems.filter(i => i !== id);
+    } else {
+        item.classList.add('hidden');
+        hiddenItems.push(id);
+    }
+    localStorage.setItem('hiddenLibraryItems', JSON.stringify(hiddenItems));
+});
 
-        const items = [...menu.querySelectorAll('.menu-item')];
-        const after = items.indexOf(target) > items.indexOf(draggedItem) ? target.nextSibling : target;
-        menu.insertBefore(draggedItem, after);
-    });
 
-    menu.addEventListener('click', (e) => {
-        const icon = e.target.closest('.status-icon');
-        if (!icon) return;
-        const id = icon.closest('.menu-item').dataset.id;
-        hiddenItems = hiddenItems.includes(id) ? hiddenItems.filter(i => i !== id) : [...hiddenItems, id];
+document.addEventListener('DOMContentLoaded', () => {
+    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
+
+    function renderMenu() {
+        const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
+        document.querySelectorAll('.menu-item').forEach(item => {
+            const id = item.getAttribute('data-id');
+            const isHidden = hiddenItems.includes(id);
+            
+            // Remove old status icons
+            item.querySelectorAll('.status-icon').forEach(el => el.remove());
+
+            if (isEditing) {
+                const icon = document.createElement('div');
+                icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
+                icon.innerText = isHidden ? '+' : '-';
+                item.prepend(icon);
+                item.classList.toggle('dull', isHidden);
+            } else {
+                item.style.display = isHidden ? 'none' : 'flex';
+            }
+        });
+    }
+
+    window.toggleEdit = () => {
+        const menu = document.querySelector('.library-menu');
+        const btn = document.getElementById('edit-text');
+        menu.classList.toggle('editing-mode');
+        btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
+        renderMenu();
+    };
+
+    document.querySelector('.library-menu').addEventListener('click', (e) => {
+        if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
+        const item = e.target.closest('.menu-item');
+        if (!item) return;
+
+        const id = item.getAttribute('data-id');
+        if (hiddenItems.includes(id)) {
+            hiddenItems = hiddenItems.filter(i => i !== id);
+        } else {
+            hiddenItems.push(id);
+        }
         localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
         renderMenu();
     });
-}
 
-// --- Profile & Settings ---
-function initProfileInteraction() {
-    const profiles = document.querySelectorAll('.profile-container');
-    profiles.forEach(profile => {
-        profile.onclick = () => openSettings();
+    renderMenu();
+});
+
+
+
+const tabContainer = document.getElementById('tab-container');
+const selector = document.getElementById('active-selector');
+let isDragging = false;
+
+tabContainer.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    selector.classList.add('expanded');
+});
+
+tabContainer.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const touchX = e.touches[0].clientX - tabContainer.getBoundingClientRect().left;
+    const tabWidth = tabContainer.offsetWidth / 3;
+    
+    // Constrain within the 3 main tabs
+    const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
+    
+    // Move selector instantly while dragging
+    selector.style.left = `${(index * tabWidth) + 5}px`;
+    
+    // Highlight icon visually
+    document.querySelectorAll('.nav-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
     });
-}
+});
 
-function openSettings() { 
-    document.getElementById('page-settings').classList.add('active');
-    document.body.classList.add('settings-open');
-}
+tabContainer.addEventListener('touchend', (e) => {
+    isDragging = false;
+    selector.classList.remove('expanded');
+    
+    // Snap to the closest tab center
+    const touchX = e.changedTouches[0].clientX - tabContainer.getBoundingClientRect().left;
+    const tabWidth = tabContainer.offsetWidth / 3;
+    const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
+    
+    const pages = ['page-home', 'page-new', 'page-library'];
+    const navItems = document.querySelectorAll('.main-tabs .nav-item');
+    showPage(pages[index], navItems[index], index);
+});
 
-function closeSettings() { 
-    document.getElementById('page-settings').classList.remove('active');
-    document.body.classList.remove('settings-open');
-}
+
+        
+
 
 // Add this at the bottom of your script
 lucide.createIcons();
