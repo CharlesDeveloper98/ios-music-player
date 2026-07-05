@@ -192,5 +192,36 @@
 
       <!-- Add this overlay div -->
     <div id="settings-overlay"></div>
+
+
+<!-- Permission Popups -->
+<div id="permission-overlay" class="hidden">
+    <div class="glass-popup" id="notification-popup">
+        <div class="popup-icon"><i data-lucide="bell"></i></div>
+        <h3>Notification</h3>
+        <p>Allow access to your notification</p>
+        <button class="allow-btn" onclick="grantPermission('notification')">Allow</button>
+    </div>
+    <div class="glass-popup" id="music-popup">
+        <div class="popup-icon"><i data-lucide="music"></i></div>
+        <h3>Music</h3>
+        <p>Access your Music</p>
+        <button class="allow-btn" onclick="grantPermission('music')">Allow</button>
+    </div>
+</div>
+
+<!-- Songs Detail Page -->
+<div id="page-songs-detail" class="page-sub">
+    <div class="songs-header">
+        <div class="back-btn" onclick="closeSongsPage()"><i data-lucide="chevron-left"></i></div>
+        <h1>Songs</h1>
+    </div>
+    <div class="song-list" id="song-list">
+        <!-- Songs will be injected here via JS -->
+    </div>
+</div>
+
+
+    
 </body>
 </html>
