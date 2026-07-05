@@ -1,10 +1,3 @@
-   // Initialize UI features
-    initProfileInteraction();
-    renderMenu();
-    lucide.createIcons();
-
-
-
 function showPage(pageId, element, index) {
     // 1. Switch pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -209,6 +202,10 @@ function closeSettings() {
     document.body.classList.remove('settings-open');
 }
 
+  // Initialize UI features
+    initProfileInteraction();
+    renderMenu();
+   
         
 
 
