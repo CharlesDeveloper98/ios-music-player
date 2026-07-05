@@ -27,6 +27,56 @@ window.addEventListener('DOMContentLoaded', () => {
     initDragTabs();
 });
 
+
+// On Load: Check Permissions
+window.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('permissionsGranted')) {
+        document.getElementById('permission-overlay').classList.remove('hidden');
+    }
+});
+
+function grantPermission(type) {
+    // Logic to handle permission
+    document.getElementById(`${type}-popup`).style.display = 'none';
+    if (document.querySelectorAll('.glass-popup[style*="display: none"]').length === 2) {
+        localStorage.setItem('permissionsGranted', 'true');
+        document.getElementById('permission-overlay').style.display = 'none';
+    }
+}
+
+// Navigate to Songs Detail
+function openSongs() {
+    const page = document.getElementById('page-songs-detail');
+    page.classList.add('active');
+    renderSongs();
+}
+
+function renderSongs() {
+    const songs = [
+        { title: "All I Ask", artist: "Adele" },
+        { title: "Hello", artist: "Adele" },
+        { title: "I Miss You", artist: "Adele" }
+    ].sort((a, b) => a.title.localeCompare(b.title));
+
+    const list = document.getElementById('song-list');
+    list.innerHTML = songs.map(song => `
+        <div class="song-item" onclick="playSong('${song.title}')">
+            <div class="song-art"></div>
+            <div>
+                <div class="title">${song.title}</div>
+                <div class="artist">${song.artist}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+
+
+
+
+
+
+
 // --- Liquid Tab Selector Logic ---
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
