@@ -9,7 +9,6 @@
 </head>
 <body>
 
-    
     <div id="content">
         <div id="page-home" class="page active">
             <div class="header-row">
@@ -38,61 +37,20 @@
                 </div>
             </div>
             
-         <div class="library-menu" id="library-menu">
-    <div class="menu-item" data-id="playlists">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="music"></i> <span>Playlists</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="artists">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="mic-2"></i> <span>Artists</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="albums">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="disc"></i> <span>Albums</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-   <div class="menu-item" data-id="songs" onclick="openSongsPage()">
-    <div class="edit-action"></div>
-    <div class="item-content"><i data-lucide="music"></i> <span>Songs</span></div>
-    <div class="reorder-handle"><i data-lucide="menu"></i></div>
+          <div class="library-menu">
+    <div class="menu-item" data-id="playlists"><i data-lucide="music"></i> Playlists</div>
+    <div class="menu-item" data-id="artists"><i data-lucide="mic-2"></i> Artists</div>
+    <div class="menu-item" data-id="albums"><i data-lucide="disc"></i> Albums</div>
+    <div class="menu-item" data-id="songs"><i data-lucide="music"></i> Songs</div>
+    
+    <div class="menu-item hidden" data-id="tv-movies"><i data-lucide="tv"></i> TV & Movies</div>
+    <div class="menu-item hidden" data-id="music-videos"><i data-lucide="monitor-play"></i> Music Videos</div>
+    <div class="menu-item hidden" data-id="genres"><i data-lucide="guitar"></i> Genres</div>
+    <div class="menu-item hidden" data-id="compilations"><i data-lucide="layers"></i> Compilations</div>
+    <div class="menu-item hidden" data-id="composers"><i data-lucide="music-4"></i> Composers</div>
+    
+    <div class="menu-item" data-id="downloaded"><i data-lucide="arrow-down-circle"></i> Downloaded</div>
 </div>
-    <div class="menu-item" data-id="tv-movies">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="tv"></i> <span>TV & Movies</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="music-videos">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="monitor-play"></i> <span>Music Videos</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="genres">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="guitar"></i> <span>Genres</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="compilations">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="layers"></i> <span>Compilations</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="composers">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="music-4"></i> <span>Composers</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="downloaded">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="arrow-down-circle"></i> <span>Downloaded</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-</div>
-
-
-
 
 
             <h2 class="section-title">Recently Added</h2>
@@ -111,39 +69,9 @@
         </div>
 
         <div id="page-settings" class="page">
-    <div class="settings-header">
-        <div class="close-btn" onclick="closeSettings()"><i data-lucide="x"></i></div>
-        <h1>Settings</h1>
-    </div>
-    <!-- Inside #page-settings -->
-<div class="settings-content">
-    <div class="setting-group-title">Appearance</div>
-    <!-- Add 'pointer-events: auto' and ensure the div is the primary trigger -->
-    <div class="menu-item" onclick="openSubPage('page-ui')" style="pointer-events: auto; cursor: pointer;">
-        <span>UI</span> 
-        <i data-lucide="chevron-right"></i>
-    </div>
-</div>
-</div>
-
-<div id="page-ui" class="page-sub">
-    <div class="settings-header">
-        <div class="back-btn" onclick="closeSubPage('page-ui')"><i data-lucide="chevron-left"></i></div>
-        <h1>UI</h1>
-    </div>
-    <div class="settings-content">
-        <div class="menu-item" onclick="toggleThemeMenu()">
-            <span>Theme</span> <span id="theme-label">System</span>
+            <h1 class="page-title">Settings</h1>
+            <div class="menu-item" onclick="showPage('page-home', document.querySelector('.nav-item'))">Back to Home</div>
         </div>
-        <div id="theme-options" class="theme-dropdown">
-            <div onclick="setTheme('system')">System</div>
-            <div onclick="setTheme('light')">Light</div>
-            <div onclick="setTheme('dark')">Dark</div>
-        </div>
-    </div>
-</div>
-
-
 
         <div id="page-search" class="page">
             <div class="header-row">
@@ -189,45 +117,5 @@
 
 
     <script src="script.js"></script>
-
-      <!-- Add this overlay div -->
-    <div id="settings-overlay"></div>
-
-    
-
-    <div id="startup-overlay" class="overlay-full">
-    <div class="glass-popup">
-        <div id="notification-block">
-            <h3>Notification</h3>
-            <p>Allow access to your notification</p>
-            <button class="action-btn" onclick="togglePermission('notification')">Allow</button>
-        </div>
-        <div id="music-block">
-            <h3>Music</h3>
-            <p>Access your Music</p>
-            <button class="action-btn" onclick="togglePermission('music')">Allow</button>
-        </div>
-        <button id="continue-btn" class="continue-btn disabled" disabled onclick="enterApp()">Continue</button>
-    </div>
-</div>
-
-
-
-
-
-
-<!-- Songs Detail Page -->
-<div id="page-songs-detail" class="page-sub">
-    <div class="songs-header">
-        <div class="back-btn" onclick="closeSongsPage()"><i data-lucide="chevron-left"></i></div>
-        <h1>Songs</h1>
-    </div>
-    <div class="song-list" id="song-list">
-        <!-- Songs will be injected here via JS -->
-    </div>
-</div>
-
-
-    
 </body>
 </html>
