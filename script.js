@@ -63,57 +63,70 @@ window.onload = () => {
     lucide.createIcons();
 };
 
-function toggleEdit() {
-    const menu = document.querySelector('.library-menu');
-    const editBtn = document.getElementById('edit-text');
-    const isEditing = menu.classList.toggle('editing-mode');
-    editBtn.innerText = isEditing ? 'Done' : 'Edit';
+// --- Library Edit & Drag Logic ---
+let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
+                                                        
+function renderMenu() {
+    const menu = document.getElementById('library-menu');
+    if (!menu) return;
+    const isEditing = menu.classList.contains('editing-mode');
+    
+    document.querySelectorAll('.menu-item').forEach(item => {
+        const id = item.dataset.id;
+        const isHidden = hiddenItems.includes(id);
+        const action = item.querySelector('.edit-action');
+        
+        item.classList.toggle('dull', isHidden && !isEditing);
+        item.style.display = (isHidden && !isEditing) ? 'none' : 'flex';
+        
+        action.innerHTML = isEditing ? 
+            `<div class="status-icon ${isHidden ? 'plus' : 'minus'}">${isHidden ? '+' : '-'}</div>` : '';
+        item.setAttribute('draggable', isEditing);
+    });
 }
 
-document.querySelector('.library-menu').addEventListener('click', (e) => {
-    const menu = document.querySelector('.library-menu');
-    if (!menu.classList.contains('editing-mode')) return;
+function toggleEdit() {
+    const menu = document.getElementById('library-menu');
+    const btn = document.getElementById('edit-text');
+    const isEditing = menu.classList.toggle('editing-mode');
+    btn.innerText = isEditing ? 'Done' : 'Edit';
+    renderMenu();
+}
 
-    const item = e.target.closest('.menu-item');
-    if (!item) return;
+// Drag & Drop
+const menu = document.getElementById('library-menu');
+let draggedItem = null;
 
-    const id = item.getAttribute('data-id');
-    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibraryItems') || '[]');
+if (menu) {
+    menu.addEventListener('dragstart', (e) => {
+        draggedItem = e.target.closest('.menu-item');
+        draggedItem.classList.add('dragging');
+    });
 
-    if (item.classList.contains('hidden')) {
-        item.classList.remove('hidden');
-        hiddenItems = hiddenItems.filter(i => i !== id);
-    } else {
-        item.classList.add('hidden');
-        hiddenItems.push(id);
-    }
-    localStorage.setItem('hiddenLibraryItems', JSON.stringify(hiddenItems));
-});
+    menu.addEventListener('dragend', () => {
+        draggedItem.classList.remove('dragging');
+        saveOrder(); // Save position after dropping
+    });
 
+    menu.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const target = e.target.closest('.menu-item');
+        if (!target || target === draggedItem) return;
 
-document.addEventListener('DOMContentLoaded', () => {
-    let hiddenItems = JSON.parse(localStorage.getItem('hiddenLibrary')) || [];
+        const items = [...menu.querySelectorAll('.menu-item')];
+        const after = items.indexOf(target) > items.indexOf(draggedItem) ? target.nextSibling : target;
+        menu.insertBefore(draggedItem, after);
+    });
 
-    function renderMenu() {
-        const isEditing = document.querySelector('.library-menu').classList.contains('editing-mode');
-        document.querySelectorAll('.menu-item').forEach(item => {
-            const id = item.getAttribute('data-id');
-            const isHidden = hiddenItems.includes(id);
-            
-            // Remove old status icons
-            item.querySelectorAll('.status-icon').forEach(el => el.remove());
-
-            if (isEditing) {
-                const icon = document.createElement('div');
-                icon.className = `status-icon ${isHidden ? 'plus' : 'minus'}`;
-                icon.innerText = isHidden ? '+' : '-';
-                item.prepend(icon);
-                item.classList.toggle('dull', isHidden);
-            } else {
-                item.style.display = isHidden ? 'none' : 'flex';
-            }
-        });
-    }
+    menu.addEventListener('click', (e) => {
+        const icon = e.target.closest('.status-icon');
+        if (!icon) return;
+        const id = icon.closest('.menu-item').dataset.id;
+        hiddenItems = hiddenItems.includes(id) ? hiddenItems.filter(i => i !== id) : [...hiddenItems, id];
+        localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
+        renderMenu();
+    });
+}
 
     window.toggleEdit = () => {
         const menu = document.querySelector('.library-menu');
