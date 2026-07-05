@@ -93,10 +93,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 20px 20px 10px 20px; /* Ensure this 20px matches .menu-item padding */
+    padding: 20px 20px 10px 20px;
     height: 80px;
 }
-
 
 .header-actions {
     display: flex;
@@ -158,16 +157,16 @@ body.settings-open #bottom-nav {
 
 /* --- Library Menu Refinement --- */
 .library-menu {
-    padding: 0; /* Remove horizontal padding so it aligns left */
+    padding: 0 20px;
     margin-top: 10px;
 }
 
-/* Adjust the icon margin to pull text closer to the L */
 .menu-item i { 
     width: 24px; 
     height: 24px;
-    margin-right: 12px; /* Tighten the space between icon and text */
-    color: #ff3b30; 
+    margin-right: 15px; 
+    color: #ff3b30; /* iOS Red */
+    stroke-width: 2px;
 }
 
 
@@ -177,8 +176,8 @@ body.settings-open #bottom-nav {
 .menu-item { 
     display: flex; 
     align-items: center; 
-    padding: 16px 20px; /* Re-apply padding here to keep items aligned with screen edge */
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
+    padding: 16px 0; 
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.15); /* iOS style dividers */
     color: #fff;
     cursor: pointer;
 }
@@ -365,12 +364,11 @@ body.settings-open #bottom-nav {
     pointer-events: auto; /* Ensures taps pass through to children */
 }
 
-/* Ensure the icon container has a fixed width to keep text labels uniform */
+/* Ensure visibility of icons even when not editing */
 .item-content {
     display: flex;
     align-items: center;
     flex-grow: 1;
-    margin-left: 0; /* Align directly to the left */
 }
 
 .item-content i {
