@@ -128,33 +128,7 @@ if (menu) {
     });
 }
 
-    window.toggleEdit = () => {
-        const menu = document.querySelector('.library-menu');
-        const btn = document.getElementById('edit-text');
-        menu.classList.toggle('editing-mode');
-        btn.innerText = menu.classList.contains('editing-mode') ? 'Done' : 'Edit';
-        renderMenu();
-    };
-
-    document.querySelector('.library-menu').addEventListener('click', (e) => {
-        if (!document.querySelector('.library-menu').classList.contains('editing-mode')) return;
-        const item = e.target.closest('.menu-item');
-        if (!item) return;
-
-        const id = item.getAttribute('data-id');
-        if (hiddenItems.includes(id)) {
-            hiddenItems = hiddenItems.filter(i => i !== id);
-        } else {
-            hiddenItems.push(id);
-        }
-        localStorage.setItem('hiddenLibrary', JSON.stringify(hiddenItems));
-        renderMenu();
-    });
-
-    renderMenu();
-});
-
-
+   
 
 const tabContainer = document.getElementById('tab-container');
 const selector = document.getElementById('active-selector');
