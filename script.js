@@ -46,6 +46,8 @@ function backToLibrary() {
     document.getElementById('page-library').classList.add('active');
 }
 
+
+// Keep the page on selected menu items when navigating
 let currentView = 'library'; // Track where we are
 
 function openDetail(title, iconName) {
