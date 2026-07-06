@@ -83,39 +83,54 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 .empty-state i { width: 64px; height: 64px; }
 
-.segmented-control {
-    position: relative;
-    background: rgba(255, 255, 255, 0.05); /* Dark theme glass base */
-    backdrop-filter: blur(15px);
-    border-radius: 12px;
-    padding: 2px;
-    display: flex;
-    height: 32px;
-    width: 300px;
+:root {
+    --bg-dark: #000000;
+    --glass-container: rgba(45, 45, 45, 0.6);
+    --glass-thumb: rgba(110, 110, 110, 0.8);
 }
 
+body { background-color: var(--bg-dark); color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+
+/* The Segmented Control Container */
+.segmented-control {
+    background: rgba(120, 120, 128, 0.16);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    padding: 2px;
+    display: flex;
+    position: relative;
+    width: 90%;
+    margin: 20px auto;
+    height: 32px;
+}
+
+/* The "Liquid" Sliding Thumb */
 .seg-bubble {
     position: absolute;
-    height: 28px;
-    width: 148px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: calc(50% - 4px);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
 }
 
 .seg-item {
-    z-index: 1;
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+    z-index: 2;
+    text-align: center;
+    line-height: 28px;
     font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
 }
 
-.seg-item.active { background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.seg-item.active { color: #fff; }
+
 
 /* Swipe animation definition */
 ::view-transition-old(root) {
