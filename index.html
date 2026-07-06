@@ -25,77 +25,50 @@
     </div>
 </div>
 
-       <div id="page-library" class="page">
-    <div class="header-row">
-    <h1 class="page-title">Library</h1> <!-- Use 'Home' for the Home page -->
-    
-    <div class="header-right-group">
-        <!-- Liquid glass container with two icons -->
-        <div class="glass-header-actions">
-            <i data-lucide="library-big"></i>
-            <i data-lucide="more-horizontal"></i>
+          <div id="page-library" class="page">
+        <div class="header-row">
+            <h1 class="page-title">Library</h1>
+            <div class="header-right-group">
+                <div class="glass-header-actions">
+                    <i data-lucide="library-big"></i>
+                    <i data-lucide="more-horizontal"></i>
+                </div>
+                <div class="profile-container">
+                    <i data-lucide="user"></i>
+                </div>
+            </div>
         </div>
-        
-        <!-- Profile icon outside the container -->
-        <div class="profile-container">
-            <i data-lucide="user"></i>
-        </div>
-    </div>
-</div>
 
-           <!-- Inside #content -->
-<!-- Add these after the library page -->
-<div id="page-detail" class="page">
-    <div class="header-row">
-        <div class="back-btn" onclick="backToLibrary()">
-            <i data-lucide="chevron-left"></i>
-        </div>
-        <div class="header-right-group">
-            <!-- Icons for Add/Sort/More based on the screenshot -->
-            <i data-lucide="plus"></i> 
-            <i data-lucide="list-filter"></i>
-            <i data-lucide="more-horizontal"></i>
+        <div class="library-menu">
+            <div class="menu-item" onclick="openDetail('Playlists', 'music-4')"><i data-lucide="music-4"></i><span>Playlists</span><i data-lucide="chevron-right"></i></div>
+            <div class="menu-item" onclick="openDetail('Artists', 'mic-2')"><i data-lucide="mic-2"></i><span>Artists</span><i data-lucide="chevron-right"></i></div>
+            <div class="menu-item" onclick="openDetail('Albums', 'album')"><i data-lucide="album"></i><span>Albums</span><i data-lucide="chevron-right"></i></div>
+            <div class="menu-item" onclick="openDetail('Songs', 'music')"><i data-lucide="music"></i><span>Songs</span><i data-lucide="chevron-right"></i></div>
+            <div class="menu-item" onclick="openDetail('TV & Movies', 'tv')"><i data-lucide="tv"></i><span>TV & Movies</span><i data-lucide="chevron-right"></i></div>
+            <div class="menu-item" onclick="openDetail('Music Videos', 'monitor-play')"><i data-lucide="monitor-play"></i><span>Music Videos</span><i data-lucide="chevron-right"></i></div>
+            <div class="menu-item" onclick="openDetail('Genres', 'guitar')"><i data-lucide="guitar"></i><span>Genres</span><i data-lucide="chevron-right"></i></div>
+            <div class="menu-item" onclick="openDetail('Compilations', 'package')"><i data-lucide="package"></i><span>Compilations</span><i data-lucide="chevron-right"></i></div>
+            <div class="menu-item" onclick="openDetail('Composers', 'music-2')"><i data-lucide="music-2"></i><span>Composers</span><i data-lucide="chevron-right"></i></div>
         </div>
     </div>
-    <h1 class="page-title" id="detail-title">Title</h1>
-    <div class="empty-state">
-        <i data-lucide="music" id="empty-icon"></i>
-        <p id="empty-text">Content will appear here.</p>
-    </div>
-</div>
 
-
-
-
-    <div class="library-menu">
-    <div class="menu-item" onclick="openDetail('Playlists', 'music-4')">
-        <i data-lucide="music-4"></i><span>Playlists</span><i data-lucide="chevron-right"></i>
+    <div id="page-detail" class="page">
+        <div class="header-row">
+            <div class="back-btn" onclick="backToLibrary()">
+                <i data-lucide="chevron-left"></i>
+            </div>
+            <div class="header-right-group">
+                <i data-lucide="plus"></i> 
+                <i data-lucide="list-filter"></i>
+                <i data-lucide="more-horizontal"></i>
+            </div>
+        </div>
+        <h1 class="page-title" id="detail-title">Title</h1>
+        <div class="empty-state">
+            <i data-lucide="music" id="empty-icon"></i>
+            <p id="empty-text">Content will appear here.</p>
+        </div>
     </div>
-    <div class="menu-item" onclick="openDetail('Artists', 'mic-2')">
-        <i data-lucide="mic-2"></i><span>Artists</span><i data-lucide="chevron-right"></i>
-    </div>
-    <div class="menu-item" onclick="openDetail('Albums', 'album')">
-        <i data-lucide="album"></i><span>Albums</span><i data-lucide="chevron-right"></i>
-    </div>
-    <div class="menu-item" onclick="openDetail('Songs', 'music')">
-        <i data-lucide="music"></i><span>Songs</span><i data-lucide="chevron-right"></i>
-    </div>
-    <div class="menu-item" onclick="openDetail('TV & Movies', 'tv')">
-        <i data-lucide="tv"></i><span>TV & Movies</span><i data-lucide="chevron-right"></i>
-    </div>
-    <div class="menu-item" onclick="openDetail('Music Videos', 'monitor-play')">
-        <i data-lucide="monitor-play"></i><span>Music Videos</span><i data-lucide="chevron-right"></i>
-    </div>
-    <div class="menu-item" onclick="openDetail('Genres', 'guitar')">
-        <i data-lucide="guitar"></i><span>Genres</span><i data-lucide="chevron-right"></i>
-    </div>
-    <div class="menu-item" onclick="openDetail('Compilations', 'package')">
-        <i data-lucide="package"></i><span>Compilations</span><i data-lucide="chevron-right"></i>
-    </div>
-    <div class="menu-item" onclick="openDetail('Composers', 'music-2')">
-        <i data-lucide="music-2"></i><span>Composers</span><i data-lucide="chevron-right"></i>
-    </div>
-</div>
 
 
 
