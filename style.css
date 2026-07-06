@@ -10,8 +10,16 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 :root { --ios-red: #ff3b30; --glass-bg: rgba(40, 40, 40, 0.7); --glass-border: rgba(255, 255, 255, 0.1); }
 
-.page { display: none; opacity: 0; }
-.page.active { display: block; animation: fadeIn 0.2s forwards; }
+.page { 
+    position: absolute; 
+    top: 0; left: 0; width: 100%; height: 100%;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.page.slide-left { transform: translateX(-100%); display: block; }
+.page.slide-right { transform: translateX(100%); display: block; }
+.page.active { transform: translateX(0); display: block; }
+
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -37,6 +45,12 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .menu-item span { flex: 1; color: #fff; font-size: 18px; }
 .menu-item i:last-child { color: #8e8e93; }
 
+/* --- Active Tap State --- */
+.menu-item:active {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background 0.1s;
+}
+
 /* Glass container for library header icons */
 .glass-header-actions {
     background: rgba(255, 255, 255, 0.1);
@@ -47,6 +61,39 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     gap: 15px;
     color: var(--ios-red);
     border: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- Glass Segmented Control --- */
+.segmented-control {
+    background: rgba(120, 120, 128, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 9px;
+    padding: 2px;
+    display: flex;
+    position: relative;
+    margin: 20px;
+    height: 32px;
+}
+
+.seg-option {
+    flex: 1;
+    text-align: center;
+    line-height: 28px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.seg-slider {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    width: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 7px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* Ensure Home and New are clean per 1001007134.jpg and 1001007136.jpg */
