@@ -46,6 +46,29 @@ function backToLibrary() {
     document.getElementById('page-library').classList.add('active');
 }
 
+let currentView = 'library'; // Track where we are
+
+function openDetail(title, iconName) {
+    document.getElementById('page-library').classList.remove('active');
+    document.getElementById('page-detail').classList.add('active');
+    currentView = title; // Save state
+    
+    document.getElementById('detail-title').innerText = title;
+    
+    // Logic for TV & Movies specific UI
+    const segControl = document.getElementById('tv-segmented-control');
+    segControl.style.display = (title === 'TV & Movies') ? 'flex' : 'none';
+    
+    // Set icon and text...
+}
+
+function backToLibrary() {
+    document.getElementById('page-detail').classList.remove('active');
+    document.getElementById('page-library').classList.add('active');
+    currentView = 'library';
+}
+
+
 
 function triggerFileSelect(e) {
     e.preventDefault();
