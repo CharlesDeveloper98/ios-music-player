@@ -13,7 +13,7 @@
         <div id="page-home" class="page active">
             <div class="header-row">
                 <h1>Home</h1>
-                <div class="profile-container" onclick="openSettings()" oncontextmenu="triggerFileSelect(event)">
+                <div class="profile-container" oncontextmenu="triggerFileSelect(event)">
                     <i data-lucide="user" class="profile-icon"></i>
                     <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
                 </div>
@@ -29,67 +29,10 @@
         <div id="page-library" class="page">
             <div class="header-row">
                 <h1 class="page-title">Library</h1>
-                <div class="header-actions">
-                    <span class="edit-btn" onclick="toggleEdit()" id="edit-text">Edit</span>
-                    <div class="profile-container" onclick="openSettings()">
-                        <i data-lucide="user" class="profile-icon"></i>
-                    </div>
-                </div>
+                <!-- Removed Edit button and Settings icon trigger -->
             </div>
             
-            <div class="library-menu" id="library-menu">
-    <div class="menu-item" data-id="playlists">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="music"></i> <span>Playlists</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="artists">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="mic-2"></i> <span>Artists</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="albums">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="disc"></i> <span>Albums</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="songs">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="music"></i> <span>Songs</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="tv-movies">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="tv"></i> <span>TV & Movies</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="music-videos">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="monitor-play"></i> <span>Music Videos</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="genres">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="guitar"></i> <span>Genres</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="compilations">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="layers"></i> <span>Compilations</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="composers">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="music-4"></i> <span>Composers</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-    <div class="menu-item" data-id="downloaded">
-        <div class="edit-action"></div>
-        <div class="item-content"><i data-lucide="arrow-down-circle"></i> <span>Downloaded</span></div>
-        <div class="reorder-handle"><i data-lucide="menu"></i></div>
-    </div>
-</div>
-
+            <!-- Library menu items and reorder functionality removed -->
 
             <h2 class="section-title">Recently Added</h2>
             <div class="album-grid">
@@ -105,42 +48,6 @@
                 </div>
             </div>
         </div>
-        
-
-       <div id="page-settings" class="page">
-    <div class="settings-header">
-        <div class="close-btn" onclick="closeSettings()"><i data-lucide="x"></i></div>
-        <h1>Settings</h1>
-    </div>
-    <!-- Inside #page-settings -->
-<div class="settings-content">
-    <div class="setting-group-title">Appearance</div>
-    <!-- Add 'pointer-events: auto' and ensure the div is the primary trigger -->
-    <div class="menu-item" onclick="openSubPage('page-ui')" style="pointer-events: auto; cursor: pointer;">
-        <span>UI</span> 
-        <i data-lucide="chevron-right"></i>
-    </div>
-</div>
-</div>
-
-<div id="page-ui" class="page-sub">
-    <div class="settings-header">
-        <div class="back-btn" onclick="closeSubPage('page-ui')"><i data-lucide="chevron-left"></i></div>
-        <h1>UI</h1>
-    </div>
-    <div class="settings-content">
-        <div class="menu-item" onclick="toggleThemeMenu()">
-            <span>Theme</span> <span id="theme-label">System</span>
-        </div>
-        <div id="theme-options" class="theme-dropdown">
-            <div onclick="setTheme('system')">System</div>
-            <div onclick="setTheme('light')">Light</div>
-            <div onclick="setTheme('dark')">Dark</div>
-        </div>
-    </div>
-</div>
-
-        
 
         <div id="page-search" class="page">
             <div class="header-row">
@@ -150,45 +57,37 @@
     </div>
 
     <div class="mini-player">
-    <div class="mini-art"></div>
-    <div class="mini-info">
-        <div class="mini-title">Unknown Art</div>
-        <div class="mini-sub">Not Playing</div>
-    </div>
-   <div class="mini-controls">
-    <img src="https://img.icons8.com/ios-filled/24/ffffff/play--v1.png" class="mini-icon" alt="Play">
-    <img src="https://img.icons8.com/ios-filled/24/ffffff/fast-forward.png" class="mini-icon" alt="Forward">
-</div>
-
-    </div>
-
- <nav id="bottom-nav">
-    <div class="main-tabs" id="tab-container">
-        <div class="tab-selector" id="active-selector"></div>
-        <div class="nav-item active" onclick="showPage('page-home', this, 0)">
-            <i data-lucide="home"></i><span class="nav-label">Home</span>
+        <div class="mini-art"></div>
+        <div class="mini-info">
+            <div class="mini-title">Unknown Art</div>
+            <div class="mini-sub">Not Playing</div>
         </div>
-        <div class="nav-item" onclick="showPage('page-new', this, 1)">
-            <i data-lucide="layout-grid"></i><span class="nav-label">New</span>
-        </div>
-        <div class="nav-item" onclick="showPage('page-library', this, 2)">
-            <i data-lucide="library"></i><span class="nav-label">Library</span>
+        <div class="mini-controls">
+            <img src="https://img.icons8.com/ios-filled/24/ffffff/play--v1.png" class="mini-icon" alt="Play">
+            <img src="https://img.icons8.com/ios-filled/24/ffffff/fast-forward.png" class="mini-icon" alt="Forward">
         </div>
     </div>
-    <div class="search-tab">
-        <div class="nav-item" onclick="showPage('page-search', this, 3)">
-            <i data-lucide="search"></i>
+
+    <nav id="bottom-nav">
+        <div class="main-tabs" id="tab-container">
+            <div class="tab-selector" id="active-selector"></div>
+            <div class="nav-item active" onclick="showPage('page-home', this, 0)">
+                <i data-lucide="home"></i><span class="nav-label">Home</span>
+            </div>
+            <div class="nav-item" onclick="showPage('page-new', this, 1)">
+                <i data-lucide="layout-grid"></i><span class="nav-label">New</span>
+            </div>
+            <div class="nav-item" onclick="showPage('page-library', this, 2)">
+                <i data-lucide="library"></i><span class="nav-label">Library</span>
+            </div>
         </div>
-    </div>
-</nav>
-
-
-
+        <div class="search-tab">
+            <div class="nav-item" onclick="showPage('page-search', this, 3)">
+                <i data-lucide="search"></i>
+            </div>
+        </div>
+    </nav>
 
     <script src="script.js"></script>
-
-     <!-- Add this overlay div -->
-    <div id="settings-overlay"></div>
-    
 </body>
 </html>
