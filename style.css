@@ -31,6 +31,28 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .menu-item span { flex: 1; color: #fff; font-size: 18px; }
 .menu-item i:last-child { color: #8e8e93; }
 
+/* Glass container for library header icons */
+.glass-header-actions {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 8px 16px;
+    display: flex;
+    gap: 15px;
+    color: #ff3b30; /* Matches iOS red style */
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure Home and New are clean per 1001007134.jpg and 1001007136.jpg */
+#page-home .section-title, 
+#page-home .album-grid,
+#page-new .section-title, 
+#page-new .album-grid {
+    display: none;
+}
+
+
 
 .profile-container { width: 36px; height: 36px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
 .profile-icon { width: 24px; height: 24px; }
