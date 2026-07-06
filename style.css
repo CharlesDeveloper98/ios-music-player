@@ -82,16 +82,37 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .empty-state i { width: 64px; height: 64px; }
 
 .segmented-control {
-    background: #f2f2f7;
-    padding: 4px;
-    border-radius: 8px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.05); /* Dark theme glass base */
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 2px;
     display: flex;
-    margin: 10px 20px;
+    height: 32px;
+    width: 300px;
 }
+
+.seg-bubble {
+    position: absolute;
+    height: 28px;
+    width: 148px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
 .seg-item {
-    flex: 1; padding: 8px; text-align: center;
-    border-radius: 6px; font-weight: 500; cursor: pointer;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
 }
+
 .seg-item.active { background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
 
