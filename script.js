@@ -71,6 +71,22 @@ function backToLibrary() {
 }
 
 
+const bubble = document.getElementById('seg-bubble');
+
+// Simple drag logic
+let isDragging = false;
+bubble.addEventListener('mousedown', () => isDragging = true);
+window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    // Update transform based on mouse X position
+});
+
+function moveBubble(index) {
+    bubble.style.transform = `translateX(${index * 150}px)`;
+    // Trigger bubble expansion when held
+}
+
+
 
 function triggerFileSelect(e) {
     e.preventDefault();
