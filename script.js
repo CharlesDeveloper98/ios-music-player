@@ -25,6 +25,28 @@ window.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 });
 
+function openDetail(title, iconName) {
+    // Hide Library, show Detail
+    document.getElementById('page-library').classList.remove('active');
+    const detailPage = document.getElementById('page-detail');
+    detailPage.classList.add('active');
+    
+    // Update content
+    document.getElementById('detail-title').innerText = title;
+    document.getElementById('empty-text').innerText = `${title} will appear here.`;
+    
+    // Refresh icons (re-run lucide)
+    const iconElement = document.getElementById('empty-icon');
+    iconElement.setAttribute('data-lucide', iconName);
+    lucide.createIcons();
+}
+
+function backToLibrary() {
+    document.getElementById('page-detail').classList.remove('active');
+    document.getElementById('page-library').classList.add('active');
+}
+
+
 function triggerFileSelect(e) {
     e.preventDefault();
     document.getElementById('photo-upload').click();
