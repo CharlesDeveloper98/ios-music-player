@@ -53,22 +53,32 @@
     </div>
 
     <div id="page-detail" class="page">
-        <div class="header-row">
-            <div class="back-btn" onclick="backToLibrary()">
-                <i data-lucide="chevron-left"></i>
-            </div>
-            <div class="header-right-group">
-                <i data-lucide="plus"></i> 
-                <i data-lucide="list-filter"></i>
-                <i data-lucide="more-horizontal"></i>
-            </div>
+    <div class="header-row">
+        <div class="back-btn" onclick="backToLibrary()">
+            <i data-lucide="chevron-left"></i>
         </div>
-        <h1 class="page-title" id="detail-title">Title</h1>
-        <div class="empty-state">
-            <i data-lucide="music" id="empty-icon"></i>
-            <p id="empty-text">Content will appear here.</p>
+        <!-- Right side icons -->
+        <div class="header-right-group" id="detail-actions">
+            <i data-lucide="plus"></i> 
+            <i data-lucide="list-filter"></i>
+            <i data-lucide="more-horizontal"></i>
         </div>
     </div>
+    
+    <h1 class="page-title" id="detail-title">Title</h1>
+    
+    <!-- Segmented Control for TV & Movies -->
+    <div id="tv-segmented-control" class="segmented-control" style="display: none;">
+        <div class="seg-item active" onclick="switchTab('tv')">TV Shows</div>
+        <div class="seg-item" onclick="switchTab('movies')">Movies</div>
+    </div>
+
+    <div class="empty-state" id="detail-content">
+        <i data-lucide="music" id="empty-icon"></i>
+        <p id="empty-text">Content will appear here.</p>
+    </div>
+</div>
+
 
 
 
