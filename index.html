@@ -10,21 +10,19 @@
 <body>
 
     <div id="content">
-        <div id="page-home" class="page active">
-            <div class="header-row">
-                <h1>Home</h1>
-                <div class="profile-container" oncontextmenu="triggerFileSelect(event)">
-                    <i data-lucide="user" class="profile-icon"></i>
-                    <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
-                </div>
-            </div>
-        </div>
+        <!-- Ensure Home and New pages ONLY contain their titles -->
+<div id="page-home" class="page active">
+    <div class="header-row">
+        <h1>Home</h1>
+        <!-- ... profile code ... -->
+    </div>
+</div>
 
-        <div id="page-new" class="page">
-            <div class="header-row">
-                <h1>New</h1>
-            </div>
-        </div>
+<div id="page-new" class="page">
+    <div class="header-row">
+        <h1>New</h1>
+    </div>
+</div>
 
        <div id="page-library" class="page">
     <div class="header-row">
