@@ -48,11 +48,35 @@ function backToLibrary() {
     document.getElementById('tv-segmented-control').style.display = 'none';
 }
 
-// --- Segmented Control Bubble ---
+
+
+const bubble = document.getElementById('seg-bubble');
+
+// Set initial state to TV Shows
+window.addEventListener('DOMContentLoaded', () => {
+    moveBubble(0); // 0 = TV Shows, 1 = Movies
+});
+
 function moveBubble(index) {
-    const bubble = document.getElementById('seg-bubble');
-    bubble.style.transform = `translateX(${index * 150}px)`;
+    const offset = index === 0 ? 0 : 50; 
+    bubble.style.transform = `translateX(${offset}%)`;
+    
+    // Toggle active text color
+    document.querySelectorAll('.seg-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+    });
 }
+
+    // Drag Interaction
+let isDragging = false;
+bubble.addEventListener('mousedown', () => isDragging = true);
+window.addEventListener('mouseup', () => isDragging = false);
+window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    // Logic to calculate position based on container width
+});
+
+
 
 function switchTab(tab) {
     console.log("Switching to: " + tab);
