@@ -67,26 +67,15 @@
     
     <h1 class="page-title" id="detail-title">Title</h1>
     
-    <!-- Segmented Control for TV & Movies -->
-    <div id="tv-segmented-control" class="segmented-control" style="display: none;">
-        <div class="seg-item active" onclick="switchTab('tv')">TV Shows</div>
-        <div class="seg-item" onclick="switchTab('movies')">Movies</div>
-    </div>
-
-    <div class="empty-state" id="detail-content">
-        <i data-lucide="music" id="empty-icon"></i>
-        <p id="empty-text">Content will appear here.</p>
-    </div>
-</div>
-
-        <!-- Segmented Control Container -->
-<div class="segmented-control-wrapper">
+    <!-- Segmented Control Container -->
+<div class="segmented-control-wrapper" id="tv-segmented-control" style="display: none;">
     <div class="segmented-control" id="seg-control">
         <div class="seg-bubble" id="seg-bubble"></div>
-        <div class="seg-item active" onclick="moveBubble(0)">TV Shows</div>
-        <div class="seg-item" onclick="moveBubble(1)">Movies</div>
+        <div class="seg-item active" onclick="moveBubble(0); switchTab('tv')">TV Shows</div>
+        <div class="seg-item" onclick="moveBubble(1); switchTab('movies')">Movies</div>
     </div>
 </div>
+
 
 
 
