@@ -10,83 +10,73 @@
 <body>
 
     <div id="content">
-       <div id="page-home" class="page active">
-    <div class="header-row">
-        <h1 class="page-title">Home</h1>
-        <div class="profile-container">
-            <i data-lucide="user"></i>
-        </div>
-    </div>
-</div>
-
-<div id="page-new" class="page">
-    <div class="header-row">
-        <h1>New</h1>
-    </div>
-</div>
-
-          <div id="page-library" class="page">
-        <div class="header-row">
-            <h1 class="page-title">Library</h1>
-            <div class="header-right-group">
-                <div class="glass-header-actions">
-                    <i data-lucide="library-big"></i>
-                    <i data-lucide="more-horizontal"></i>
-                </div>
-                <div class="profile-container">
-                    <i data-lucide="user"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="library-menu">
-            <div class="menu-item" onclick="openDetail('Playlists', 'music-4')"><i data-lucide="music-4"></i><span>Playlists</span><i data-lucide="chevron-right"></i></div>
-            <div class="menu-item" onclick="openDetail('Artists', 'mic-2')"><i data-lucide="mic-2"></i><span>Artists</span><i data-lucide="chevron-right"></i></div>
-            <div class="menu-item" onclick="openDetail('Albums', 'album')"><i data-lucide="album"></i><span>Albums</span><i data-lucide="chevron-right"></i></div>
-            <div class="menu-item" onclick="openDetail('Songs', 'music')"><i data-lucide="music"></i><span>Songs</span><i data-lucide="chevron-right"></i></div>
-            <div class="menu-item" onclick="openDetail('TV & Movies', 'tv')"><i data-lucide="tv"></i><span>TV & Movies</span><i data-lucide="chevron-right"></i></div>
-            <div class="menu-item" onclick="openDetail('Music Videos', 'monitor-play')"><i data-lucide="monitor-play"></i><span>Music Videos</span><i data-lucide="chevron-right"></i></div>
-            <div class="menu-item" onclick="openDetail('Genres', 'guitar')"><i data-lucide="guitar"></i><span>Genres</span><i data-lucide="chevron-right"></i></div>
-            <div class="menu-item" onclick="openDetail('Compilations', 'package')"><i data-lucide="package"></i><span>Compilations</span><i data-lucide="chevron-right"></i></div>
-            <div class="menu-item" onclick="openDetail('Composers', 'music-2')"><i data-lucide="music-2"></i><span>Composers</span><i data-lucide="chevron-right"></i></div>
-        </div>
-    </div>
-
-    <div id="page-detail" class="page">
-    <div class="header-row">
-        <div class="back-btn" onclick="backToLibrary()">
-            <i data-lucide="chevron-left"></i>
-        </div>
-        <!-- Right side icons -->
-        <div class="header-right-group" id="detail-actions">
-            <i data-lucide="plus"></i> 
-            <i data-lucide="list-filter"></i>
-            <i data-lucide="more-horizontal"></i>
-        </div>
-    </div>
-    
-    <h1 class="page-title" id="detail-title">Title</h1>
-    
-    <!-- Segmented Control Container -->
-<div class="segmented-control-wrapper" id="tv-segmented-control" style="display: none;">
-    <div class="segmented-control" id="seg-control">
-        <div class="seg-bubble" id="seg-bubble"></div>
-        <div class="seg-item active" onclick="moveBubble(0); switchTab('tv')">TV Shows</div>
-        <div class="seg-item" onclick="moveBubble(1); switchTab('movies')">Movies</div>
-    </div>
-</div>
-
-
-
-
-
-
-        <div id="page-search" class="page">
+        <!-- Home Page -->
+        <div id="page-home" class="page active">
             <div class="header-row">
-                <h1>Search</h1>
+                <h1 class="page-title">Home</h1>
+                <div class="profile-container"><i data-lucide="user"></i></div>
             </div>
         </div>
-    </div>
+
+        <!-- New Page -->
+        <div id="page-new" class="page">
+            <div class="header-row"><h1>New</h1></div>
+        </div>
+
+        <!-- Library Page -->
+        <div id="page-library" class="page">
+            <div class="header-row">
+                <h1 class="page-title">Library</h1>
+                <div class="header-right-group">
+                    <div class="glass-header-actions">
+                        <i data-lucide="library-big"></i>
+                        <i data-lucide="more-horizontal"></i>
+                    </div>
+                    <div class="profile-container"><i data-lucide="user"></i></div>
+                </div>
+            </div>
+            <div class="library-menu">
+                <div class="menu-item" onclick="openDetail('Playlists', 'music-4')"><i data-lucide="music-4"></i><span>Playlists</span><i data-lucide="chevron-right"></i></div>
+                <div class="menu-item" onclick="openDetail('Artists', 'mic-2')"><i data-lucide="mic-2"></i><span>Artists</span><i data-lucide="chevron-right"></i></div>
+                <div class="menu-item" onclick="openDetail('Albums', 'album')"><i data-lucide="album"></i><span>Albums</span><i data-lucide="chevron-right"></i></div>
+                <div class="menu-item" onclick="openDetail('Songs', 'music')"><i data-lucide="music"></i><span>Songs</span><i data-lucide="chevron-right"></i></div>
+                <div class="menu-item" onclick="openDetail('TV & Movies', 'tv')"><i data-lucide="tv"></i><span>TV & Movies</span><i data-lucide="chevron-right"></i></div>
+                <div class="menu-item" onclick="openDetail('Music Videos', 'monitor-play')"><i data-lucide="monitor-play"></i><span>Music Videos</span><i data-lucide="chevron-right"></i></div>
+                <div class="menu-item" onclick="openDetail('Genres', 'guitar')"><i data-lucide="guitar"></i><span>Genres</span><i data-lucide="chevron-right"></i></div>
+                <div class="menu-item" onclick="openDetail('Compilations', 'package')"><i data-lucide="package"></i><span>Compilations</span><i data-lucide="chevron-right"></i></div>
+                <div class="menu-item" onclick="openDetail('Composers', 'music-2')"><i data-lucide="music-2"></i><span>Composers</span><i data-lucide="chevron-right"></i></div>
+            </div>
+        </div>
+
+        <!-- Detail Page -->
+        <div id="page-detail" class="page">
+            <div class="header-row">
+                <div class="back-btn" onclick="backToLibrary()"><i data-lucide="chevron-left"></i></div>
+                <div class="header-right-group" id="detail-actions">
+                    <i data-lucide="plus"></i> <i data-lucide="list-filter"></i> <i data-lucide="more-horizontal"></i>
+                </div>
+            </div>
+            <h1 class="page-title" id="detail-title">Title</h1>
+            
+            <div class="segmented-control-wrapper" id="tv-segmented-control" style="display: none;">
+                <div class="segmented-control" id="seg-control">
+                    <div class="seg-bubble" id="seg-bubble"></div>
+                    <div class="seg-item active" onclick="moveBubble(0); switchTab('tv')">TV Shows</div>
+                    <div class="seg-item" onclick="moveBubble(1); switchTab('movies')">Movies</div>
+                </div>
+            </div>
+            
+            <div class="empty-state">
+                <i data-lucide="music" id="empty-icon"></i>
+                <p id="empty-text">Content will appear here.</p>
+            </div>
+        </div> <!-- Properly closed page-detail -->
+
+        <!-- Search Page (Now a proper sibling) -->
+        <div id="page-search" class="page">
+            <div class="header-row"><h1>Search</h1></div>
+        </div>
+    </div> <!-- Close #content -->
 
     <div class="mini-player">
         <div class="mini-art"></div>
@@ -103,20 +93,12 @@
     <nav id="bottom-nav">
         <div class="main-tabs" id="tab-container">
             <div class="tab-selector" id="active-selector"></div>
-            <div class="nav-item active" onclick="showPage('page-home', this, 0)">
-                <i data-lucide="home"></i><span class="nav-label">Home</span>
-            </div>
-            <div class="nav-item" onclick="showPage('page-new', this, 1)">
-                <i data-lucide="layout-grid"></i><span class="nav-label">New</span>
-            </div>
-            <div class="nav-item" onclick="showPage('page-library', this, 2)">
-                <i data-lucide="library"></i><span class="nav-label">Library</span>
-            </div>
+            <div class="nav-item active" onclick="showPage('page-home', this, 0)"><i data-lucide="home"></i><span class="nav-label">Home</span></div>
+            <div class="nav-item" onclick="showPage('page-new', this, 1)"><i data-lucide="layout-grid"></i><span class="nav-label">New</span></div>
+            <div class="nav-item" onclick="showPage('page-library', this, 2)"><i data-lucide="library"></i><span class="nav-label">Library</span></div>
         </div>
         <div class="search-tab">
-            <div class="nav-item" onclick="showPage('page-search', this, 3)">
-                <i data-lucide="search"></i>
-            </div>
+            <div class="nav-item" onclick="showPage('page-search', this, 3)"><i data-lucide="search"></i></div>
         </div>
     </nav>
 
