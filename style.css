@@ -133,6 +133,20 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     transform: scale(0.95);
 }
 
+/* Hide Done button by default */
+.done-btn { display: none; background: none; border: none; color: var(--ios-red); font-size: 18px; font-weight: 600; cursor: pointer; }
+
+/* Edit mode classes */
+.editing .done-btn { display: block; }
+.editing #library-actions { display: none; }
+.editing .edit-circle { display: block; color: var(--ios-red); margin-right: 10px; }
+.editing .reorder-handle { display: block; color: #8e8e93; }
+
+/* Default state for edit icons */
+.edit-circle { display: none; }
+.reorder-handle { display: none; }
+
+
 
 
 .profile-container {
