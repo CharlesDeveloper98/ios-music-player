@@ -25,45 +25,26 @@ window.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 });
 
-// Navigation with Swipe Animation
 function openDetail(title, iconName) {
-    const library = document.getElementById('page-library');
-    const detail = document.getElementById('page-detail');
+    // Hide Library, show Detail
+    document.getElementById('page-library').classList.remove('active');
+    const detailPage = document.getElementById('page-detail');
+    detailPage.classList.add('active');
     
-    // Add logic to setup Segment Control if TV & Movies is opened
-    if (title === 'TV & Movies') {
-        renderSegmentControl();
-    }
+    // Update content
+    document.getElementById('detail-title').innerText = title;
+    document.getElementById('empty-text').innerText = `${title} will appear here.`;
     
-    library.classList.add('slide-left');
-    detail.classList.add('active');
+    // Refresh icons (re-run lucide)
+    const iconElement = document.getElementById('empty-icon');
+    iconElement.setAttribute('data-lucide', iconName);
+    lucide.createIcons();
 }
 
 function backToLibrary() {
-    const library = document.getElementById('page-library');
-    const detail = document.getElementById('page-detail');
-    
-    library.classList.remove('slide-left');
-    detail.classList.remove('active');
+    document.getElementById('page-detail').classList.remove('active');
+    document.getElementById('page-library').classList.add('active');
 }
-
-// Interactive Segment Control
-function renderSegmentControl() {
-    const container = document.getElementById('detail-title');
-    container.innerHTML = `
-        <div class="segmented-control" id="tv-seg">
-            <div class="seg-slider" id="seg-slider"></div>
-            <div class="seg-option" onclick="moveSeg(0)">TV Shows</div>
-            <div class="seg-option" onclick="moveSeg(1)">Movies</div>
-        </div>
-    `;
-}
-
-function moveSeg(index) {
-    const slider = document.getElementById('seg-slider');
-    slider.style.transform = `translateX(${index * 100}%)`;
-}
-
 
 
 function triggerFileSelect(e) {
