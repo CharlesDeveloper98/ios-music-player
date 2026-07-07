@@ -46,6 +46,22 @@ function backToLibrary() {
     document.getElementById('page-library').classList.add('active');
 }
 
+function togglePopover() {
+    const popover = document.getElementById('edit-sections-popover');
+    popover.classList.toggle('active');
+    // Refresh icons if needed
+    lucide.createIcons();
+}
+
+// Close popover when clicking outside
+document.addEventListener('click', (e) => {
+    const popover = document.getElementById('edit-sections-popover');
+    if (!e.target.closest('.glass-header-actions') && !e.target.closest('.popover')) {
+        popover.classList.remove('active');
+    }
+});
+
+
 
 function triggerFileSelect(e) {
     e.preventDefault();
