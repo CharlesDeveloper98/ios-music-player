@@ -82,14 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Update your toggleEditMode
 function toggleEditMode(isEditing) {
     const libraryPage = document.getElementById('page-library');
     if (isEditing) {
         libraryPage.classList.add('editing');
-        // Initialize SortableJS here
+        // Initialize SortableJS
         new Sortable(document.getElementById('library-menu'), {
             handle: '.reorder-handle',
-            animation: 150,
+            animation: 200, // Native feeling animation
+            easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
             onEnd: saveLibraryState
         });
     } else {
@@ -106,6 +108,22 @@ function saveLibraryState() {
 
 function toggleItem(id) {
     // Logic to toggle the tick/circle state and store in localStorage
+}
+
+// Add this to handle the Tick/Circle toggle
+function toggleTick(element) {
+    const icon = element.querySelector('.edit-circle');
+    const isChecked = icon.getAttribute('data-lucide') === 'check-circle-2';
+    
+    // Switch between circle and check-circle-2
+    icon.setAttribute('data-lucide', isChecked ? 'circle' : 'check-circle-2');
+    icon.style.color = isChecked ? 'var(--ios-red)' : 'var(--ios-red)';
+    icon.classList.add('tick-transition');
+    
+    lucide.createIcons(); // Re-render the icon
+    
+    // Remove animation class after it finishes
+    setTimeout(() => icon.classList.remove('tick-transition'), 200);
 }
 
 
