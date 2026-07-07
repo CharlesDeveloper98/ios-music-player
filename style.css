@@ -44,7 +44,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     border-radius: 20px;
     padding: 8px 20px;
     display: flex;
-    gap: 18px;
+    gap: 20px;
     color: var(--ios-red);
     border: 0.5px solid rgba(255, 255, 255, 0.2);
 }
