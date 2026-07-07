@@ -85,14 +85,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // Update your toggleEditMode
 function toggleEditMode(isEditing) {
     const libraryPage = document.getElementById('page-library');
-    togglePopup(); // Close popup automatically
+    const menu = document.getElementById('library-menu');
     
+    // Close popup
+    const popup = document.getElementById('popup-menu');
+    popup.classList.remove('show');
+    setTimeout(() => { popup.style.display = 'none'; }, 250);
+
     if (isEditing) {
         libraryPage.classList.add('editing');
-        new Sortable(document.getElementById('library-menu'), {
+        // Show all items while editing so we can tick/untick them
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.style.display = 'flex';
+        });
+        
+        // Initialize Sortable
+        new Sortable(menu, {
             handle: '.reorder-handle',
-            animation: 200,
-            onEnd: () => {} // Logic handled on save
+            animation: 200
         });
     } else {
         libraryPage.classList.remove('editing');
@@ -109,7 +119,7 @@ function saveLibraryState() {
     }));
     
     localStorage.setItem('libraryState', JSON.stringify(state));
-    renderLibrary(); // Re-render to hide/show and apply styles
+    applyLibraryState(); // Re-apply visibility based on new saved state
 }
 
 
@@ -119,10 +129,9 @@ function toggleItem(id) {
 
 // Add this to handle the Tick/Circle toggle
 function toggleTick(element) {
-    const icon = element.querySelector('.edit-circle');
-    const isVisible = element.classList.contains('hidden-item');
-    
     element.classList.toggle('hidden-item');
+    const icon = element.querySelector('.edit-circle');
+    const isVisible = !element.classList.contains('hidden-item');
     icon.setAttribute('data-lucide', isVisible ? 'check-circle-2' : 'circle');
     lucide.createIcons();
 }
@@ -159,6 +168,42 @@ function renderLibrary() {
             }
         }
     });
+}
+
+
+
+// Ensure Library state is initialized on startup
+document.addEventListener('DOMContentLoaded', () => {
+    // If no state exists in storage, initialize defaults
+    if (!localStorage.getItem('libraryState')) {
+        const defaultState = Array.from(document.querySelectorAll('.menu-item')).map(item => ({
+            id: item.getAttribute('data-id'),
+            visible: true
+        }));
+        localStorage.setItem('libraryState', JSON.stringify(defaultState));
+    }
+    applyLibraryState();
+});
+
+function applyLibraryState() {
+    const state = JSON.parse(localStorage.getItem('libraryState'));
+    const menu = document.getElementById('library-menu');
+    
+    state.forEach(itemState => {
+        const item = document.querySelector(`.menu-item[data-id="${itemState.id}"]`);
+        if (!item) return;
+
+        // Toggle visibility: hide if not visible
+        item.style.display = itemState.visible ? 'flex' : 'none';
+        
+        // Update tick icon
+        const icon = item.querySelector('.edit-circle');
+        icon.setAttribute('data-lucide', itemState.visible ? 'check-circle-2' : 'circle');
+        
+        // Add/Remove "dull" class
+        item.classList.toggle('hidden-item', !itemState.visible);
+    });
+    lucide.createIcons();
 }
 
 
