@@ -173,17 +173,18 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     100% { transform: scale(1); }
 }
 
-   /* Ensure hidden-item is only fully hidden when NOT editing */
-.hidden-item {
-    opacity: 0.5; /* Makes it "dull" */
-}         
+   /* Update this specific block in style.css */
+.editing .hidden-item {
+    display: flex !important; /* Force visible during edit */
+    opacity: 0.5;
+}
+
 
 /* This rule ensures that when we are NOT in edit mode, 
    the hidden items are actually removed from the view */
 body:not(.editing) .hidden-item {
-    display: none !important;
+    display: none !important; /* Hidden when done editing */
 }
-
 
 .profile-container {
     width: 36px;
