@@ -49,8 +49,13 @@ function backToLibrary() {
 // Add this to your script.js
 function togglePopup() {
     const menu = document.getElementById('popup-menu');
-    // Toggle block/none
-    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    const overlay = document.getElementById('popup-overlay');
+    
+    // Toggle both visibility
+    const isNowVisible = menu.style.display === 'block';
+    
+    menu.style.display = isNowVisible ? 'none' : 'block';
+    overlay.style.display = isNowVisible ? 'none' : 'block';
 }
 
 
