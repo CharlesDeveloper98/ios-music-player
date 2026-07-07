@@ -69,18 +69,45 @@ function togglePopup() {
     }
 }
 
+
+// Load saved order/visibility on startup
+document.addEventListener('DOMContentLoaded', () => {
+    const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
+    if (savedOrder) {
+        const menu = document.getElementById('library-menu');
+        savedOrder.forEach(id => {
+            const item = document.querySelector(`[data-id="${id}"]`);
+            menu.appendChild(item);
+        });
+    }
+});
+
 function toggleEditMode(isEditing) {
     const libraryPage = document.getElementById('page-library');
-    const popup = document.getElementById('popup-menu');
-    
     if (isEditing) {
         libraryPage.classList.add('editing');
-        popup.classList.remove('show'); // Close popup after clicking
-        setTimeout(() => popup.style.display = 'none', 250);
+        // Initialize SortableJS here
+        new Sortable(document.getElementById('library-menu'), {
+            handle: '.reorder-handle',
+            animation: 150,
+            onEnd: saveLibraryState
+        });
     } else {
         libraryPage.classList.remove('editing');
+        saveLibraryState();
     }
 }
+
+function saveLibraryState() {
+    const items = Array.from(document.querySelectorAll('.menu-item'));
+    const order = items.map(item => item.getAttribute('data-id'));
+    localStorage.setItem('libraryOrder', JSON.stringify(order));
+}
+
+function toggleItem(id) {
+    // Logic to toggle the tick/circle state and store in localStorage
+}
+
 
 
 
