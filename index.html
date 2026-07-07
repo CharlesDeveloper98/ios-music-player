@@ -10,48 +10,44 @@
 <body>
 
     <div id="content">
-        <!-- Home Page -->
         <div id="page-home" class="page active">
             <div class="header-row">
                 <h1 class="page-title">Home</h1>
-                <div class="profile-container">
-                    <i data-lucide="user"></i>
+                <div class="header-right-group" style="display: flex; align-items: center; gap: 10px;">
+                    <div class="profile-container">
+                        <i data-lucide="user"></i>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- New Page -->
         <div id="page-new" class="page">
             <div class="header-row">
                 <h1>New</h1>
             </div>
         </div>
 
-        <!-- Library Page -->
         <div id="page-library" class="page">
-    <div class="header-row">
-        <h1 class="page-title">Library</h1>
-        <div class="header-right-group">
-            <!-- Glass container stays separate -->
-            <div class="glass-header-actions" id="header-glass">
-                <i data-lucide="library-big"></i>
-                <i data-lucide="more-horizontal" class="clickable-icon" onclick="togglePopup()"></i>
-            </div>
-            
-            <!-- Profile icon is back next to the glass container -->
-            <div class="profile-container">
-                <i data-lucide="user"></i>
-            </div>
-
-            <!-- Popup menu remains here for anchoring -->
-            <div id="popup-menu" class="popup-menu">
-                <div class="popup-item" onclick="alert('Edit Sections')">
-                    <i data-lucide="check-square"></i>
-                    <span>Edit Sections</span>
+            <div class="header-row">
+                <h1 class="page-title">Library</h1>
+                <div class="header-right-group" style="display: flex; align-items: center; gap: 10px;">
+                    <div class="glass-header-actions" id="header-glass" style="position: relative;">
+                        <i data-lucide="library-big"></i>
+                        <i data-lucide="more-horizontal" class="clickable-icon" onclick="togglePopup()"></i>
+                        
+                        <div id="popup-menu" class="popup-menu">
+                            <div class="popup-item">
+                                <i data-lucide="check-square"></i>
+                                <span>Edit Sections</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-container">
+                        <i data-lucide="user"></i>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
             <div class="library-menu">
                 <div class="menu-item" onclick="openDetail('Playlists', 'music-4')"><i data-lucide="music-4"></i><span>Playlists</span><i data-lucide="chevron-right"></i></div>
@@ -66,7 +62,6 @@
             </div>
         </div>
 
-        <!-- Detail Page -->
         <div id="page-detail" class="page">
             <div class="header-row">
                 <div class="back-btn" onclick="backToLibrary()">
@@ -85,7 +80,6 @@
             </div>
         </div>
 
-        <!-- Search Page -->
         <div id="page-search" class="page">
             <div class="header-row">
                 <h1>Search</h1>
@@ -93,7 +87,6 @@
         </div>
     </div>
 
-    <!-- Player & Nav -->
     <div class="mini-player">
         <div class="mini-art"></div>
         <div class="mini-info">
@@ -126,7 +119,6 @@
         </div>
     </nav>
 
-    <!-- Overlay must remain at the end to cover the full screen -->
     <div id="popup-overlay" onclick="togglePopup()"></div>
 
     <script src="script.js"></script>
