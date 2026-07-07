@@ -51,12 +51,22 @@ function togglePopup() {
     const menu = document.getElementById('popup-menu');
     const overlay = document.getElementById('popup-overlay');
     
-    // Toggle both visibility
-    const isNowVisible = menu.style.display === 'block';
-    
-    menu.style.display = isNowVisible ? 'none' : 'block';
-    overlay.style.display = isNowVisible ? 'none' : 'block';
+    if (menu.classList.contains('show')) {
+        // Exit Animation
+        menu.classList.remove('show');
+        setTimeout(() => { menu.style.display = 'none'; }, 300); // Match CSS transition time
+        overlay.style.display = 'none';
+    } else {
+        // Entrance Animation
+        menu.style.display = 'block';
+        overlay.style.display = 'block';
+        // Small timeout to allow browser to register display:block before adding class
+        requestAnimationFrame(() => {
+            menu.classList.add('show');
+        });
+    }
 }
+
 
 
 
