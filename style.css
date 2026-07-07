@@ -112,13 +112,13 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     align-items: center;
     gap: 12px;
     padding: 10px 12px;
-    color: #1c1c1e; /* Standard iOS dark text */
+    color: #fff;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 26px;
 }
 
-.popup-item:active { background: rgba(0, 0, 0, 0.08); }
+.popup-item:active { background: rgba(255, 255, 255, 0.1); }
 
 .clickable-icon {
     cursor: pointer;
