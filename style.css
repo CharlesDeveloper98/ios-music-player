@@ -78,21 +78,27 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .popup-menu {
     display: none;
     position: absolute;
-    /* Anchoring to the top right of the Library header */
-    top: 50px; 
-    right: 20px; 
-    width: 200px; /* Standard iOS menu width */
-    background: rgba(240, 240, 240, 0.85); /* Light gray for iOS feel */
-    backdrop-filter: blur(30px) saturate(200%);
+    /* Adjusted to sit directly under the Library title area */
+    top: 55px; 
+    right: 15px; 
+    width: 210px;
+    
+    /* Native iOS Styling */
+    background: rgba(255, 255, 255, 0.9); /* White background for iOS 26 style */
+    backdrop-filter: blur(20px) saturate(180%);
     border: 0.5px solid rgba(0, 0, 0, 0.1);
     border-radius: 12px;
-    padding: 6px;
+    padding: 4px;
     z-index: 2000;
+    
+    /* Animation settings */
     opacity: 0;
     transform: scale(0.95);
-    transform-origin: top right; /* Ensures it grows from the corner */
-    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Adds native depth */
+    transform-origin: top right;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    
+    /* Subtle shadow for the floating effect */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .popup-menu.show {
@@ -105,8 +111,8 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 14px;
-    color: #000; /* Dark text for light mode */
+    padding: 10px 12px;
+    color: #1c1c1e; /* Standard iOS dark text */
     font-size: 16px;
     cursor: pointer;
     border-radius: 8px;
