@@ -16,12 +16,11 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Remove the old specific hiding rules and ensure clean layout */
-.header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px; /* Fixed height ensures consistency */
-    padding: 0 20px;
+.header-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px 20px 10px 20px; 
 }
 
 .header-actions { display: flex; gap: 15px; color: var(--ios-red); }
@@ -62,51 +61,43 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 
 .header-right-group {
-    height: 40px; /* Fixed height makes the profile icon stay in the same place */
     display: flex;
     align-items: center;
-}
+    gap: 12px;
+    }
 
-
-
-/* Full-screen overlay to catch background taps */
+/* Full screen overlay to catch taps */
 #popup-overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 1000;
-    background: transparent;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1500; /* Behind the menu but in front of everything else */
 }
 
 /* The Popup Menu */
 .popup-menu {
     display: none;
     position: absolute;
-    top: 55px; /* Adjust to sit just below your glass container */
-    right: 65px; /* Adjust to align with your specific layout */
-    width: 180px;
-    background: rgba(30, 30, 30, 0.7); /* Dark semi-transparent background */
-    backdrop-filter: blur(20px) saturate(180%); /* iOS Liquid Glass effect */
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 8px;
-    z-index: 1000;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-}
-
-.popup-menu.show {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
+    top: 45px;  /* Moves it up */
+    right: 0;
+    width: 260px; /* Made longer to reach towards 'Library' title */
+    background: rgba(40, 40, 40, 0.6);
+    backdrop-filter: blur(25px) saturate(200%); /* Stronger liquid glass */
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 10px;
+    z-index: 2000; /* Above overlay */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
 .popup-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px;
-    color: white;
+    gap: 12px;
+    padding: 12px;
+    color: #fff;
+    cursor: pointer;
 }
 
 .popup-item:active { background: rgba(255, 255, 255, 0.1); }
@@ -128,9 +119,12 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .profile-container {
     width: 36px;
     height: 36px;
+    background: #333;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .back-btn { font-size: 24px; color: var(--ios-red); cursor: pointer; }
