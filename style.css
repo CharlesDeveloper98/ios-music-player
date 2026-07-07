@@ -16,11 +16,12 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Remove the old specific hiding rules and ensure clean layout */
-.header-row { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 20px 20px 10px 20px; 
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px; /* Fixed height ensures consistency */
+    padding: 0 20px;
 }
 
 .header-actions { display: flex; gap: 15px; color: var(--ios-red); }
@@ -129,12 +130,9 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .profile-container {
     width: 36px;
     height: 36px;
-    background: #333;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 }
 
 .back-btn { font-size: 24px; color: var(--ios-red); cursor: pointer; }
