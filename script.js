@@ -69,6 +69,19 @@ function togglePopup() {
     }
 }
 
+function toggleEditMode(isEditing) {
+    const libraryPage = document.getElementById('page-library');
+    const popup = document.getElementById('popup-menu');
+    
+    if (isEditing) {
+        libraryPage.classList.add('editing');
+        popup.classList.remove('show'); // Close popup after clicking
+        setTimeout(() => popup.style.display = 'none', 250);
+    } else {
+        libraryPage.classList.remove('editing');
+    }
+}
+
 
 
 
