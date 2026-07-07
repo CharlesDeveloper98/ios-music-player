@@ -70,7 +70,6 @@ function togglePopup() {
 
 
 
-
 function triggerFileSelect(e) {
     e.preventDefault();
     document.getElementById('photo-upload').click();
