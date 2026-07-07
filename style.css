@@ -10,7 +10,13 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 :root { --ios-red: #ff3b30; --glass-bg: rgba(40, 40, 40, 0.7); --glass-border: rgba(255, 255, 255, 0.1); }
 
-.page { display: none; opacity: 0; }
+.page { 
+    display: none; 
+    height: 100vh; 
+    overflow-y: auto; /* Enables scrolling within the page only */
+    padding-bottom: 150px; /* Prevents mini-player overlap */
+}
+
 .page.active { display: block; animation: fadeIn 0.2s forwards; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
