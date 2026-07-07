@@ -13,10 +13,8 @@
         <div id="page-home" class="page active">
             <div class="header-row">
                 <h1 class="page-title">Home</h1>
-                <div class="header-right-group" style="display: flex; align-items: center; gap: 10px;">
-                    <div class="profile-container">
-                        <i data-lucide="user"></i>
-                    </div>
+                <div class="profile-container">
+                    <i data-lucide="user"></i>
                 </div>
             </div>
         </div>
@@ -30,19 +28,11 @@
         <div id="page-library" class="page">
             <div class="header-row">
                 <h1 class="page-title">Library</h1>
-                <div class="header-right-group" style="display: flex; align-items: center; gap: 10px;">
-                    <div class="glass-header-actions" id="header-glass" style="position: relative;">
+                <div class="header-right-group">
+                    <div class="glass-header-actions" id="header-glass">
                         <i data-lucide="library-big"></i>
                         <i data-lucide="more-horizontal" class="clickable-icon" onclick="togglePopup()"></i>
-                        
-                        <div id="popup-menu" class="popup-menu">
-                            <div class="popup-item">
-                                <i data-lucide="check-square"></i>
-                                <span>Edit Sections</span>
-                            </div>
-                        </div>
                     </div>
-                    
                     <div class="profile-container">
                         <i data-lucide="user"></i>
                     </div>
@@ -120,6 +110,12 @@
     </nav>
 
     <div id="popup-overlay" onclick="togglePopup()"></div>
+    <div id="popup-menu" class="popup-menu">
+        <div class="popup-item" onclick="alert('Edit Sections Tapped')">
+            <i data-lucide="check-square"></i>
+            <span>Edit Sections</span>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
