@@ -145,11 +145,18 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 
 .edit-circle { color: var(--ios-red); margin-right: 15px; cursor: pointer; }
-.reorder-handle { color: #8e8e93; margin-left: auto; cursor: grab; }
+/* Ensure reorder handle is only used for dragging */
+.reorder-handle {
+    cursor: grab;
+    padding: 10px;
+}
 .nav-arrow { color: #8e8e93; }
 
-/* Edit Mode Classes */
-.editing .done-container { display: flex; }
+/* Ensure the Done button is visible in edit mode */
+.editing .done-container { 
+    display: flex; 
+    order: -1; /* Move to left or right as preferred */
+}
 .editing #library-actions { display: none; }
 /* In Edit Mode, show them */
 .editing .edit-circle { display: block; }
@@ -168,6 +175,12 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
 }
+
+   /* Dull effect for hidden items */
+.hidden-item {
+    opacity: 0.5;
+    filter: grayscale(1);
+}                      
 
 
 .profile-container {
