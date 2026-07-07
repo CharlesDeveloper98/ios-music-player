@@ -84,10 +84,10 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     width: 210px;
     
     /* Native iOS Styling */
-    background: rgba(255, 255, 255, 0.9); /* White background for iOS 26 style */
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 0.5px solid rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
+    background: rgba(30, 30, 30, 0.7);
+    backdrop-filter: blur(25px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 26px;
     padding: 4px;
     z-index: 2000;
     
