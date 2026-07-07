@@ -63,8 +63,9 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .header-right-group {
     display: flex;
     align-items: center;
-    gap: 12px;
-    }
+    gap: 10px; /* Adjust this space between the glass and the profile icon */
+}
+
 
 /* Full-screen overlay to catch background taps */
 #popup-overlay {
