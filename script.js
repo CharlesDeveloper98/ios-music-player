@@ -50,22 +50,25 @@ function backToLibrary() {
 function togglePopup() {
     const menu = document.getElementById('popup-menu');
     const overlay = document.getElementById('popup-overlay');
-    
+
     if (menu.classList.contains('show')) {
         // Exit Animation
         menu.classList.remove('show');
-        setTimeout(() => { menu.style.display = 'none'; }, 300); // Match CSS transition time
-        overlay.style.display = 'none';
+        setTimeout(() => {
+            menu.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 250); // Matches CSS transition duration
     } else {
         // Entrance Animation
-        menu.style.display = 'block';
         overlay.style.display = 'block';
-        // Small timeout to allow browser to register display:block before adding class
-        requestAnimationFrame(() => {
+        menu.style.display = 'block';
+        // Small timeout to allow browser to register display:block before starting animation
+        setTimeout(() => {
             menu.classList.add('show');
-        });
+        }, 10);
     }
 }
+
 
 
 
