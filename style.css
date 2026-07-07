@@ -77,27 +77,26 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 /* Popup Animation Classes */
 .popup-menu {
     display: none;
-    opacity: 0;
-    transform: translateY(-10px) scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     position: absolute;
-    top: 45px;  /* Moves it up */
-    right: 0;
-    width: 260px; /* Made longer to reach towards 'Library' title */
-    background: rgba(40, 40, 40, 0.6);
-    backdrop-filter: blur(25px) saturate(200%); /* Stronger liquid glass */
-    -webkit-backdrop-filter: blur(25px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Positioned to align with the Library title and icon */
+    top: 60px; 
+    left: 20px; 
+    width: 250px; 
+    background: rgba(30, 30, 30, 0.7);
+    backdrop-filter: blur(25px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     padding: 10px;
-    z-index: 2000; /* Above overlay */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    z-index: 2000;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .popup-menu.show {
     display: block;
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
 }
 
 .popup-item {
