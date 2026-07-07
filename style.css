@@ -153,10 +153,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .nav-arrow { color: #8e8e93; }
 
 /* Ensure the Done button is visible in edit mode */
-.editing .done-container { 
-    display: flex; 
-    order: -1; /* Move to left or right as preferred */
-}
+.editing .done-container { display: flex; }
 .editing #library-actions { display: none; }
 /* In Edit Mode, show them */
 .editing .edit-circle { display: block; }
@@ -176,11 +173,16 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     100% { transform: scale(1); }
 }
 
-   /* Dull effect for hidden items */
+   /* Ensure hidden-item is only fully hidden when NOT editing */
 .hidden-item {
-    opacity: 0.5;
-    filter: grayscale(1);
-}                      
+    opacity: 0.5; /* Makes it "dull" */
+}         
+
+/* This rule ensures that when we are NOT in edit mode, 
+   the hidden items are actually removed from the view */
+body:not(.editing) .hidden-item {
+    display: none !important;
+}
 
 
 .profile-container {
