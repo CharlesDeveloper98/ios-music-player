@@ -71,26 +71,28 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 1500; /* Behind the menu but in front of everything else */
+    z-index: 1500;
 }
 
-/* Popup Animation Classes */
+/* Popup Menu Styling */
 .popup-menu {
     display: none;
     position: absolute;
-    /* Positioned to align with the Library title and icon */
-    top: 60px; 
-    left: 20px; 
-    width: 250px; 
-    background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(25px) saturate(180%);
-    border: 0.5px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 10px;
+    /* Anchoring to the top right of the Library header */
+    top: 50px; 
+    right: 20px; 
+    width: 200px; /* Standard iOS menu width */
+    background: rgba(240, 240, 240, 0.85); /* Light gray for iOS feel */
+    backdrop-filter: blur(30px) saturate(200%);
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 6px;
     z-index: 2000;
     opacity: 0;
     transform: scale(0.95);
+    transform-origin: top right; /* Ensures it grows from the corner */
     transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Adds native depth */
 }
 
 .popup-menu.show {
@@ -103,12 +105,14 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px;
-    color: #fff;
+    padding: 10px 14px;
+    color: #000; /* Dark text for light mode */
+    font-size: 16px;
     cursor: pointer;
+    border-radius: 8px;
 }
 
-.popup-item:active { background: rgba(255, 255, 255, 0.1); }
+.popup-item:active { background: rgba(0, 0, 0, 0.08); }
 
 .clickable-icon {
     cursor: pointer;
