@@ -26,13 +26,8 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .header-actions { display: flex; gap: 15px; color: var(--ios-red); }
 
 .library-menu { margin-top: 10px; padding: 0 20px; }
-.menu-item { 
-    display: flex; 
-    align-items: center; 
-    padding: 15px 0; 
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); 
-    color: var(--ios-red);
-}
+.menu-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); }
+
 .menu-item i:first-child { margin-right: 15px; }
 .menu-item span { flex: 1; color: #fff; font-size: 18px; }
 .menu-item i:last-child { color: #8e8e93; }
@@ -133,14 +128,21 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     transform: scale(0.95);
 }
 
-/* Add these to your CSS */
-.done-btn { display: none; background: none; border: none; color: var(--ios-red); font-size: 18px; font-weight: 600; cursor: pointer; }
-.edit-circle { display: none; margin-right: 15px; }
-.reorder-handle { display: none; color: #8e8e93; }
+/* Styling the "Done" container */
+.done-container {
+    display: none;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.edit-circle { color: var(--ios-red); margin-right: 15px; cursor: pointer; }
+.reorder-handle { color: #8e8e93; margin-left: auto; cursor: grab; }
 .nav-arrow { color: #8e8e93; }
 
 /* Edit Mode Classes */
-.editing .done-btn { display: block; }
+.editing .done-container { display: flex; }
 .editing #library-actions { display: none; }
 .editing .edit-circle { display: block; }
 .editing .reorder-handle { display: block; }
