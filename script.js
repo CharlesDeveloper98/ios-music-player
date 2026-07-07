@@ -46,6 +46,20 @@ function backToLibrary() {
     document.getElementById('page-library').classList.add('active');
 }
 
+// Add this to your script.js
+function togglePopup() {
+    const overlay = document.getElementById('popup-overlay');
+    const menu = document.getElementById('popup-menu');
+    
+    const isVisible = menu.style.display === 'block';
+    menu.style.display = isVisible ? 'none' : 'block';
+    overlay.style.display = isVisible ? 'none' : 'block';
+    
+    // Refresh icons if the popup was just opened
+    if (!isVisible) lucide.createIcons();
+}
+
+
 
 function triggerFileSelect(e) {
     e.preventDefault();
