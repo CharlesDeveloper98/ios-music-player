@@ -15,12 +15,13 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Remove the old specific hiding rules and ensure clean layout */
-.header-row { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 20px 20px 10px 20px; 
+/* Lock header to the top of the viewport */
+.header-row {
+    position: sticky;
+    top: 0;
+    background: #000; /* Solid background so text doesn't overlap on scroll */
+    z-index: 100;
+    padding-bottom: 10px;
 }
 
 .header-actions { display: flex; gap: 15px; color: var(--ios-red); }
@@ -74,9 +75,12 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     z-index: 1500; /* Behind the menu but in front of everything else */
 }
 
-/* The Popup Menu */
+/* Popup Animation Classes */
 .popup-menu {
     display: none;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     position: absolute;
     top: 45px;  /* Moves it up */
     right: 0;
@@ -89,6 +93,12 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     padding: 10px;
     z-index: 2000; /* Above overlay */
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.popup-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .popup-item {
