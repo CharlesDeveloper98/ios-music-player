@@ -10,24 +10,17 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 :root { --ios-red: #ff3b30; --glass-bg: rgba(40, 40, 40, 0.7); --glass-border: rgba(255, 255, 255, 0.1); }
 
-.page { 
-    display: none; 
-    height: 100vh; 
-    overflow-y: auto; /* Enables scrolling within the page only */
-    padding-bottom: 150px; /* Prevents mini-player overlap */
-}
-
+.page { display: none; opacity: 0; }
 .page.active { display: block; animation: fadeIn 0.2s forwards; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Lock header to the top of the viewport */
-.header-row {
-    position: sticky;
-    top: 0;
-    background: #000; /* Solid background so text doesn't overlap on scroll */
-    z-index: 100;
-    padding-bottom: 10px;
+/* Remove the old specific hiding rules and ensure clean layout */
+.header-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px 20px 10px 20px; 
 }
 
 .header-actions { display: flex; gap: 15px; color: var(--ios-red); }
