@@ -63,6 +63,42 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     gap: 12px;
     }
 
+/* Popup Styling */
+#popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 2000;
+}
+
+.popup-menu {
+    display: none;
+    position: fixed;
+    top: 70px; /* Adjust based on your header height */
+    right: 80px; /* Positioned near your 3-dot button */
+    width: 200px;
+    background: rgba(40, 40, 40, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 8px;
+    z-index: 2001;
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.popup-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.popup-item:active { background: rgba(255, 255, 255, 0.1); }
+
+
 .profile-container {
     width: 36px;
     height: 36px;
