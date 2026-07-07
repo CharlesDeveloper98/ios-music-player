@@ -28,6 +28,9 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .library-menu { margin-top: 10px; padding: 0 20px; }
 .menu-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); }
 
+/* Smoothly animate opacity for the icons */
+.menu-item i { transition: opacity 0.2s ease; }
+
 .menu-item i:first-child { margin-right: 15px; }
 .menu-item span { flex: 1; color: #fff; font-size: 18px; }
 .menu-item i:last-child { color: #8e8e93; }
@@ -128,6 +131,10 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     transform: scale(0.95);
 }
 
+/* Hide edit elements by default */
+.edit-circle, .reorder-handle { display: none; transition: all 0.2s ease; }
+
+
 /* Styling the "Done" container */
 .done-container {
     display: none;
@@ -144,12 +151,23 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 /* Edit Mode Classes */
 .editing .done-container { display: flex; }
 .editing #library-actions { display: none; }
+/* In Edit Mode, show them */
 .editing .edit-circle { display: block; }
 .editing .reorder-handle { display: block; }
+
 .editing .nav-arrow { display: none; }
 
 
+/* The "liquid" animation effect for the tick */
+.tick-transition {
+    animation: pop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
+@keyframes pop {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
 
 
 .profile-container {
