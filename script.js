@@ -85,14 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // Update your toggleEditMode
 function toggleEditMode(isEditing) {
     const libraryPage = document.getElementById('page-library');
+    togglePopup(); // Close popup automatically
+    
     if (isEditing) {
         libraryPage.classList.add('editing');
-        // Initialize SortableJS
         new Sortable(document.getElementById('library-menu'), {
             handle: '.reorder-handle',
-            animation: 200, // Native feeling animation
-            easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
-            onEnd: saveLibraryState
+            animation: 200,
+            onEnd: () => {} // Logic handled on save
         });
     } else {
         libraryPage.classList.remove('editing');
@@ -100,11 +100,18 @@ function toggleEditMode(isEditing) {
     }
 }
 
+
 function saveLibraryState() {
     const items = Array.from(document.querySelectorAll('.menu-item'));
-    const order = items.map(item => item.getAttribute('data-id'));
-    localStorage.setItem('libraryOrder', JSON.stringify(order));
+    const state = items.map(item => ({
+        id: item.getAttribute('data-id'),
+        visible: !item.classList.contains('hidden-item')
+    }));
+    
+    localStorage.setItem('libraryState', JSON.stringify(state));
+    renderLibrary(); // Re-render to hide/show and apply styles
 }
+
 
 function toggleItem(id) {
     // Logic to toggle the tick/circle state and store in localStorage
@@ -113,21 +120,46 @@ function toggleItem(id) {
 // Add this to handle the Tick/Circle toggle
 function toggleTick(element) {
     const icon = element.querySelector('.edit-circle');
-    const isChecked = icon.getAttribute('data-lucide') === 'check-circle-2';
+    const isVisible = element.classList.contains('hidden-item');
     
-    // Switch between circle and check-circle-2
-    icon.setAttribute('data-lucide', isChecked ? 'circle' : 'check-circle-2');
-    icon.style.color = isChecked ? 'var(--ios-red)' : 'var(--ios-red)';
-    icon.classList.add('tick-transition');
-    
-    lucide.createIcons(); // Re-render the icon
-    
-    // Remove animation class after it finishes
-    setTimeout(() => icon.classList.remove('tick-transition'), 200);
+    element.classList.toggle('hidden-item');
+    icon.setAttribute('data-lucide', isVisible ? 'check-circle-2' : 'circle');
+    lucide.createIcons();
 }
 
 
+// Load and render Library state
+document.addEventListener('DOMContentLoaded', () => {
+    renderLibrary();
+    lucide.createIcons();
+});
 
+function renderLibrary() {
+    const savedState = JSON.parse(localStorage.getItem('libraryState')) || [
+        {id: 'Playlists', visible: true}, {id: 'Artists', visible: true},
+        {id: 'Albums', visible: true}, {id: 'Songs', visible: true},
+        {id: 'TV-Movies', visible: true}, {id: 'Music-Videos', visible: true},
+        {id: 'Genres', visible: true}, {id: 'Compilations', visible: true},
+        {id: 'Composers', visible: true}
+    ];
+
+    const menu = document.getElementById('library-menu');
+    menu.innerHTML = ''; // Clear current
+
+    savedState.forEach(itemState => {
+        const item = document.querySelector(`.menu-item[data-id="${itemState.id}"]`);
+        if (item) {
+            const circle = item.querySelector('.edit-circle');
+            // Set tick state
+            circle.setAttribute('data-lucide', itemState.visible ? 'check-circle-2' : 'circle');
+            item.classList.toggle('hidden-item', !itemState.visible);
+            
+            if (itemState.visible) {
+                menu.appendChild(item);
+            }
+        }
+    });
+}
 
 
 
