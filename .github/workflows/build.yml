@@ -45,4 +45,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Music-Player-APK
-          path: myApp/platforms/android/app/build/outputs/apk/debug/ZonePlay_1.0.0.apk
+          path: myApp/platforms/android/app/build/outputs/apk/debug/app-debug.apk
