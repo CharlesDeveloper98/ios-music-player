@@ -145,14 +145,10 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 
 .edit-circle { color: var(--ios-red); margin-right: 15px; cursor: pointer; }
-/* Ensure reorder handle is only used for dragging */
-.reorder-handle {
-    cursor: grab;
-    padding: 10px;
-}
+.reorder-handle { color: #8e8e93; margin-left: auto; cursor: grab; }
 .nav-arrow { color: #8e8e93; }
 
-/* Ensure the Done button is visible in edit mode */
+/* Edit Mode Classes */
 .editing .done-container { display: flex; }
 .editing #library-actions { display: none; }
 /* In Edit Mode, show them */
@@ -173,18 +169,6 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     100% { transform: scale(1); }
 }
 
-   /* Update this specific block in style.css */
-.editing .hidden-item {
-    display: flex !important; /* Force visible during edit */
-    opacity: 0.5;
-}
-
-
-/* This rule ensures that when we are NOT in edit mode, 
-   the hidden items are actually removed from the view */
-body:not(.editing) .hidden-item {
-    display: none !important; /* Hidden when done editing */
-}
 
 .profile-container {
     width: 36px;
