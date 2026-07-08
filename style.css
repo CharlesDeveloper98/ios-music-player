@@ -249,29 +249,29 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     100% { transform: scale(1); }
 }
 
-/* 1. This is the container you are actively dragging */
-.sortable-chosen {
+/* 1. The item you are actually holding (The "Real Container") */
+.sortable-drag {
     background: #1c1c1e !important; 
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8) !important;
     border-radius: 12px;
     z-index: 9999 !important;
-    transform: scale(1.02);
+    transform: scale(1.02); /* Pop effect */
     cursor: grabbing;
-    opacity: 1 !important; /* Keep it solid, not transparent */
+    opacity: 1 !important;
 }
 
-/* 2. This hides the "placeholder" ghost so it doesn't look like a second item */
+/* 2. The placeholder slot that stays in the list */
 .sortable-ghost {
-    opacity: 0 !important; /* Makes the original "non-moving" slot invisible */
-    visibility: hidden;
+    background: transparent !important;
+    border: none !important;
+    opacity: 0 !important; /* Invisible, but keeps the layout from collapsing */
 }
 
-/* This is the item that is currently "in the air" */
-.sortable-drag {
-    opacity: 0.9;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    transform: scale(1.02); /* Slight scale up for the "pop" effect */
+/* 3. Reset the chosen state so it doesn't conflict */
+.sortable-chosen {
+    background: transparent;
 }
+
 
 
 .profile-container {
