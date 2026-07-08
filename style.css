@@ -25,10 +25,14 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 .header-actions { display: flex; gap: 15px; color: var(--ios-red); }
 
-.library-menu {
-    margin-top: 10px; 
-    padding: 0 20px;
+#library-menu {
+    position: relative;
+    /* This ensures that when you drag, the list doesn't collapse */
+    min-height: 400px; 
+    /* Force containment so the dragged item cannot move outside this box */
+    contain: layout style;
 }
+
 
 .menu-item { 
     display: flex; 
@@ -238,16 +242,22 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     100% { transform: scale(1); }
 }
 
-/* Styling the dragged item to look like iOS */
-.sortable-ghost {
-    opacity: 0.4;
-    background: rgba(255, 255, 255, 0.05);
+/* This class is added by SortableJS to the element being dragged */
+.sortable-chosen {
+    background: #1c1c1e !important; /* Slightly lighter than background */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    border-radius: 12px;
+    z-index: 999;
+    cursor: grabbing;
 }
 
-.sortable-chosen {
-    background: rgba(255, 255, 255, 0.1);
+/* This is the placeholder where the item will land */
+.sortable-ghost {
+    opacity: 0.4;
+    background: #2c2c2e;
     border-radius: 12px;
 }
+
 
 
 .profile-container {
