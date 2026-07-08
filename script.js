@@ -53,12 +53,11 @@ function toggleEditMode(isEditing) {
         // --- PLACE THE CODE HERE ---
         sortableInstance = new Sortable(menu, {
     animation: 300,
+    easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
     handle: '.reorder-handle',
-    ghostClass: 'sortable-ghost',   // This now hides the item in the list
-    chosenClass: 'sortable-chosen', // This styles the item you are dragging
-    dragClass: 'sortable-drag',
-    fallbackOnBody: false,          // Forces the drag to happen inside the list container
-    forceFallback: false,           // Use native drag-and-drop for smoother feel
+    ghostClass: 'sortable-ghost',   // This is now invisible
+    dragClass: 'sortable-drag',    // This is now your "Real Container"
+    fallbackOnBody: false,         // Keeps it locked in the list container
     onEnd: saveLibraryState
 });
 
