@@ -46,28 +46,56 @@ function backToLibrary() {
     document.getElementById('page-library').classList.add('active');
 }
 
-// Add this to your script.js
+
+// Function to close the menu
+function closePopup() {
+    const menu = document.getElementById('popup-menu');
+    const overlay = document.getElementById('popup-overlay');
+
+    if (menu.classList.contains('show')) {
+        menu.classList.remove('show');
+        // Wait for transition to finish
+        setTimeout(() => {
+            menu.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 250); 
+    }
+}
+
+// Function to toggle the menu
 function togglePopup() {
     const menu = document.getElementById('popup-menu');
     const overlay = document.getElementById('popup-overlay');
 
     if (menu.classList.contains('show')) {
-        // Exit Animation
-        menu.classList.remove('show');
-        setTimeout(() => {
-            menu.style.display = 'none';
-            overlay.style.display = 'none';
-        }, 250); // Matches CSS transition duration
+        closePopup();
     } else {
-        // Entrance Animation
         overlay.style.display = 'block';
         menu.style.display = 'block';
-        // Small timeout to allow browser to register display:block before starting animation
         setTimeout(() => {
             menu.classList.add('show');
         }, 10);
     }
 }
+
+// Global Event Listener for closing when clicking outside
+document.addEventListener('click', (event) => {
+    const menu = document.getElementById('popup-menu');
+    const overlay = document.getElementById('popup-overlay');
+    
+    // Check if the click is outside the menu AND the menu is currently visible
+    if (menu.classList.contains('show') && 
+        !menu.contains(event.target) && 
+        !event.target.closest('.three-dots-button')) { // Ensure clicking the trigger doesn't immediately re-close it
+        closePopup();
+    }
+});
+
+// Specifically allow tapping inside the menu to close it as per your requirement
+document.getElementById('popup-menu').addEventListener('click', () => {
+    closePopup();
+});
+
 
 
 // Load saved order/visibility on startup
