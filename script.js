@@ -50,16 +50,19 @@ function toggleEditMode(isEditing) {
     if (isEditing) {
         libraryPage.classList.add('editing');
         
-        // Initialize Sortable only when entering edit mode
+        // --- PLACE THE CODE HERE ---
         sortableInstance = new Sortable(menu, {
             animation: 300,
-            easing: "cubic-bezier(0.2, 0, 0, 1)",
-            handle: '.reorder-handle', // Only drag by the icon
+            easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+            handle: '.reorder-handle',
             ghostClass: 'sortable-ghost',
             chosenClass: 'sortable-chosen',
             dragClass: 'sortable-drag',
+            fallbackOnBody: false, // Prevents the 'dragging away' feel
             onEnd: saveLibraryState
         });
+
+        
         closePopup();
     } else {
         libraryPage.classList.remove('editing');
