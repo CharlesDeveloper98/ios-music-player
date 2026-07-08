@@ -181,6 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+new Sortable(document.getElementById('library-menu'), {
+    animation: 250,
+    handle: '.reorder-handle', // Only drag by the 3-line icon
+    ghostClass: 'sortable-ghost',
+    chosenClass: 'sortable-chosen',
+    fallbackOnBody: false,      // KEY: Keeps it inside the container
+    containment: '#library-menu' // KEY: Prevents moving outside the list
+});
 
 
 
