@@ -32,6 +32,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     flex-direction: column;
     /* Important: Do not use position: absolute on children! */
     position: relative; 
+    transition: all 0.2s ease;
 }
 
 
@@ -248,20 +249,22 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     100% { transform: scale(1); }
 }
 
-/* This class is added by SortableJS to the element being dragged */
+/* This is the item being physically dragged */
 .sortable-chosen {
-    background: #1c1c1e !important; /* Slightly lighter than background */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    background: #1c1c1e !important; /* Slightly lighter background to show elevation */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
     border-radius: 12px;
-    z-index: 999;
+    z-index: 1000 !important;
+    transform: scale(1.02); /* Slight pop effect */
     cursor: grabbing;
 }
 
-/* This is the space created for the item to land */
+/* This is the empty space left behind in the list */
 .sortable-ghost {
-    background: #1c1c1e;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     opacity: 0.5;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
 /* This is the item that is currently "in the air" */
