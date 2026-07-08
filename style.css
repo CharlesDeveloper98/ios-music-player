@@ -26,8 +26,15 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .header-actions { display: flex; gap: 15px; color: var(--ios-red); }
 
 .library-menu { margin-top: 10px; padding: 0 20px; }
-.menu-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); }
 
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0; /* Compact padding */
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+    min-height: 48px; /* Keeps consistent height */
+}
+    
 /* Smoothly animate opacity for the icons */
 .menu-item i { transition: opacity 0.2s ease; }
 
@@ -144,12 +151,25 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     cursor: pointer;
 }
 
-.edit-circle { color: var(--ios-red); margin-right: 15px; cursor: pointer; }
+/* Reserved space for the Red Circle */
+.edit-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;           /* Hidden by default */
+    opacity: 0;
+    margin-right: 0;
+    transition: all 0.2s ease;
+    color: var(--ios-red);
+}
 
-/* Ensure the grab icon is clearly defined */
-.reorder-handle { 
-    cursor: grab; 
-    padding: 10px; /* Increase hit area */
+
+/* Reserved space for the Reorder Handle */
+.reorder-handle {
+    width: 0;           /* Hidden by default */
+    opacity: 0;
+    transition: all 0.2s ease;
+    color: #8e8e93;
 }
 
 .reorder-handle:active { cursor: grabbing; }
@@ -160,10 +180,23 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .editing .done-container { display: flex; }
 .editing #library-actions { display: none; }
 /* In Edit Mode, show them */
-.editing .edit-circle { display: block; }
-.editing .reorder-handle { display: block; }
+.editing .edit-circle {
+    width: 24px;        /* Explicit width prevents shifting */
+    opacity: 1;
+    margin-right: 12px;
+}
+
+.editing .reorder-handle {
+    width: 24px;
+    opacity: 1;
+}
 
 .editing .nav-arrow { display: none; }
+
+/* Ensure the main icon and text don't move */
+.menu-item i:nth-child(2) { /* The main icon (e.g., Music) */
+    margin-right: 12px;
+}
 
 
 /* The "liquid" animation effect for the tick */
