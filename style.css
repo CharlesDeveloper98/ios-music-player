@@ -145,7 +145,15 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 
 .edit-circle { color: var(--ios-red); margin-right: 15px; cursor: pointer; }
-.reorder-handle { color: #8e8e93; margin-left: auto; cursor: grab; }
+
+/* Ensure the grab icon is clearly defined */
+.reorder-handle { 
+    cursor: grab; 
+    padding: 10px; /* Increase hit area */
+}
+
+.reorder-handle:active { cursor: grabbing; }
+
 .nav-arrow { color: #8e8e93; }
 
 /* Edit Mode Classes */
@@ -167,6 +175,17 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     0% { transform: scale(0.8); }
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
+}
+
+/* Styling the dragged item to look like iOS */
+.sortable-ghost {
+    opacity: 0.4;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sortable-chosen {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
 }
 
 
