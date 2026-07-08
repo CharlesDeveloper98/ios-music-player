@@ -30,10 +30,10 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .menu-item {
     display: flex;
     align-items: center;
-    padding: 10px 0; /* Compact padding */
+    padding: 12px 0;
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
-    min-height: 48px; /* Keeps consistent height */
 }
+
     
 /* Smoothly animate opacity for the icons */
 .menu-item i { transition: opacity 0.2s ease; }
@@ -164,11 +164,9 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 
 
-/* Reserved space for the Reorder Handle */
+/* Handle visibility logic */
 .reorder-handle {
-    width: 0;           /* Hidden by default */
-    opacity: 0;
-    transition: all 0.2s ease;
+    display: none;
     color: #8e8e93;
 }
 
@@ -187,15 +185,28 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 
 .editing .reorder-handle {
-    width: 24px;
-    opacity: 1;
+    display: block;
 }
 
-.editing .nav-arrow { display: none; }
+.editing .nav-arrow {
+    display: none; /* Hide chevron in edit mode */
+}
 
 /* Ensure the main icon and text don't move */
 .menu-item i:nth-child(2) { /* The main icon (e.g., Music) */
     margin-right: 12px;
+}
+
+
+/* Fixed container for the checkbox */
+.edit-action {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.editing .edit-action {
+    width: 30px; /* Expands to hold the circle */
 }
 
 
