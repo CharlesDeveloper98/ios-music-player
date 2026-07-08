@@ -110,29 +110,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Initialize state: all items visible by default
-let libraryState = JSON.parse(localStorage.getItem('libraryState')) || {
-    "Playlists": true, "Artists": true, "Albums": true, "Songs": true,
-    "TV-Movies": true, "Music-Videos": true, "Genres": true,
-    "Compilations": true, "Composers": true
-};
-
+// Update your toggleEditMode
 function toggleEditMode(isEditing) {
     const libraryPage = document.getElementById('page-library');
     const menu = document.getElementById('library-menu');
-    
+
     if (isEditing) {
         libraryPage.classList.add('editing');
+        
+        // Setup Sortable
         sortableInstance = new Sortable(menu, {
             handle: '.reorder-handle',
             animation: 300,
-            onEnd: saveOrder
+            easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+            ghostClass: 'sortable-ghost',
+            chosenClass: 'sortable-chosen',
+            onEnd: saveLibraryState
         });
         closePopup();
     } else {
         libraryPage.classList.remove('editing');
         if (sortableInstance) sortableInstance.destroy();
-        localStorage.setItem('libraryState', JSON.stringify(libraryState));
+        saveLibraryState();
     }
 }
 
@@ -144,45 +143,43 @@ function saveLibraryState() {
 }
 
 
-function toggleTick(element) {
-    const id = element.getAttribute('data-id');
-    const icon = element.querySelector('.edit-circle');
-    
-    // Toggle state
-    libraryState[id] = !libraryState[id];
-    
-    // Update UI visuals
-    if (libraryState[id]) {
-        icon.setAttribute('data-lucide', 'check-circle-2');
-        element.style.opacity = "1";
-    } else {
-        icon.setAttribute('data-lucide', 'circle');
-        element.style.opacity = "0.5";
-    }
-    
-    // Handle Slide Animation
-    element.style.transition = "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)";
-    element.style.maxHeight = libraryState[id] ? "60px" : "0px";
-    element.style.overflow = "hidden";
-    element.style.margin = libraryState[id] ? "0" : "0";
-    
-    lucide.createIcons();
+function toggleItem(id) {
+    // Logic to toggle the tick/circle state and store in localStorage
 }
 
-// Ensure state is applied on load
+// Add this to handle the Tick/Circle toggle
+function toggleTick(element) {
+    const icon = element.querySelector('.edit-circle');
+    const isChecked = icon.getAttribute('data-lucide') === 'check-circle-2';
+    
+    // Switch between circle and check-circle-2
+    icon.setAttribute('data-lucide', isChecked ? 'circle' : 'check-circle-2');
+    icon.style.color = isChecked ? 'var(--ios-red)' : 'var(--ios-red)';
+    icon.classList.add('tick-transition');
+    
+    lucide.createIcons(); // Re-render the icon
+    
+    // Remove animation class after it finishes
+    setTimeout(() => icon.classList.remove('tick-transition'), 200);
+}
+
+
+// Initialize Sortable on page load
+let sortableInstance;
+
 document.addEventListener('DOMContentLoaded', () => {
-    Object.keys(libraryState).forEach(id => {
-        const item = document.querySelector(`[data-id="${id}"]`);
-        if (item) {
-            const icon = item.querySelector('.edit-circle');
-            icon.setAttribute('data-lucide', libraryState[id] ? 'check-circle-2' : 'circle');
-            item.style.display = libraryState[id] ? "flex" : "flex"; // Keep DOM, hide via height
-            item.style.maxHeight = libraryState[id] ? "60px" : "0px";
-            item.style.overflow = "hidden";
-        }
-    });
+    // Restore Order
+    const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
+    if (savedOrder) {
+        const menu = document.getElementById('library-menu');
+        savedOrder.forEach(id => {
+            const item = menu.querySelector(`[data-id="${id}"]`);
+            if (item) menu.appendChild(item);
+        });
+    }
     lucide.createIcons();
 });
+
 
 
 
