@@ -182,6 +182,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+function openSettings() {
+    const modal = document.getElementById('settings-modal');
+    const overlay = document.getElementById('settings-overlay');
+    overlay.style.display = 'block';
+    modal.style.display = 'block';
+    setTimeout(() => {
+        modal.classList.add('show');
+        lucide.createIcons();
+    }, 10);
+}
+
+function closeSettings() {
+    const modal = document.getElementById('settings-modal');
+    const overlay = document.getElementById('settings-overlay');
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }, 400);
+}
+
+
 
 
 
