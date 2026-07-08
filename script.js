@@ -1,91 +1,3 @@
-// --- Global Initialization ---
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize state in localStorage if it doesn't exist
-    if (!localStorage.getItem('libraryState')) {
-        const initialState = Array.from(document.querySelectorAll('.menu-item')).map(item => ({
-            id: item.getAttribute('data-id'),
-            visible: true
-        }));
-        localStorage.setItem('libraryState', JSON.stringify(initialState));
-    }
-    
-    // 2. Initial render of the library
-    applyLibraryState();
-    
-    // 3. Initialize icons
-    lucide.createIcons();
-});
-
-// --- State Management ---
-function applyLibraryState() {
-    const state = JSON.parse(localStorage.getItem('libraryState'));
-    const menu = document.getElementById('library-menu');
-    
-    // Apply order and visibility
-    state.forEach(itemState => {
-        const item = document.querySelector(`.menu-item[data-id="${itemState.id}"]`);
-        if (!item) return;
-
-        // Apply visibility class for CSS control
-        item.classList.toggle('hidden-item', !itemState.visible);
-        
-        // Update tick icon based on visibility
-        const icon = item.querySelector('.edit-circle');
-        icon.setAttribute('data-lucide', itemState.visible ? 'check-circle-2' : 'circle');
-        
-        // Append in the saved order
-        menu.appendChild(item);
-    });
-    lucide.createIcons();
-}
-
-function saveLibraryState() {
-    const items = Array.from(document.querySelectorAll('.menu-item'));
-    const state = items.map(item => ({
-        id: item.getAttribute('data-id'),
-        visible: !item.classList.contains('hidden-item')
-    }));
-    
-    localStorage.setItem('libraryState', JSON.stringify(state));
-    applyLibraryState();
-}
-
-// --- Interaction Logic ---
-function toggleEditMode(isEditing) {
-    const libraryPage = document.getElementById('page-library');
-    const menu = document.getElementById('library-menu');
-    
-    // Close popup menu
-    const popup = document.getElementById('popup-menu');
-    if (popup.classList.contains('show')) {
-        popup.classList.remove('show');
-        setTimeout(() => { popup.style.display = 'none'; }, 250);
-    }
-
-    if (isEditing) {
-        libraryPage.classList.add('editing');
-        
-        // Initialize Sortable for reordering
-        new Sortable(menu, {
-            handle: '.reorder-handle',
-            animation: 200,
-            onEnd: saveLibraryState // Save order when dropped
-        });
-    } else {
-        libraryPage.classList.remove('editing');
-        saveLibraryState();
-    }
-}
-
-function toggleTick(element) {
-    element.classList.toggle('hidden-item');
-    const icon = element.querySelector('.edit-circle');
-    const isVisible = !element.classList.contains('hidden-item');
-    icon.setAttribute('data-lucide', isVisible ? 'check-circle-2' : 'circle');
-    lucide.createIcons();
-}
-
-// --- Navigation & Other Utilities ---
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
@@ -105,21 +17,28 @@ function showPage(pageId, element, index) {
     }
 }
 
-function togglePopup() {
-    const menu = document.getElementById('popup-menu');
-    const overlay = document.getElementById('popup-overlay');
+window.addEventListener('DOMContentLoaded', () => {
+    const selector = document.getElementById('active-selector');
+    const container = document.getElementById('tab-container');
+    selector.style.width = `${(container.offsetWidth / 3) - 10}px`;
+    selector.style.left = "5px";
+    lucide.createIcons();
+});
 
-    if (menu.classList.contains('show')) {
-        menu.classList.remove('show');
-        setTimeout(() => {
-            menu.style.display = 'none';
-            overlay.style.display = 'none';
-        }, 250);
-    } else {
-        overlay.style.display = 'block';
-        menu.style.display = 'block';
-        setTimeout(() => { menu.classList.add('show'); }, 10);
-    }
+function openDetail(title, iconName) {
+    // Hide Library, show Detail
+    document.getElementById('page-library').classList.remove('active');
+    const detailPage = document.getElementById('page-detail');
+    detailPage.classList.add('active');
+    
+    // Update content
+    document.getElementById('detail-title').innerText = title;
+    document.getElementById('empty-text').innerText = `${title} will appear here.`;
+    
+    // Refresh icons (re-run lucide)
+    const iconElement = document.getElementById('empty-icon');
+    iconElement.setAttribute('data-lucide', iconName);
+    lucide.createIcons();
 }
 
 function backToLibrary() {
@@ -127,21 +46,135 @@ function backToLibrary() {
     document.getElementById('page-library').classList.add('active');
 }
 
-// --- Touch Handlers ---
+// Add this to your script.js
+function togglePopup() {
+    const menu = document.getElementById('popup-menu');
+    const overlay = document.getElementById('popup-overlay');
+
+    if (menu.classList.contains('show')) {
+        // Exit Animation
+        menu.classList.remove('show');
+        setTimeout(() => {
+            menu.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 250); // Matches CSS transition duration
+    } else {
+        // Entrance Animation
+        overlay.style.display = 'block';
+        menu.style.display = 'block';
+        // Small timeout to allow browser to register display:block before starting animation
+        setTimeout(() => {
+            menu.classList.add('show');
+        }, 10);
+    }
+}
+
+
+// Load saved order/visibility on startup
+document.addEventListener('DOMContentLoaded', () => {
+    const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
+    if (savedOrder) {
+        const menu = document.getElementById('library-menu');
+        savedOrder.forEach(id => {
+            const item = document.querySelector(`[data-id="${id}"]`);
+            menu.appendChild(item);
+        });
+    }
+});
+
+// Update your toggleEditMode
+function toggleEditMode(isEditing) {
+    const libraryPage = document.getElementById('page-library');
+    if (isEditing) {
+        libraryPage.classList.add('editing');
+        // Initialize SortableJS
+        new Sortable(document.getElementById('library-menu'), {
+            handle: '.reorder-handle',
+            animation: 200, // Native feeling animation
+            easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+            onEnd: saveLibraryState
+        });
+    } else {
+        libraryPage.classList.remove('editing');
+        saveLibraryState();
+    }
+}
+
+function saveLibraryState() {
+    const items = Array.from(document.querySelectorAll('.menu-item'));
+    const order = items.map(item => item.getAttribute('data-id'));
+    localStorage.setItem('libraryOrder', JSON.stringify(order));
+}
+
+function toggleItem(id) {
+    // Logic to toggle the tick/circle state and store in localStorage
+}
+
+// Add this to handle the Tick/Circle toggle
+function toggleTick(element) {
+    const icon = element.querySelector('.edit-circle');
+    const isChecked = icon.getAttribute('data-lucide') === 'check-circle-2';
+    
+    // Switch between circle and check-circle-2
+    icon.setAttribute('data-lucide', isChecked ? 'circle' : 'check-circle-2');
+    icon.style.color = isChecked ? 'var(--ios-red)' : 'var(--ios-red)';
+    icon.classList.add('tick-transition');
+    
+    lucide.createIcons(); // Re-render the icon
+    
+    // Remove animation class after it finishes
+    setTimeout(() => icon.classList.remove('tick-transition'), 200);
+}
+
+
+
+
+
+
+function triggerFileSelect(e) {
+    e.preventDefault();
+    document.getElementById('photo-upload').click();
+}
+
+function previewFile(input) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const containers = document.querySelectorAll('.profile-container');
+            containers.forEach(c => c.innerHTML = `<img src="${e.target.result}" class="profile-img">`);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
 const tabContainer = document.getElementById('tab-container');
 const selector = document.getElementById('active-selector');
 let isDragging = false;
 
-if (tabContainer) {
-    tabContainer.addEventListener('touchstart', () => { isDragging = true; selector.classList.add('expanded'); });
-    tabContainer.addEventListener('touchend', (e) => {
-        isDragging = false;
-        selector.classList.remove('expanded');
-        const touchX = e.changedTouches[0].clientX - tabContainer.getBoundingClientRect().left;
-        const tabWidth = tabContainer.offsetWidth / 3;
-        const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
-        const pages = ['page-home', 'page-new', 'page-library'];
-        const navItems = document.querySelectorAll('.main-tabs .nav-item');
-        showPage(pages[index], navItems[index], index);
+tabContainer.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    selector.classList.add('expanded');
+});
+
+tabContainer.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const touchX = e.touches[0].clientX - tabContainer.getBoundingClientRect().left;
+    const tabWidth = tabContainer.offsetWidth / 3;
+    const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
+    selector.style.left = `${(index * tabWidth) + 5}px`;
+    document.querySelectorAll('.nav-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
     });
-}
+});
+
+tabContainer.addEventListener('touchend', (e) => {
+    isDragging = false;
+    selector.classList.remove('expanded');
+    const touchX = e.changedTouches[0].clientX - tabContainer.getBoundingClientRect().left;
+    const tabWidth = tabContainer.offsetWidth / 3;
+    const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
+    const pages = ['page-home', 'page-new', 'page-library'];
+    const navItems = document.querySelectorAll('.main-tabs .nav-item');
+    showPage(pages[index], navItems[index], index);
+});
