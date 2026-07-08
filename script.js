@@ -190,6 +190,21 @@ new Sortable(document.getElementById('library-menu'), {
     containment: '#library-menu' // KEY: Prevents moving outside the list
 });
 
+// Ensure you have Sortable.js included in your project
+const sortable = new Sortable(document.getElementById('library-menu'), {
+    animation: 300,              // Duration of the shuffle animation (ms)
+    easing: "cubic-bezier(0.2, 0, 0, 1)", // Smooth, "springy" movement
+    handle: '.reorder-handle',    // Only drag by the menu icon
+    ghostClass: 'sortable-ghost', // The class for the item being dragged
+    chosenClass: 'sortable-chosen',
+    dragClass: 'sortable-drag',
+    
+    // This triggers when the item is moved
+    onMove: function (evt) {
+        // You can add logic here if you want to restrict specific items 
+        // from being moved above or below certain positions.
+    }
+});
 
 
 
