@@ -274,7 +274,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 /* Container Background and Rounded Corners */
 .settings-card {
-    background: #1c1c1e;
+    background: #161616;
     border-radius: 20px;
     padding: 0 16px;
     display: flex;
