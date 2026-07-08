@@ -204,6 +204,61 @@ function closeSettings() {
 }
 
 
+// Open Edit Profile
+function openEditProfile() {
+    const modal = document.getElementById('edit-profile-modal');
+    const overlay = document.getElementById('edit-profile-overlay');
+    overlay.style.display = 'block';
+    modal.style.display = 'block';
+    setTimeout(() => modal.classList.add('show'), 10);
+}
+
+// Close Edit Profile
+function closeEditProfile() {
+    const modal = document.getElementById('edit-profile-modal');
+    const overlay = document.getElementById('edit-profile-overlay');
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }, 400);
+}
+
+// Save logic
+function saveProfileChanges() {
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const initials = (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
+
+    if (initials.length >= 2) {
+        // Update UI
+        const badge = document.querySelector('.badge');
+        badge.innerText = initials;
+        
+        const idText = document.querySelector('.profile-info .title');
+        idText.innerText = `${firstName} ${lastName}`;
+    }
+    
+    closeEditProfile();
+}
+
+// Update the click handler in Settings
+document.querySelector('.edit-btn').onclick = openEditProfile;
+
+// Update profile picture globally
+function previewFile(input) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgHTML = `<img src="${e.target.result}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+            // Update preview and all profile icons
+            document.getElementById('avatar-preview').innerHTML = imgHTML;
+            document.querySelectorAll('.profile-container').forEach(c => c.innerHTML = imgHTML);
+        };
+        reader.readAsDataURL(file);
+    }
+}
 
 
 
