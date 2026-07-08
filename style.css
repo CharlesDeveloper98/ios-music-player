@@ -28,6 +28,10 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .library-menu {
     margin-top: 10px; 
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    /* Important: Do not use position: absolute on children! */
+    position: relative; 
 }
 
 
@@ -37,6 +41,9 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     padding: 15px 0; 
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); 
     color: var(--ios-red);
+    transition: transform 0.3s ease; /* Enables the smooth slide-away effect */
+    background: #000;              /* Ensure items have an opaque background */
+    z-index: 1;
 }
 
 .menu-item span {
@@ -248,13 +255,19 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     cursor: grabbing;
 }
 
-/* This is the placeholder where the item will land */
+/* This is the space created for the item to land */
 .sortable-ghost {
-    opacity: 0.4;
-    background: #2c2c2e;
-    border-radius: 12px;
+    background: #1c1c1e;
+    border-radius: 8px;
+    opacity: 0.5;
 }
 
+/* This is the item that is currently "in the air" */
+.sortable-drag {
+    opacity: 0.9;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    transform: scale(1.02); /* Slight scale up for the "pop" effect */
+}
 
 
 .profile-container {
