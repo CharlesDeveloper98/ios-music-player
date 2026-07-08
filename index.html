@@ -231,6 +231,27 @@
 </div>
 
 
+        <div id="edit-profile-overlay" class="settings-overlay" onclick="closeEditProfile()"></div>
+<div class="settings-modal edit-profile-modal" id="edit-profile-modal">
+    <div class="settings-header">
+        <div class="close-x" onclick="closeEditProfile()"><i data-lucide="x"></i></div>
+        <h2>Edit Profile</h2>
+        <div class="save-check" onclick="saveProfileChanges()"><i data-lucide="check"></i></div>
+    </div>
+    
+    <div class="profile-pic-picker" onclick="document.getElementById('photo-upload').click()">
+        <div class="avatar-large" id="avatar-preview"><i data-lucide="user"></i></div>
+        <div class="picker-text">Choose Photo</div>
+    </div>
+    <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
+
+    <div class="settings-card">
+        <input type="text" id="first-name" placeholder="First Name" class="name-input">
+        <div class="divider"></div>
+        <input type="text" id="last-name" placeholder="Last Name" class="name-input">
+    </div>
+</div>
+
 
         
 </body>
