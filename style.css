@@ -274,7 +274,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 /* Container Background and Rounded Corners */
 .settings-card {
-    background: #3c3c3c;
+    background: #1c1c1e;
     border-radius: 20px;
     padding: 0 16px;
     display: flex;
@@ -365,8 +365,8 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 /* Contact Container - Matching reference */
 .contact-container {
-    background: #3c3c3c; 
-    border-radius: 16px; 
+    background: #1c1c1e; 
+    border-radius: 22px; 
     padding: 15px;
     display: flex; 
     align-items: center; 
