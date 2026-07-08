@@ -113,26 +113,35 @@ document.addEventListener('DOMContentLoaded', () => {
 // Update your toggleEditMode
 function toggleEditMode(isEditing) {
     const libraryPage = document.getElementById('page-library');
+    const menu = document.getElementById('library-menu');
+
     if (isEditing) {
         libraryPage.classList.add('editing');
-        // Initialize SortableJS
-        new Sortable(document.getElementById('library-menu'), {
+        
+        // Setup Sortable
+        sortableInstance = new Sortable(menu, {
             handle: '.reorder-handle',
-            animation: 200, // Native feeling animation
+            animation: 300,
             easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+            ghostClass: 'sortable-ghost',
+            chosenClass: 'sortable-chosen',
             onEnd: saveLibraryState
         });
+        closePopup();
     } else {
         libraryPage.classList.remove('editing');
+        if (sortableInstance) sortableInstance.destroy();
         saveLibraryState();
     }
 }
+
 
 function saveLibraryState() {
     const items = Array.from(document.querySelectorAll('.menu-item'));
     const order = items.map(item => item.getAttribute('data-id'));
     localStorage.setItem('libraryOrder', JSON.stringify(order));
 }
+
 
 function toggleItem(id) {
     // Logic to toggle the tick/circle state and store in localStorage
@@ -153,6 +162,24 @@ function toggleTick(element) {
     // Remove animation class after it finishes
     setTimeout(() => icon.classList.remove('tick-transition'), 200);
 }
+
+
+// Initialize Sortable on page load
+let sortableInstance;
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Restore Order
+    const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
+    if (savedOrder) {
+        const menu = document.getElementById('library-menu');
+        savedOrder.forEach(id => {
+            const item = menu.querySelector(`[data-id="${id}"]`);
+            if (item) menu.appendChild(item);
+        });
+    }
+    lucide.createIcons();
+});
+
 
 
 
