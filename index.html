@@ -200,22 +200,32 @@
     <script src="script.js"></script>
 
         <div id="settings-overlay" class="settings-overlay" onclick="closeSettings()"></div>
-<div id="settings-modal" class="settings-modal">
+<div class="settings-modal" id="settings-modal">
     <div class="settings-header">
         <h2>Settings</h2>
-        <div class="close-x" onclick="closeSettings()"><i data-lucide="x" style="width: 18px; height: 18px;"></i></div>
+        <div class="close-x" onclick="closeSettings()"><i data-lucide="x"></i></div>
     </div>
-    
-    <div class="contact-container">
-        <div class="profile-placeholder"><i data-lucide="user"></i></div>
-        <div class="contact-info">
-            <div class="title">Unknown ID</div>
-            <div class="subtitle">Account Information</div>
-            <div class="action-text">Enter Details</div>
+
+    <div class="settings-card">
+        <div class="profile-section">
+            <div class="avatar-placeholder"><i data-lucide="user"></i></div>
+            <div class="profile-info">
+                <div class="title">Unknown ID</div>
+                <div class="subtitle">Account Information</div>
+            </div>
+            <i data-lucide="chevron-right" class="nav-arrow"></i>
         </div>
-        <i data-lucide="chevron-right" style="color: #8e8e93;"></i>
+        
+        <div class="divider"></div>
+
+        <div class="edit-section">
+            <div class="badge">KO</div>
+            <div class="name-text">Unknown ID</div>
+            <div class="edit-btn">Edit</div>
+        </div>
     </div>
 </div>
+
 
 
         
