@@ -25,13 +25,22 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 .header-actions { display: flex; gap: 15px; color: var(--ios-red); }
 
-.library-menu { margin-top: 10px; padding: 0 20px; }
+.library-menu {
+    margin-top: 20px; /* Gives more room under the header */
+    padding: 0 20px;
+}
 
 .menu-item {
     display: flex;
     align-items: center;
-    padding: 12px 0;
+    padding: 18px 0; /* Increased padding makes the rows taller */
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-item span {
+    font-size: 20px; /* Larger font size matches the reference */
+    margin-left: 16px;
+    font-weight: 400;
 }
 
     
@@ -211,8 +220,8 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 
 .main-icon {
-    margin-right: 12px;
     width: 24px;
+    height: 24px;
     text-align: center;
 }
 
