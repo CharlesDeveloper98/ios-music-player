@@ -30,11 +30,12 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     padding: 0 20px;
 }
 
-.menu-item {
-    display: flex;
-    align-items: center;
-    padding: 18px 0; /* Increased padding makes the rows taller */
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+.menu-item { 
+    display: flex; 
+    align-items: center; 
+    padding: 15px 0; 
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); 
+    color: var(--ios-red);
 }
 
 .menu-item span {
