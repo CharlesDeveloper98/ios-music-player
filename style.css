@@ -309,19 +309,38 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     gap: 12px;
 }
 
-.badge {
-    width: 30px; height: 30px;
-    background: #707070; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 600;
+/* Updated container for the bottom text */
+.edit-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 12px;
 }
 
-.name-text { flex-grow: 1; font-size: 17px; }
+.badge {
+    width: 35px; height: 35px;
+    background: #5c5c5c; /* Slightly darker than the card background */
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600;
+    color: #fff;
+}
+
+.name-text { 
+    font-size: 17px; 
+    font-weight: 500; 
+}
+
+.sub-text { 
+    font-size: 14px; 
+    color: #b0b0b0; /* Light grey to match iOS look */
+}
 
 .edit-btn {
-    color: #ff3b30; /* iOS Red */
+    color: #ff3b30;
     font-size: 17px;
     cursor: pointer;
+    font-weight: 500;
 }
 
 .nav-arrow { color: #8e8e93; margin-left: auto; }
