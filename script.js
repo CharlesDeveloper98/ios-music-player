@@ -224,19 +224,24 @@ function closeEditProfile() {
     }, 400);
 }
 
-// Save logic
+// Save Profile including Image
 function saveProfileChanges() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
+    
+    // Save Names
+    localStorage.setItem('userFirstName', firstName);
+    localStorage.setItem('userLastName', lastName);
+    
     const initials = (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
 
+    // Update UI if names exist
     if (initials.length >= 2) {
-        // Update UI
         const badge = document.querySelector('.badge');
-        badge.innerText = initials;
+        if(badge) badge.innerText = initials;
         
         const idText = document.querySelector('.profile-info .title');
-        idText.innerText = `${firstName} ${lastName}`;
+        if(idText) idText.innerText = `${firstName} ${lastName}`;
     }
     
     closeEditProfile();
@@ -245,22 +250,63 @@ function saveProfileChanges() {
 // Update the click handler in Settings
 document.querySelector('.edit-btn').onclick = openEditProfile;
 
-// Update profile picture globally
+// Handle Image Selection and Save
 function previewFile(input) {
     const file = input.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            const imgHTML = `<img src="${e.target.result}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
-            // Update preview and all profile icons
-            document.getElementById('avatar-preview').innerHTML = imgHTML;
-            document.querySelectorAll('.profile-container').forEach(c => c.innerHTML = imgHTML);
+            const imageData = e.target.result;
+            // Save to LocalStorage
+            localStorage.setItem('userProfilePic', imageData);
+            
+            // Update UI
+            updateAllProfileIcons(imageData);
         };
         reader.readAsDataURL(file);
     }
 }
 
+// Helper to apply image to all profile containers
+function updateAllProfileIcons(imageData) {
+    const containers = document.querySelectorAll('.profile-container, #avatar-preview');
+    const imgHTML = `<img src="${imageData}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
+    
+    containers.forEach(c => {
+        c.innerHTML = imgHTML;
+    });
+}
 
+// Enhanced Load Logic
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Restore Library Order
+    const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
+    if (savedOrder) {
+        const menu = document.getElementById('library-menu');
+        savedOrder.forEach(id => {
+            const item = menu.querySelector(`[data-id="${id}"]`);
+            if (item) menu.appendChild(item);
+        });
+    }
+
+    // 2. Restore Profile Picture
+    const savedPic = localStorage.getItem('userProfilePic');
+    if (savedPic) {
+        updateAllProfileIcons(savedPic);
+    }
+
+    // 3. Restore Names
+    const fName = localStorage.getItem('userFirstName');
+    const lName = localStorage.getItem('userLastName');
+    if(fName || lName) {
+        document.getElementById('first-name').value = fName || '';
+        document.getElementById('last-name').value = lName || '';
+        const idText = document.querySelector('.profile-info .title');
+        if(idText) idText.innerText = `${fName} ${lName}`;
+    }
+
+    lucide.createIcons();
+});
 
 
 function triggerFileSelect(e) {
@@ -268,17 +314,7 @@ function triggerFileSelect(e) {
     document.getElementById('photo-upload').click();
 }
 
-function previewFile(input) {
-    const file = input.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const containers = document.querySelectorAll('.profile-container');
-            containers.forEach(c => c.innerHTML = `<img src="${e.target.result}" class="profile-img">`);
-        };
-        reader.readAsDataURL(file);
-    }
-}
+
 
 const tabContainer = document.getElementById('tab-container');
 const selector = document.getElementById('active-selector');
