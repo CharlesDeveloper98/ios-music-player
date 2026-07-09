@@ -177,12 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (item) menu.appendChild(item);
         });
     }
-
-    const savedProfile = JSON.parse(localStorage.getItem('userProfile'));
-    if (savedProfile) {
-        updateProfileUI(savedProfile);
-    }
-    
     lucide.createIcons();
 });
 
@@ -234,21 +228,19 @@ function closeEditProfile() {
 function saveProfileChanges() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
-    const profileImg = document.getElementById('avatar-preview').querySelector('img')?.src;
+    const initials = (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
 
-    const profileData = {
-        firstName: firstName,
-        lastName: lastName,
-        imgSrc: profileImg || null
-    };
-
-    localStorage.setItem('userProfile', JSON.stringify(profileData));
+    if (initials.length >= 2) {
+        // Update UI
+        const badge = document.querySelector('.badge');
+        badge.innerText = initials;
+        
+        const idText = document.querySelector('.profile-info .title');
+        idText.innerText = `${firstName} ${lastName}`;
+    }
     
-    // Update the UI
-    updateProfileUI(profileData);
     closeEditProfile();
 }
-
 
 // Update the click handler in Settings
 document.querySelector('.edit-btn').onclick = openEditProfile;
@@ -259,31 +251,14 @@ function previewFile(input) {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            // Display in editor
-            const imgHTML = `<img src="${e.target.result}" class="profile-img-circle">`;
+            const imgHTML = `<img src="${e.target.result}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+            // Update preview and all profile icons
             document.getElementById('avatar-preview').innerHTML = imgHTML;
+            document.querySelectorAll('.profile-container').forEach(c => c.innerHTML = imgHTML);
         };
         reader.readAsDataURL(file);
     }
 }
-
-function updateProfileUI(data) {
-    if (!data) return;
-
-    // Update Name
-    const idText = document.querySelector('.profile-info .title');
-    if (data.firstName || data.lastName) {
-        idText.innerText = `${data.firstName} ${data.lastName}`;
-    }
-
-    // Update Avatar (Circle shape enforced via CSS class)
-    if (data.imgSrc) {
-        const imgHTML = `<img src="${data.imgSrc}" class="profile-img-circle">`;
-        document.querySelectorAll('.profile-container').forEach(c => c.innerHTML = imgHTML);
-        document.getElementById('avatar-preview').innerHTML = imgHTML;
-    }
-}
-
 
 
 
