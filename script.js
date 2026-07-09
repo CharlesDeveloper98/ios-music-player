@@ -54,28 +54,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- UI Updates ---
 function updateAllProfileUI(imageData, firstName, lastName) {
+    // 1. Get all relevant UI elements
     const containers = document.querySelectorAll('.profile-container');
     const badge = document.querySelector('.badge');
     const title = document.querySelector('.profile-info .title');
     const avatarPreview = document.getElementById('avatar-preview');
     
-    // Update Image
+    // Target the specific avatar icon in the Settings modal (next to the name)
+    const settingsAvatar = document.querySelector('.settings-card .avatar-placeholder');
+
+    // 2. Update Images
     if (imageData) {
         const imgHTML = `<img src="${imageData}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
+        
+        // Update Nav Bar icons
         containers.forEach(c => c.innerHTML = imgHTML);
+        
+        // Update Edit Profile preview
         if (avatarPreview) avatarPreview.innerHTML = imgHTML;
+        
+        // Update Settings Modal icon (next to name)
+        if (settingsAvatar) {
+            settingsAvatar.innerHTML = imgHTML;
+            settingsAvatar.style.background = 'transparent'; // Remove gray bg if image exists
+        }
     }
     
-    // Update Name
+    // 3. Update Name
     const nameString = `${firstName || ""} ${lastName || ""}`.trim();
     if (title) title.innerText = nameString || "Unknown ID";
     
-    // Update Badge Initials
+    // 4. Update Badge Initials
     if (badge && (firstName || lastName)) {
         const initials = ((firstName ? firstName[0] : "") + (lastName ? lastName[0] : "")).toUpperCase();
         badge.innerText = initials || "";
     }
 }
+
 
 // --- Library & Detail Navigation ---
 function openDetail(title, iconName) {
