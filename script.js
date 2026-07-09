@@ -1,3 +1,5 @@
+let tempProfilePic = null; // Add this variable at the top of your script.js
+
 // --- Navigation Logic ---
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -183,31 +185,60 @@ function openEditProfile() {
 function closeEditProfile() {
     const modal = document.getElementById('edit-profile-modal');
     const overlay = document.getElementById('edit-profile-overlay');
+    
+    // Reset the preview to the currently saved state if they cancel
+    const savedPic = localStorage.getItem('userProfilePic');
+    const avatarPreview = document.getElementById('avatar-preview');
+    if (savedPic) {
+        avatarPreview.innerHTML = `<img src="${savedPic}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
+    } else {
+        avatarPreview.innerHTML = `<i data-lucide="user"></i>`;
+        lucide.createIcons();
+    }
+    
+    tempProfilePic = null; // Discard temporary choice
     modal.classList.remove('show');
-    setTimeout(() => { modal.style.display = 'none'; overlay.style.display = 'none'; }, 400);
+    setTimeout(() => {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }, 400);
 }
 
 function saveProfileChanges() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
+    
+    // Save names to LocalStorage
     localStorage.setItem('userFirstName', firstName);
     localStorage.setItem('userLastName', lastName);
+    
+    // Only save the picture if a new one was selected (tempProfilePic is not null)
+    if (tempProfilePic) {
+        localStorage.setItem('userProfilePic', tempProfilePic);
+        tempProfilePic = null; // Clear temporary variable after saving
+    }
+    
+    // Update UI everywhere
     updateAllProfileUI(localStorage.getItem('userProfilePic'), firstName, lastName);
     closeEditProfile();
 }
+
+
 
 function previewFile(input) {
     const file = input.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            const imageData = e.target.result;
-            localStorage.setItem('userProfilePic', imageData);
-            updateAllProfileUI(imageData, document.getElementById('first-name').value, document.getElementById('last-name').value);
+            tempProfilePic = e.target.result; // Store temporarily
+            // Update only the preview area so the user sees their choice
+            document.getElementById('avatar-preview').innerHTML = 
+                `<img src="${tempProfilePic}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
         };
         reader.readAsDataURL(file);
     }
 }
+
 
 // --- Touch Navigation ---
 const tabContainer = document.getElementById('tab-container');
