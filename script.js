@@ -177,6 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (item) menu.appendChild(item);
         });
     }
+
+    // Load saved profile image
+    const savedImage = localStorage.getItem('profileImage');
+    if (savedImage) {
+        updateProfileUI(savedImage);
+    }
+    
     lucide.createIcons();
 });
 
