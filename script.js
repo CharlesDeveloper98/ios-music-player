@@ -177,13 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (item) menu.appendChild(item);
         });
     }
-
-    // Load saved profile image
-    const savedImage = localStorage.getItem('profileImage');
-    if (savedImage) {
-        updateProfileUI(savedImage);
-    }
-    
     lucide.createIcons();
 });
 
@@ -258,30 +251,15 @@ function previewFile(input) {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            const imageData = e.target.result;
-            // Save to localStorage
-            localStorage.setItem('profileImage', imageData);
-            // Update UI immediately
-            updateProfileUI(imageData);
+            const imgHTML = `<img src="${e.target.result}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+            // Update preview and all profile icons
+            document.getElementById('avatar-preview').innerHTML = imgHTML;
+            document.querySelectorAll('.profile-container').forEach(c => c.innerHTML = imgHTML);
         };
         reader.readAsDataURL(file);
     }
 }
 
-// Helper to update all profile containers
-function updateProfileUI(imageData) {
-    const html = `<img src="${imageData}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
-    
-    // Update the Edit Profile preview
-    const preview = document.getElementById('avatar-preview');
-    if (preview) preview.innerHTML = html;
-    
-    // Update all home/library/settings profile containers
-    document.querySelectorAll('.profile-container, .avatar-placeholder').forEach(c => {
-        c.innerHTML = html;
-    });
-}
-            
 
 
 
