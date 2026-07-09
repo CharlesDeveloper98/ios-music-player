@@ -224,48 +224,53 @@ function closeEditProfile() {
     }, 400);
 }
 
-// Save Profile including Image
+// Function to save changes
 function saveProfileChanges() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
     
-    // Save Names
+    // Save to Memory
     localStorage.setItem('userFirstName', firstName);
     localStorage.setItem('userLastName', lastName);
     
-    const initials = (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
-
-    // Update UI if names exist
-    if (initials.length >= 2) {
-        const badge = document.querySelector('.badge');
-        if(badge) badge.innerText = initials;
-        
-        const idText = document.querySelector('.profile-info .title');
-        if(idText) idText.innerText = `${firstName} ${lastName}`;
-    }
-    
+    // Update UI
+    updateAllProfileUI(null, firstName, lastName);
     closeEditProfile();
 }
 
 // Update the click handler in Settings
 document.querySelector('.edit-btn').onclick = openEditProfile;
 
-// Handle Image Selection and Save
+// Function to handle Image Preview and Save
 function previewFile(input) {
     const file = input.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
             const imageData = e.target.result;
-            // Save to LocalStorage
             localStorage.setItem('userProfilePic', imageData);
-            
-            // Update UI
-            updateAllProfileIcons(imageData);
+            updateAllProfileUI(imageData, null, null);
         };
         reader.readAsDataURL(file);
     }
 }
+
+// Ensure data loads when app starts
+document.addEventListener('DOMContentLoaded', () => {
+    const savedPic = localStorage.getItem('userProfilePic');
+    const fName = localStorage.getItem('userFirstName') || "";
+    const lName = localStorage.getItem('userLastName') || "";
+    
+    // Set input fields if they exist
+    const fInput = document.getElementById('first-name');
+    const lInput = document.getElementById('last-name');
+    if (fInput) fInput.value = fName;
+    if (lInput) lInput.value = lName;
+
+    updateAllProfileUI(savedPic, fName, lName);
+    lucide.createIcons();
+});
+
 
 // Helper to apply image to all profile containers
 function updateAllProfileIcons(imageData) {
@@ -308,6 +313,30 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 });
 
+// Function to update the view (the UI)
+function updateAllProfileUI(imageData, firstName, lastName) {
+    const containers = document.querySelectorAll('.profile-container');
+    const badge = document.querySelector('.badge');
+    const title = document.querySelector('.profile-info .title');
+    
+    // Update Image if provided
+    if (imageData) {
+        const imgHTML = `<img src="${imageData}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
+        containers.forEach(c => c.innerHTML = imgHTML);
+        document.getElementById('avatar-preview').innerHTML = imgHTML;
+    }
+    
+    // Update Name/Initials
+    if (firstName || lastName) {
+        const nameString = `${firstName} ${lastName}`.trim();
+        if (title) title.innerText = nameString || "Unknown ID";
+        
+        const initials = (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
+        if (badge && initials) badge.innerText = initials;
+    }
+}
+
+                                 
 
 function triggerFileSelect(e) {
     e.preventDefault();
