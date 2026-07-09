@@ -229,14 +229,15 @@ function saveProfileChanges() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
     
-    // Save to Memory
+    // Save to LocalStorage
     localStorage.setItem('userFirstName', firstName);
     localStorage.setItem('userLastName', lastName);
     
-    // Update UI
+    // Update UI immediately
     updateAllProfileUI(null, firstName, lastName);
     closeEditProfile();
 }
+
 
 // Update the click handler in Settings
 document.querySelector('.edit-btn').onclick = openEditProfile;
@@ -270,6 +271,30 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAllProfileUI(savedPic, fName, lName);
     lucide.createIcons();
 });
+
+function initProfileData() {
+    // 1. Get data
+    const savedPic = localStorage.getItem('userProfilePic');
+    const fName = localStorage.getItem('userFirstName') || "";
+    const lName = localStorage.getItem('userLastName') || "";
+
+    // 2. Set Input Fields in the Edit Modal
+    const fInput = document.getElementById('first-name');
+    const lInput = document.getElementById('last-name');
+    if (fInput) fInput.value = fName;
+    if (lInput) lInput.value = lName;
+
+    // 3. Update the UI everywhere
+    updateAllProfileUI(savedPic, fName, lName);
+}
+
+// Call this once on startup
+document.addEventListener('DOMContentLoaded', () => {
+    initProfileData();
+    // ... your other startup logic like Library Order ...
+    lucide.createIcons();
+});
+
 
 
 // Helper to apply image to all profile containers
