@@ -289,6 +289,15 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     gap: 16px;
 }
 
+/* Apply the same logic to the large preview */
+#avatar-preview {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .avatar-placeholder {
     width: 50px; height: 50px;
     background: #505050; border-radius: 50%;
@@ -423,6 +432,8 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    overflow: hidden; /* Critical for masking the image into a circle */
+    position: relative;
 }
 
 .back-btn { font-size: 24px; color: var(--ios-red); cursor: pointer; }
@@ -432,6 +443,14 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 .empty-state i { width: 64px; height: 64px; }
 
+/* Force the image to cover the container as a circle */
+.profile-img-circle {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keeps aspect ratio while filling the circle */
+    border-radius: 50%;
+    display: block;
+}
 
 .profile-icon { width: 24px; height: 24px; }
 .profile-img { width: 100%; height: 100%; object-fit: cover; }
