@@ -442,6 +442,42 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 
 
+/* Full-screen overlay to dim the background */
+.ios-alert-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dim effect */
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+}
+
+/* The actual glass container */
+.ios-alert-box {
+    width: 270px;
+    background: rgba(44, 44, 46, 0.85); /* Dark grey with transparency */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 14px;
+    text-align: center;
+    color: white;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+.ios-alert-title { font-weight: 600; font-size: 17px; margin: 0 0 5px 0; }
+.ios-alert-text { font-size: 13px; margin: 0 20px 20px 20px; opacity: 0.9; }
+
+/* The button container */
+.ios-alert-buttons { 
+    display: flex; 
+    border-top: 0.5px solid rgba(255, 255, 255, 0.15); 
+}
+
+.ios-alert-btn { 
+    flex: 1; padding: 13px; font-size: 17px; color: #0A84FF; 
+    cursor: pointer; font-weight: 400;
+}
+.ios-alert-btn:first-child { border-right: 0.5px solid rgba(255, 255, 255, 0.15); }
+.ios-alert-btn:active { background: rgba(255, 255, 255, 0.1); }
 
 
 
