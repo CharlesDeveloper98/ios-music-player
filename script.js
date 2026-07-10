@@ -301,6 +301,36 @@ function clearAllData() {
 }
 
 
+function showCustomAlert(type) {
+    const overlay = document.getElementById('custom-alert');
+    const title = document.getElementById('alert-title');
+    const msg = document.getElementById('alert-msg');
+    const confirmBtn = document.getElementById('confirm-btn');
+
+    if (type === 'photo') {
+        title.innerText = "Remove Photo";
+        msg.innerText = "Are you sure you want to remove current photo?";
+        confirmBtn.onclick = () => { 
+            // Add your logic to remove photo here
+            closeAlert(); 
+        };
+    } else {
+        title.innerText = "Clear Data";
+        msg.innerText = "Are you sure you want to clear data?";
+        confirmBtn.onclick = () => { 
+            // Add your logic to clear all data here
+            closeAlert(); 
+        };
+    }
+    overlay.style.display = 'flex';
+}
+
+function closeAlert() {
+    document.getElementById('custom-alert').style.display = 'none';
+}
+
+
+
 
 function previewFile(input) {
     const file = input.files[0];
