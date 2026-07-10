@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 });
 
-// --- Profile Logic ---
+// --- UI Updates ---
 function updateAllProfileUI(imageData, firstName, lastName) {
     // 1. Get all relevant UI elements
     const containers = document.querySelectorAll('.profile-container');
@@ -90,6 +90,7 @@ function updateAllProfileUI(imageData, firstName, lastName) {
         badge.innerText = initials || "";
     }
 }
+
 
 // --- Library & Detail Navigation ---
 function openDetail(title, iconName) {
@@ -246,6 +247,7 @@ function saveProfileChanges() {
     closeEditProfile();
 }
 
+
 let currentPopupType = "";
 
 
@@ -299,7 +301,6 @@ function showCustomAlert(type) {
 function closeAlert() {
     document.getElementById('custom-alert').style.display = 'none';
 }
-
 
 
 function previewFile(input) {
