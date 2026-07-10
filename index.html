@@ -200,6 +200,7 @@
     <script src="script.js"></script>
 
         <div id="settings-overlay" class="settings-overlay" onclick="closeSettings()"></div>
+<div cla<div id="settings-overlay" class="settings-overlay" onclick="closeSettings()"></div>
 <div class="settings-modal" id="settings-modal">
     <div class="settings-header">
         <h2>Settings</h2>
@@ -216,21 +217,28 @@
             </div>
             <i data-lucide="chevron-right" class="nav-arrow"></i>
         </div>
-    </div>
         
         <div class="divider"></div>
         
-<div class="edit-section">
-    <div class="badge"><i data-lucide="user"></i></div>
-    <div class="edit-info">
-        <div class="name-text">Enter Details</div>
- 
+        <div class="edit-section" onclick="openEditProfile()">
+            <div class="badge"><i data-lucide="user"></i></div>
+            <div class="edit-info">
+                <div class="name-text">Enter Details</div>
+            </div>
+            <div class="edit-btn">Edit</div>
+        </div>
     </div>
-    <div class="edit-btn" onclick="openEditProfile()">Edit</div>
+
+    <div class="settings-group-label">User Interface</div>
+    <div class="settings-card">
+        <div class="settings-item" onclick="openUI()">
+            <span>Appearance</span>
+            <i data-lucide="chevron-right" class="nav-arrow"></i>
+        </div>
+    </div>
 </div>
 
 
-    </div>
 
 
 
