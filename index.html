@@ -240,28 +240,27 @@
         <div class="save-check" onclick="saveProfileChanges()"><i data-lucide="check"></i></div>
     </div>
     
-    <div class="profile-pic-picker" onclick="document.getElementById('photo-upload').click()">
-        <div class="avatar-large" id="avatar-preview"><i data-lucide="user"></i></div>
-        <div class="picker-text">Choose Photo</div>
-    </div>
-    <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
-
-
-<div class="action-buttons-row">
-    <div class="glass-btn blue-btn" onclick="showPopup('remove')">Remove Photo</div>
-    <div class="glass-btn red-btn" onclick="showPopup('clear')">Clear Data</div>
+   <div class="profile-pic-picker" onclick="document.getElementById('photo-upload').click()">
+    <div class="avatar-large" id="avatar-preview"><i data-lucide="user"></i></div>
+    <div class="picker-text">Choose Photo</div>
 </div>
 
-<div id="dynamic-popup-overlay" class="popup-overlay" style="display:none;">
-    <div id="dynamic-popup" class="ios-popup">
-        <h3 id="popup-title">Title</h3>
-        <p id="popup-message">Message</p>
-        <div class="popup-actions">
-            <div class="btn-no" onclick="closeDynamicPopup()">No</div>
-            <div class="btn-yes" id="confirm-action">Yes</div>
+<div class="action-buttons-row">
+    <div class="glass-btn blue-btn" onclick="showCustomAlert('photo')">Remove Photo</div>
+    <div class="glass-btn red-btn" onclick="showCustomAlert('data')">Clear Data</div>
+</div>
+
+<div id="custom-alert" class="ios-alert-overlay" style="display:none;">
+    <div class="ios-alert-box">
+        <div class="ios-alert-title" id="alert-title">Title</div>
+        <div class="ios-alert-text" id="alert-msg">Message</div>
+        <div class="ios-alert-buttons">
+            <div class="ios-alert-btn" onclick="closeAlert()">No</div>
+            <div class="ios-alert-btn" id="confirm-btn" style="font-weight: 600;">Yes</div>
         </div>
     </div>
 </div>
+
 
     
 
@@ -274,18 +273,7 @@
 
 
         
-   <!-- The Popup Overlay (Place this right before </body>) -->
 
-     <div id="custom-alert" class="ios-alert-overlay" style="display:none;">
-    <div class="ios-alert-box">
-        <div class="ios-alert-title" id="alert-title">Title</div>
-        <div class="ios-alert-text" id="alert-msg">Message goes here.</div>
-        <div class="ios-alert-buttons">
-            <div class="ios-alert-btn" onclick="closeAlert()">No</div>
-            <div class="ios-alert-btn" id="confirm-btn" style="font-weight: 600;">Yes</div>
-        </div>
-    </div>
-</div>
 
         
         
