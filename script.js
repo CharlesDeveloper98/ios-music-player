@@ -201,17 +201,26 @@ function closeEditProfile() {
     const modal = document.getElementById('edit-profile-modal');
     const overlay = document.getElementById('edit-profile-overlay');
     
-    // Reset the preview to the currently saved state if they cancel
+    // Reset the inputs to the last saved data from localStorage
+    const savedFName = localStorage.getItem('userFirstName') || "";
+    const savedLName = localStorage.getItem('userLastName') || "";
+    
+    document.getElementById('first-name').value = savedFName;
+    document.getElementById('last-name').value = savedLName;
+
+    // Reset the image preview to the last saved image
     const savedPic = localStorage.getItem('userProfilePic');
     const avatarPreview = document.getElementById('avatar-preview');
-    if (savedPic) {
+    if (savedPic && avatarPreview) {
         avatarPreview.innerHTML = `<img src="${savedPic}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
-    } else {
+    } else if (avatarPreview) {
         avatarPreview.innerHTML = `<i data-lucide="user"></i>`;
         lucide.createIcons();
     }
     
-    tempProfilePic = null; // Discard temporary choice
+    // Clear the temporary variable
+    tempProfilePic = null;
+
     modal.classList.remove('show');
     setTimeout(() => {
         modal.style.display = 'none';
