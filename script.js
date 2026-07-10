@@ -54,27 +54,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- Profile Logic ---
 function updateAllProfileUI(imageData, firstName, lastName) {
+    // 1. Get all relevant UI elements
     const containers = document.querySelectorAll('.profile-container');
     const badge = document.querySelector('.badge');
     const title = document.querySelector('.profile-info .title');
     const avatarPreview = document.getElementById('avatar-preview');
+    
+    // Target the specific avatar icon in the Settings modal (next to the name)
     const settingsAvatar = document.querySelector('.settings-card .avatar-placeholder');
 
-    const nameString = `${firstName || ""} ${lastName || ""}`.trim();
-    if (title) title.innerText = nameString || "Unknown ID";
-    if (badge) badge.innerText = ((firstName ? firstName[0] : "") + (lastName ? lastName[0] : "")).toUpperCase();
-
+    // 2. Update Images
     if (imageData) {
         const imgHTML = `<img src="${imageData}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
+        
+        // Update Nav Bar icons
         containers.forEach(c => c.innerHTML = imgHTML);
+        
+        // Update Edit Profile preview
         if (avatarPreview) avatarPreview.innerHTML = imgHTML;
-        if (settingsAvatar) settingsAvatar.innerHTML = imgHTML;
-    } else {
-        const defaultIcon = `<i data-lucide="user"></i>`;
-        containers.forEach(c => c.innerHTML = defaultIcon);
-        if (avatarPreview) avatarPreview.innerHTML = defaultIcon;
-        if (settingsAvatar) settingsAvatar.innerHTML = defaultIcon;
-        lucide.createIcons();
+        
+        // Update Settings Modal icon (next to name)
+        if (settingsAvatar) {
+            settingsAvatar.innerHTML = imgHTML;
+            settingsAvatar.style.background = 'transparent'; // Remove gray bg if image exists
+        }
+    }
+    
+    // 3. Update Name
+    const nameString = `${firstName || ""} ${lastName || ""}`.trim();
+    if (title) title.innerText = nameString || "Unknown ID";
+    
+    // 4. Update Badge Initials
+    if (badge && (firstName || lastName)) {
+        const initials = ((firstName ? firstName[0] : "") + (lastName ? lastName[0] : "")).toUpperCase();
+        badge.innerText = initials || "";
     }
 }
 
@@ -217,13 +230,18 @@ function closeEditProfile() {
 function saveProfileChanges() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
+    
+    // Save names to LocalStorage
     localStorage.setItem('userFirstName', firstName);
     localStorage.setItem('userLastName', lastName);
     
+    // Only save the picture if a new one was selected (tempProfilePic is not null)
     if (tempProfilePic) {
         localStorage.setItem('userProfilePic', tempProfilePic);
-        tempProfilePic = null;
+        tempProfilePic = null; // Clear temporary variable after saving
     }
+    
+    // Update UI everywhere
     updateAllProfileUI(localStorage.getItem('userProfilePic'), firstName, lastName);
     closeEditProfile();
 }
@@ -285,14 +303,16 @@ function closeAlert() {
 
 
 function previewFile(input) {
-    if (input.files && input.files[0]) {
+    const file = input.files[0];
+    if (file) {
         const reader = new FileReader();
-        reader.onload = (e) => {
-            tempProfilePic = e.target.result;
+        reader.onload = function(e) {
+            tempProfilePic = e.target.result; // Store temporarily
+            // Update only the preview area so the user sees their choice
             document.getElementById('avatar-preview').innerHTML = 
                 `<img src="${tempProfilePic}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
         };
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(file);
     }
 }
 
