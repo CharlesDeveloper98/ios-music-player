@@ -240,10 +240,11 @@
         <div class="save-check" onclick="saveProfileChanges()"><i data-lucide="check"></i></div>
     </div>
     
-   <div class="profile-pic-picker" onclick="document.getElementById('photo-upload').click()">
-    <div class="avatar-large" id="avatar-preview"><i data-lucide="user"></i></div>
-    <div class="picker-text">Choose Photo</div>
-</div>
+    <div class="profile-pic-picker" onclick="document.getElementById('photo-upload').click()">
+        <div class="avatar-large" id="avatar-preview"><i data-lucide="user"></i></div>
+        <div class="picker-text">Choose Photo</div>
+    </div>
+    <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
 
 <div class="action-buttons-row">
     <div class="glass-btn blue-btn" onclick="showCustomAlert('photo')">Remove Photo</div>
@@ -260,10 +261,7 @@
         </div>
     </div>
 </div>
-
-
     
-
     <div class="settings-card">
         <input type="text" id="first-name" placeholder="First Name" class="name-input">
         <div class="divider"></div>
@@ -272,10 +270,6 @@
 </div>
 
 
-        
-
-
-        
         
 </body>
 </html>
