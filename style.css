@@ -496,6 +496,39 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .ios-alert-btn:active { background: rgba(255, 255, 255, 0.1); }
 
 
+/* Group Labels */
+.settings-group-label {
+    color: #8e8e93;
+    font-size: 13px;
+    margin: 20px 0 8px 10px;
+    text-transform: uppercase;
+}
+
+/* Reusable Settings Item */
+.settings-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    cursor: pointer;
+}
+
+.settings-item span { font-size: 17px; }
+
+/* Theme Ticker */
+.theme-ticker { color: #0a84ff; margin-left: auto; }
+
+/* Back button in sub-modal */
+.back-btn-header { display: flex; align-items: center; color: #0a84ff; cursor: pointer; }
+
+/* Animation for sub-pages */
+.ui-modal {
+    z-index: 2005; /* Higher than primary settings */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ui-modal.show { transform: translateX(0); }
+
+    
 /* Ensure profile images are always circular */
 .profile-container img, .avatar-large img {
     border-radius: 50% !important;
