@@ -411,6 +411,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 .save-check { color: var(--ios-red); cursor: pointer; font-weight: 600; }
 
+
 .action-buttons-row { display: flex; gap: 10px; margin-bottom: 20px; padding: 0 20px; }
 
 .glass-btn { 
@@ -486,9 +487,6 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 
 .ios-alert-btn:active { background: rgba(255, 255, 255, 0.1); }
-
-
-
 
 
 /* Ensure profile images are always circular */
