@@ -431,7 +431,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 /* The actual glass container */
 .ios-alert-box {
     width: 270px;
-    background: rgba(44, 44, 46, 0.85); /* Dark grey with transparency */
+    background: rgba(44, 44, 46, 0.95); /* Slightly more opaque for the native feel */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 14px;
@@ -441,20 +441,50 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     overflow: hidden;
 }
 
-.ios-alert-title { font-weight: 600; font-size: 17px; margin: 0 0 5px 0; }
-.ios-alert-text { font-size: 13px; margin: 0 20px 20px 20px; opacity: 0.9; }
+.ios-alert-title { 
+    font-weight: 600; 
+    font-size: 17px; 
+    margin: 0 0 5px 0; 
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.ios-alert-text { 
+    font-size: 13px; 
+    margin: 0 16px 18px 16px; /* Tighter margins */
+    opacity: 0.9;
+    line-height: 1.3;
+}
 
 /* The button container */
 .ios-alert-buttons { 
     display: flex; 
-    border-top: 0.5px solid rgba(255, 255, 255, 0.15); 
+    height: 44px; /* Native iOS button height */
+    border-top: 0.5px solid rgba(255, 255, 255, 0.2); 
 }
 
 .ios-alert-btn { 
-    flex: 1; padding: 13px; font-size: 17px; color: #0A84FF; 
-    cursor: pointer; font-weight: 400;
+    flex: 1; 
+    padding: 10px; 
+    font-size: 17px; 
+    color: #0A84FF; 
+    cursor: pointer; 
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.ios-alert-btn:first-child { border-right: 0.5px solid rgba(255, 255, 255, 0.15); }
+
+/* Specific styling for the 'No' button to match native behavior */
+.ios-alert-btn:first-child { 
+    border-right: 0.5px solid rgba(255, 255, 255, 0.2); 
+}
+
+/* Apply this class to the 'Yes' button for the destructive look */
+.ios-alert-btn-destructive {
+    color: #FF453A;
+    font-weight: 600; /* Destructive buttons are typically bolder in iOS */
+}
+
 .ios-alert-btn:active { background: rgba(255, 255, 255, 0.1); }
 
 
