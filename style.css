@@ -432,13 +432,12 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 /* The actual glass container */
 .ios-alert-box {
     width: 270px;
-    background: rgba(30, 30, 30, 0.85); /* Slightly darker/more transparent for liquid glass */
+    background: rgba(30, 30, 30, 0.85);
     backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-radius: 14px;
-    text-align: center;
+    text-align: left; /* Shifted to left to match system */
     color: white;
-    padding-top: 19px; /* Standard iOS header padding */
+    padding: 20px 16px 0 16px; /* Specific top/side padding */
     overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 }
@@ -447,32 +446,40 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     font-weight: 600; 
     font-size: 17px; 
     margin-bottom: 2px;
-    letter-spacing: -0.4px;
+    text-align: center; /* Titles are centered in system alerts */
 }
 
 .ios-alert-text { 
     font-size: 13px; 
-    margin: 0 16px 18px 16px;
+    margin: 0 0 18px 0;
     line-height: 1.3;
     opacity: 0.9;
+    text-align: center; /* Message text is centered in system alerts */
 }
 
-/* The button container */
+/* Container matching the "Cancel/Undo" structure */
 .ios-alert-buttons { 
     display: flex; 
-    height: 44px; /* Native height */
-    border-top: 0.5px solid rgba(255, 255, 255, 0.15); 
+    height: 44px; 
+    border-top: 0.5px solid rgba(255, 255, 255, 0.15);
+    margin: 0 -16px; /* Pulls to edges of the box */
 }
 
 .ios-alert-btn { 
     flex: 1; 
     font-size: 17px; 
-    color: #0A84FF; /* iOS Blue */
+    color: #0A84FF; 
     cursor: pointer; 
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 400; /* 'No' should be standard weight */
+    font-weight: 400; 
+}
+
+/* Right button has a divider to its left */
+.ios-alert-btn:nth-child(2) { 
+    border-left: 0.5px solid rgba(255, 255, 255, 0.15);
+    font-weight: 600; /* 'Yes' / 'Undo' is bold */
 }
 
 /* Specific styling for the 'No' button to match native behavior */
@@ -486,9 +493,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
     font-weight: 600; /* Destructive button is always bold */
 }
 
-.ios-alert-btn:active { 
-    background: rgba(255, 255, 255, 0.1); 
-}
+.ios-alert-btn:active { background: rgba(255, 255, 255, 0.1); }
 
 
 /* Ensure profile images are always circular */
