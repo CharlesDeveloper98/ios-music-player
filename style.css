@@ -414,21 +414,31 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 /* Liquid Glass Row */
 .action-buttons-row { display: flex; gap: 10px; margin-bottom: 20px; padding: 0 20px; }
+
 .glass-btn { 
-    flex: 1; padding: 12px; border-radius: 14px; text-align: center; font-weight: 600; cursor: pointer;
-    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);
+    flex: 1; padding: 12px; border-radius: 12px; text-align: center; font-weight: 600; cursor: pointer;
+    background: #2c2c2e; /* Matches your screenshot */
 }
-.blue-btn { color: #007AFF; }
-.red-btn { color: #FF3B30; }
+.blue-btn { color: #0a84ff; } /* iOS Blue */
+.red-btn { color: #ff453a; }  /* iOS Red */
+
+/* Accurate iOS Popup (Siri style) */
+.popup-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+}
 
 /* iOS Popup Style */
 .ios-popup {
-    width: 270px; background: rgba(242, 242, 242, 0.8); backdrop-filter: blur(20px);
-    border-radius: 14px; text-align: center; padding: 20px 0 0 0;
+    width: 280px; background: #1c1c1e; /* Dark theme pop-up background */
+    border-radius: 14px; text-align: center; color: white;
+    padding-top: 20px;
 }
-.popup-actions { display: flex; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 20px; }
-.popup-actions div { flex: 1; padding: 15px; color: #007AFF; font-weight: 600; cursor: pointer; }
-.popup-actions div:first-child { border-right: 1px solid rgba(0,0,0,0.1); }
+
+.popup-actions { display: flex; border-top: 1px solid #38383a; margin-top: 20px; }
+.popup-actions div { flex: 1; padding: 15px; color: #0a84ff; font-weight: 600; cursor: pointer; }
+.popup-actions div:first-child { border-right: 1px solid #38383a; }
 
 
 
