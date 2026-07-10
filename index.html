@@ -206,8 +206,9 @@
         <div class="close-x" onclick="closeSettings()"><i data-lucide="x"></i></div>
     </div>
 
+    <div class="settings-group-label">Profile</div>
     <div class="settings-card">
-        <div class="profile-section">
+        <div class="profile-section" onclick="openEditProfile()">
             <div class="avatar-placeholder"><i data-lucide="user"></i></div>
             <div class="profile-info">
                 <div class="title">Unknown ID</div>
@@ -215,6 +216,7 @@
             </div>
             <i data-lucide="chevron-right" class="nav-arrow"></i>
         </div>
+    </div>
         
         <div class="divider"></div>
         
@@ -231,6 +233,42 @@
     </div>
 </div>
 
+
+    <div class="settings-group-label">User Interface</div>
+    <div class="settings-card">
+        <div class="settings-item" onclick="openUI()">
+            <span>Appearance</span>
+            <i data-lucide="chevron-right" class="nav-arrow"></i>
+        </div>
+    </div>
+</div>
+
+<div id="ui-overlay" class="settings-overlay" onclick="closeUI()"></div>
+<div class="settings-modal ui-modal" id="ui-modal">
+    <div class="settings-header">
+        <div class="back-btn-header" onclick="closeUI()"><i data-lucide="chevron-left"></i> Back</div>
+        <h2>Theme</h2>
+        <div style="width: 40px;"></div>
+    </div>
+    
+    <div class="settings-card">
+        <div class="settings-item" onclick="setTheme('System')">
+            <span>System</span>
+            <i data-lucide="check" class="theme-ticker" id="ticker-System"></i>
+        </div>
+        <div class="divider"></div>
+        <div class="settings-item" onclick="setTheme('Light')">
+            <span>Light</span>
+            <i data-lucide="check" class="theme-ticker" id="ticker-Light" style="display:none;"></i>
+        </div>
+        <div class="divider"></div>
+        <div class="settings-item" onclick="setTheme('Dark')">
+            <span>Dark</span>
+            <i data-lucide="check" class="theme-ticker" id="ticker-Dark" style="display:none;"></i>
+        </div>
+    </div>
+</div>
+    
 
         <div id="edit-profile-overlay" class="settings-overlay" onclick="closeEditProfile()"></div>
 <div class="settings-modal edit-profile-modal" id="edit-profile-modal">
