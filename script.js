@@ -54,43 +54,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- UI Updates ---
 function updateAllProfileUI(imageData, firstName, lastName) {
+    // 1. Get all relevant UI elements
     const containers = document.querySelectorAll('.profile-container');
     const badge = document.querySelector('.badge');
     const title = document.querySelector('.profile-info .title');
     const avatarPreview = document.getElementById('avatar-preview');
     
-    // Target both the Settings icon (next to "Enter Details") and the Modal icon
-    const settingsIconContainer = document.querySelector('.settings-card .avatar-placeholder');
+    // Target the specific avatar icon in the Settings modal (next to the name)
+    const settingsAvatar = document.querySelector('.settings-card .avatar-placeholder');
 
-    // 1. Update Name/Title
+    // 2. Update Images
+    if (imageData) {
+        const imgHTML = `<img src="${imageData}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
+        
+        // Update Nav Bar icons
+        containers.forEach(c => c.innerHTML = imgHTML);
+        
+        // Update Edit Profile preview
+        if (avatarPreview) avatarPreview.innerHTML = imgHTML;
+        
+        // Update Settings Modal icon (next to name)
+        if (settingsAvatar) {
+            settingsAvatar.innerHTML = imgHTML;
+            settingsAvatar.style.background = 'transparent'; // Remove gray bg if image exists
+        }
+    }
+    
+    // 3. Update Name
     const nameString = `${firstName || ""} ${lastName || ""}`.trim();
     if (title) title.innerText = nameString || "Unknown ID";
     
-    // 2. Update Badge Initials
-    if (badge) {
+    // 4. Update Badge Initials
+    if (badge && (firstName || lastName)) {
         const initials = ((firstName ? firstName[0] : "") + (lastName ? lastName[0] : "")).toUpperCase();
         badge.innerText = initials || "";
     }
-
-    // 3. Update Image / Default Icon Logic
-    // If there is an image, show it. If NOT, show the default User icon.
-    if (imageData) {
-        const imgHTML = `<img src="${imageData}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
-        containers.forEach(c => c.innerHTML = imgHTML);
-        if (avatarPreview) avatarPreview.innerHTML = imgHTML;
-        if (settingsIconContainer) settingsIconContainer.innerHTML = imgHTML;
-    } else {
-        // Fallback to default user icon if no image
-        const defaultIcon = `<i data-lucide="user"></i>`;
-        containers.forEach(c => c.innerHTML = defaultIcon);
-        if (avatarPreview) avatarPreview.innerHTML = defaultIcon;
-        if (settingsIconContainer) settingsIconContainer.innerHTML = defaultIcon;
-        
-        // Re-run lucide to render the icon
-        lucide.createIcons();
-    }
 }
-
 
 
 // --- Library & Detail Navigation ---
@@ -233,20 +232,20 @@ function saveProfileChanges() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
     
-    // Save to LocalStorage
+    // Save names to LocalStorage
     localStorage.setItem('userFirstName', firstName);
     localStorage.setItem('userLastName', lastName);
     
-    // If you want to clear the photo when names are deleted:
-    if (!firstName && !lastName) {
-        localStorage.removeItem('userProfilePic');
-        tempProfilePic = null;
+    // Only save the picture if a new one was selected (tempProfilePic is not null)
+    if (tempProfilePic) {
+        localStorage.setItem('userProfilePic', tempProfilePic);
+        tempProfilePic = null; // Clear temporary variable after saving
     }
     
+    // Update UI everywhere
     updateAllProfileUI(localStorage.getItem('userProfilePic'), firstName, lastName);
     closeEditProfile();
 }
-
 
 
 
