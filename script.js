@@ -250,39 +250,6 @@ function saveProfileChanges() {
 
 let currentPopupType = "";
 
-function showPopup(type) {
-    const popup = document.getElementById('dynamic-popup-overlay');
-    const title = document.getElementById('popup-title');
-    const msg = document.getElementById('popup-message');
-    const confirmBtn = document.getElementById('confirm-action');
-
-    if (type === 'remove') {
-        title.innerText = "Remove Photo";
-        msg.innerText = "Are you sure you want to remove current photo?";
-        confirmBtn.onclick = () => {
-            localStorage.removeItem('userProfilePic');
-            updateAllProfileUI(null, document.getElementById('first-name').value, document.getElementById('last-name').value);
-            closeDynamicPopup();
-        };
-    } else {
-        title.innerText = "Clear Data";
-        msg.innerText = "Are you sure you want to clear data?";
-        confirmBtn.onclick = () => {
-            localStorage.clear();
-            document.getElementById('first-name').value = "";
-            document.getElementById('last-name').value = "";
-            updateAllProfileUI(null, "", "");
-            closeDynamicPopup();
-        };
-    }
-    popup.style.display = 'flex';
-}
-
-function closeDynamicPopup() {
-    document.getElementById('dynamic-popup-overlay').style.display = 'none';
-}
-
-
 
 function removePhoto() {
     localStorage.removeItem('userProfilePic');
