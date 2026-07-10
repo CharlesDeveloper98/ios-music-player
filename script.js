@@ -268,12 +268,16 @@ function clearAllData() {
 }
 
 
-// --- Alert System ---
+// Replace your existing showCustomAlert function with this:
+
 function showCustomAlert(type) {
     const overlay = document.getElementById('custom-alert');
     const title = document.getElementById('alert-title');
     const msg = document.getElementById('alert-msg');
     const confirmBtn = document.getElementById('confirm-btn');
+
+    // Reset button class
+    confirmBtn.className = 'ios-alert-btn ios-alert-btn-destructive';
 
     if (type === 'photo') {
         title.innerText = "Remove Photo";
@@ -297,6 +301,7 @@ function showCustomAlert(type) {
     }
     overlay.style.display = 'flex';
 }
+
 
 function closeAlert() {
     document.getElementById('custom-alert').style.display = 'none';
