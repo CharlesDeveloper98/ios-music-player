@@ -413,6 +413,13 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 
 .action-buttons-row { display: flex; gap: 10px; margin-bottom: 20px; padding: 0 20px; }
 
+.glass-btn { 
+    flex: 1; padding: 12px; border-radius: 20px; text-align: center; font-weight: 600; cursor: pointer;
+    background: #2c2c2e; /* Matches your screenshot */
+}
+.blue-btn { color: #0a84ff; } /* iOS Blue */
+.red-btn { color: #ff453a; }  /* iOS Red */
+
 /* Full-screen overlay to dim the background */
 .ios-alert-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
