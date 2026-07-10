@@ -175,6 +175,7 @@ function toggleTick(element) {
 
 // --- Settings & Profile ---
 function openSettings() {
+    document.getElementById('content').classList.add('page-zoomed-out'); // Add fulcrum effect
     const modal = document.getElementById('settings-modal');
     const overlay = document.getElementById('settings-overlay');
     overlay.style.display = 'block';
@@ -183,6 +184,7 @@ function openSettings() {
 }
 
 function closeSettings() {
+    document.getElementById('content').classList.remove('page-zoomed-out'); // Remove effect
     const modal = document.getElementById('settings-modal');
     const overlay = document.getElementById('settings-overlay');
     modal.classList.remove('show');
