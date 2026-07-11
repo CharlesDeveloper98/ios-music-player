@@ -70,7 +70,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     display: flex; 
     align-items: center; 
     padding: 15px 0; 
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); 
+    border-bottom: 0.5px solid var(--glass-border); 
     color: var(--ios-red);
 }
 
@@ -85,12 +85,12 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 .menu-item i { transition: opacity 0.2s ease; }
 
 .menu-item i:first-child { margin-right: 15px; }
-.menu-item span { flex: 1; color: #fff; font-size: 18px; }
-.menu-item i:last-child { color: #8e8e93; }
+.menu-item span { flex: 1; color: var(--text-color); font-size: 18px; }
+.menu-item i:last-child { color: var(--secondary-text); }
 
 /* Container for the 2 icons (Library & 3-dots) */
 .glass-header-actions {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-border);
     backdrop-filter: blur(20px);
     border-radius: 18px; /* More rounded */
     padding: 6px 12px;
