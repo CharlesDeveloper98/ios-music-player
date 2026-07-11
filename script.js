@@ -324,6 +324,40 @@ function closeUI() {
 }
 
 
+// --- Theme Management ---
+function setTheme(theme) {
+    if (theme === 'system') {
+        localStorage.removeItem('user-theme');
+        applySystemTheme();
+    } else {
+        localStorage.setItem('user-theme', theme);
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+    updateUIActiveState(theme);
+}
+
+function applySystemTheme() {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('user-theme') || 'system';
+    setTheme(savedTheme);
+    // ... existing init code ...
+});
+
+function updateUIActiveState(activeTheme) {
+    // Logic to highlight the checkmark in the UI modal
+    document.querySelectorAll('.theme-option').forEach(el => {
+        el.querySelector('.check-icon').style.display = 
+            (el.dataset.theme === activeTheme) ? 'block' : 'none';
+    });
+}
+
+
+
 function previewFile(input) {
     const file = input.files[0];
     if (file) {
