@@ -8,7 +8,7 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .page-title, .header-row h1 { font-weight: 700; font-size: 34px; margin: 0; }
 .section-title { font-weight: 600; padding: 0 20px; }
 
-:root { --ios-red: #ff3b30; --glass-bg: rgba(40, 40, 40, 0.7); --glass-border: rgba(255, 255, 255, 0.1); }
+:root { --ios-red: #ff3b30; --ios-blue: #0a84ff; --glass-bg: rgba(40, 40, 40, 0.7); --glass-border: rgba(255, 255, 255, 0.1); }
 
 .page { display: none; opacity: 0; }
 .page.active { display: block; animation: fadeIn 0.2s forwards; }
@@ -271,6 +271,14 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 }
 
 .settings-modal.show { transform: translateY(0); }
+
+ .section-label {
+    color: #8e8e93;
+    font-size: 13px;
+    margin: 20px 0 8px 10px;
+    text-transform: uppercase;
+}
+
 
 /* Container Background and Rounded Corners */
 .settings-card {
