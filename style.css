@@ -16,9 +16,6 @@ body { margin: 0; background: var(--bg-color); color: var(--text-color); transit
 :root {
     --ios-red: #ff3b30;
     --ios-blue: #0a84ff;
-    --glass-bg: rgba(40, 40, 40, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
-
     
     /* Default Dark Theme Variables */
     --bg-color: #000000;
