@@ -231,6 +231,42 @@
     </div>
 </div>
 
+        <div class="settings-card" style="margin-top: 20px;">
+    <div class="profile-section" onclick="openUI()">
+        <div class="avatar-placeholder" style="background:#555;"><i data-lucide="palette"></i></div>
+        <div class="profile-info">
+            <div class="title">User Interface</div>
+        </div>
+        <i data-lucide="chevron-right" class="nav-arrow"></i>
+    </div>
+</div>
+
+<div id="ui-overlay" class="settings-overlay" onclick="closeUI()"></div>
+<div class="settings-modal" id="ui-modal">
+    <div class="settings-header">
+        <div class="close-x" onclick="closeUI()"><i data-lucide="x"></i></div>
+        <h2>User Interface</h2>
+        <div style="width:30px;"></div> </div>
+
+    <div class="section-label">Appearance</div>
+    <div class="settings-card">
+        <div class="profile-section">
+            <div class="profile-info"><div class="title">System</div></div>
+            <i data-lucide="check" class="nav-arrow" style="color:var(--ios-blue);"></i>
+        </div>
+        <div class="divider"></div>
+        <div class="profile-section">
+            <div class="profile-info"><div class="title">Light</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="profile-section">
+            <div class="profile-info"><div class="title">Dark</div></div>
+        </div>
+    </div>
+</div>
+
+        
+
 
         <div id="edit-profile-overlay" class="settings-overlay" onclick="closeEditProfile()"></div>
 <div class="settings-modal edit-profile-modal" id="edit-profile-modal">
