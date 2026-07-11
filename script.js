@@ -308,42 +308,6 @@ function closeAlert() {
 }
 
 
-// Open UI Page with same animation logic
-function openUI() {
-    const modal = document.getElementById('ui-modal');
-    const overlay = document.getElementById('ui-overlay');
-    overlay.style.display = 'block';
-    modal.style.display = 'block';
-    setTimeout(() => { modal.classList.add('show'); }, 10);
-}
-
-function closeUI() {
-    const modal = document.getElementById('ui-modal');
-    const overlay = document.getElementById('ui-overlay');
-    modal.classList.remove('show');
-    setTimeout(() => { modal.style.display = 'none'; overlay.style.display = 'none'; }, 400);
-}
-
-// Handle Theme Tickers
-function setTheme(theme) {
-    // Hide all tickers
-    document.querySelectorAll('.theme-ticker').forEach(el => el.style.display = 'none');
-    // Show selected
-    document.getElementById(`ticker-${theme}`).style.display = 'block';
-    localStorage.setItem('appTheme', theme);
-}
-
-// Set System as default on install
-document.addEventListener('DOMContentLoaded', () => {
-    if (!localStorage.getItem('appTheme')) {
-        setTheme('System');
-    } else {
-        setTheme(localStorage.getItem('appTheme'));
-    }
-});
-
-
-
 function previewFile(input) {
     const file = input.files[0];
     if (file) {
