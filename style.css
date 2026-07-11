@@ -540,6 +540,43 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 .ios-alert-btn:active { background: rgba(255, 255, 255, 0.1); }
 
 
+/* 1. Ensure the list container matches the 'Fonts' style */
+#ui-modal-list {
+    background: #1c1c1e; /* Native dark mode card background */
+    border-radius: 12px;
+    padding: 0 16px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2. Style the theme options for a touch-friendly list */
+.theme-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    cursor: pointer;
+    font-size: 17px;
+    color: #ffffff;
+}
+
+/* 3. Handle the checkmark appearance */
+.check-icon {
+    width: 20px;
+    height: 20px;
+    stroke-width: 3px; /* Slightly thicker for visibility */
+}
+
+/* 4. Ensure the dividers look precise */
+#ui-modal-list .divider {
+    height: 0.5px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0;
+}
+
+
+
 /* Ensure profile images are always circular */
 .profile-container img, .avatar-large img {
     border-radius: 50% !important;
