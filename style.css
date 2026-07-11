@@ -1,4 +1,6 @@
-body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-family: 'MyCustomFont', sans-serif; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--bg-color); color: var(--text-color); transition: background 0.3s, color 0.3s; }
+.settings-modal { background: var(--modal-bg); }
+.settings-card { background: var(--card-bg); padding-bottom: 120px; font-family: 'MyCustomFont', sans-serif; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 
 @font-face { font-family: 'MyCustomFont'; src: url('fonts/regular.otf') format('opentype'); font-weight: 400; }
 @font-face { font-family: 'MyCustomFont'; src: url('fonts/medium.otf') format('opentype'); font-weight: 500; }
@@ -8,7 +10,38 @@ body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-fam
 .page-title, .header-row h1 { font-weight: 700; font-size: 34px; margin: 0; }
 .section-title { font-weight: 600; padding: 0 20px; }
 
-:root { --ios-red: #ff3b30; --ios-blue: #0a84ff; --glass-bg: rgba(40, 40, 40, 0.7); --glass-border: rgba(255, 255, 255, 0.1); }
+
+
+/* --- Themes --- */
+:root {
+    --ios-red: #ff3b30;
+    --ios-blue: #0a84ff;
+    --glass-bg: rgba(40, 40, 40, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    
+    /* Default Dark Theme Variables */
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --modal-bg: #161616;
+    --card-bg: #3c3c3c;
+    --glass-bg: rgba(40, 40, 40, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --secondary-text: #8e8e93;
+}
+
+[data-theme='light'] {
+    --bg-color: #f2f2f7;
+    --text-color: #000000;
+    --modal-bg: #ffffff;
+    --card-bg: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --secondary-text: #3c3c43;
+}
+
+
+
 
 .page { display: none; opacity: 0; }
 .page.active { display: block; animation: fadeIn 0.2s forwards; }
