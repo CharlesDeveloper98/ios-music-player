@@ -307,6 +307,22 @@ function closeAlert() {
     document.getElementById('custom-alert').style.display = 'none';
 }
 
+// --- User Interface Page Logic ---
+function openUI() {
+    const modal = document.getElementById('ui-modal');
+    const overlay = document.getElementById('ui-overlay');
+    overlay.style.display = 'block';
+    modal.style.display = 'block';
+    setTimeout(() => { modal.classList.add('show'); lucide.createIcons(); }, 10);
+}
+
+function closeUI() {
+    const modal = document.getElementById('ui-modal');
+    const overlay = document.getElementById('ui-overlay');
+    modal.classList.remove('show');
+    setTimeout(() => { modal.style.display = 'none'; overlay.style.display = 'none'; }, 400);
+}
+
 
 function previewFile(input) {
     const file = input.files[0];
