@@ -600,6 +600,27 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 }
 
 
+/* Apply this to the wrapper of your scrollable content */
+.scrollable-content-wrapper {
+    position: relative;
+    /* This creates the blur mask from the middle downwards */
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+/* The actual blur effect container */
+.blur-layer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50vh; /* Covers the bottom half */
+    backdrop-filter: blur(20px) saturate(180%);
+    pointer-events: none; /* Allows clicks to pass through to elements behind */
+    z-index: 10;
+}
+
+
 
 
 /* Ensure profile images are always circular */
