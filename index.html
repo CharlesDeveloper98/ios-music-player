@@ -30,9 +30,30 @@
         <div id="page-library" class="page">
             <div class="header-row">
                 <h1 class="page-title">Library</h1>
-    <div id="done-container" class="done-container" onclick="toggleEditMode(false)">
+    
+
+
+
+          <div id="done-container" class="done-container">
+    <div class="glass-btn-reset" onclick="showResetPopup()">Reset Order</div>
+    <div onclick="toggleEditMode(false)">
         <i data-lucide="check"></i>
     </div>
+</div>
+
+<div id="reset-alert" class="ios-alert-overlay" style="display:none;">
+    <div class="ios-alert-box">
+        <div class="ios-alert-title">Reset Library?</div>
+        <div class="ios-alert-text">Do you want to reset the library order to its default layout?</div>
+        <div class="ios-alert-buttons">
+            <div class="ios-alert-btn" onclick="closeResetPopup()">No</div>
+            <div class="ios-alert-btn ios-alert-btn-destructive" onclick="resetLibraryOrder()">Yes</div>
+        </div>
+    </div>
+</div>
+
+
+                
     
     <div class="header-right-group" id="library-actions">
                     <div class="glass-header-actions" id="header-glass">
