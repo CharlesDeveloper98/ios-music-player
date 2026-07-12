@@ -576,6 +576,31 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 }
 
 
+/* Liquid glass container for reset button */
+.glass-btn-reset {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 6px 12px;
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Sliding animation for returning items */
+@keyframes slideBack {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.menu-item.resetting {
+    animation: slideBack 0.4s ease-out;
+}
+
+
+
 
 /* Ensure profile images are always circular */
 .profile-container img, .avatar-large img {
