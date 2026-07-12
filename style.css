@@ -608,17 +608,20 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 /* 1. This container holds the blur and is fixed to the bottom */
 .ios-blur-bottom {
     position: fixed;
-    /* This anchors it to the middle of your Mini Player */
-    /* Adjust this 'bottom' value if your mini-player height changes */
-    bottom: 95px; 
+    /* Move the start of the blur layer to the middle of the mini-player */
+    /* If the mini-player is at the bottom, its vertical center is roughly at the top of the player plus half its height */
+    /* Assuming your mini-player is ~70px tall and starts ~80px from bottom, center is ~115px from bottom */
+    bottom: 115px; 
+    
     left: 0;
     width: 100%;
-    /* This defines the height from the middle of the player to the bottom */
-    height: calc(100vh - 95px);
+    
+    /* Set height to cover only the area from that center point to the bottom */
+    height: 115px; 
     
     /* Native iOS Blur */
     backdrop-filter: blur(20px) saturate(180%);
-    background: rgba(0, 0, 0, 0.2); /* Adjust opacity for light/dark modes */
+    background: rgba(0, 0, 0, 0.2); 
     
     /* Ensure content underneath is still clickable */
     pointer-events: none;
