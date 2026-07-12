@@ -372,25 +372,24 @@ function closeResetPopup() {
 function resetLibraryOrder() {
     const menu = document.getElementById('library-menu');
     const items = Array.from(menu.querySelectorAll('.menu-item'));
+    
+    // Animate the reset
+    items.forEach(item => {
+        item.classList.add('resetting');
+        setTimeout(() => item.classList.remove('resetting'), 400);
+    });
 
-    // Apply a transition class to all items for the slide effect
-    items.forEach(item => item.classList.add('returning-animation'));
-
-    // Reorder DOM
+    // Reorder DOM based on default
     DEFAULT_ORDER.forEach(id => {
         const item = menu.querySelector(`[data-id="${id}"]`);
         if (item) menu.appendChild(item);
     });
 
-    // Cleanup
-    setTimeout(() => {
-        items.forEach(item => item.classList.remove('returning-animation'));
-    }, 500);
-
+    // Clear saved preference and close popups
     localStorage.removeItem('libraryOrder');
     closeResetPopup();
+    toggleEditMode(false);
 }
-
 
 
 
