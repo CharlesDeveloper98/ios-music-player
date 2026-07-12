@@ -34,18 +34,23 @@
 
 
 
-         <div id="done-container" class="done-container">
-    <!-- Separate Container for Reset Button -->
-    <div class="reset-wrapper" onclick="showResetPopup()">
-        <div class="glass-btn-reset">Reset Order</div>
-    </div>
-    
-    <!-- Separate Container for Tick Icon -->
-    <div class="tick-wrapper" onclick="toggleEditMode(false)">
+          <div id="done-container" class="done-container">
+    <div class="glass-btn-reset" onclick="showResetPopup()">Reset Order</div>
+    <div onclick="toggleEditMode(false)">
         <i data-lucide="check"></i>
     </div>
 </div>
 
+<div id="reset-alert" class="ios-alert-overlay" style="display:none;">
+    <div class="ios-alert-box">
+        <div class="ios-alert-title">Reset Library?</div>
+        <div class="ios-alert-text">Do you want to reset the library order to its default layout?</div>
+        <div class="ios-alert-buttons">
+            <div class="ios-alert-btn" onclick="closeResetPopup()">No</div>
+            <div class="ios-alert-btn ios-alert-btn-destructive" onclick="resetLibraryOrder()">Yes</div>
+        </div>
+    </div>
+</div>
 
 
                 
