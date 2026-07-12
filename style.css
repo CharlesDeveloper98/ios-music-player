@@ -611,7 +611,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     /* This calculates the starting point: 
        The top of the music container is roughly 150px from the bottom. 
        Adjust this value if your layout spacing changes. */
-    top: calc(100vh - 150px); 
+    top: calc(100vh - 180px); 
     left: 0;
     width: 100%;
     height: 150px; 
