@@ -620,9 +620,11 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     background: rgba(0, 0, 0, 0.85); /* Darker background adds density */
     
     pointer-events: none; /* Keeps the buttons clickable */
-    z-index: 999; /* Ensures it is on top of content but below the nav */
+    z-index: 998; /* Ensures it is on top of content but below the nav */
 
 
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0) 100%);
+  
   /* HIGH INTENSITY BLUR */
     /* Increasing this to 60px+ makes the background unrecognizable */
     backdrop-filter: blur(100px) saturate(900%) brightness(1.2);
