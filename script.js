@@ -392,6 +392,49 @@ function resetLibraryOrder() {
 }
 
 
+// Add these variables to your script.js
+let audioPlayer = new Audio();
+let isPlaying = false;
+
+// Function to play a song (Call this when a user selects a song)
+function playSong(songUrl, title, artist) {
+    audioPlayer.src = songUrl;
+    document.querySelector('.mini-title').innerText = title;
+    document.querySelector('.mini-sub').innerText = artist;
+    
+    audioPlayer.play();
+    isPlaying = true;
+    updatePlayButtonIcon();
+}
+
+// Toggle Play/Pause
+function togglePlayPause() {
+    if (isPlaying) {
+        audioPlayer.pause();
+    } else {
+        audioPlayer.play();
+    }
+    isPlaying = !isPlaying;
+    updatePlayButtonIcon();
+}
+
+function updatePlayButtonIcon() {
+    const playBtn = document.querySelector('.mini-icon[alt="Play"]');
+    playBtn.src = isPlaying 
+        ? "https://img.icons8.com/ios-filled/24/ffffff/pause--v1.png" 
+        : "https://img.icons8.com/ios-filled/24/ffffff/play--v1.png";
+}
+
+// Event Listeners for the Mini Player
+document.querySelector('.mini-icon[alt="Play"]').addEventListener('click', togglePlayPause);
+
+
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    playSong(url, file.name, "Local File");
+}
+
 
 
 function previewFile(input) {
