@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (slider) {
         slider.value = parseInt(savedBlur);
     }
-});
+
 
     lucide.createIcons();
 });
