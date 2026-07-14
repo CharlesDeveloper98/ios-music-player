@@ -31,7 +31,6 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     --glass-bg: rgba(40, 40, 40, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
     --secondary-text: #8e8e93;
-    --blur-intensity: 30px; /* Default value */
 }
 
 [data-theme='light'] {
@@ -42,7 +41,6 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     --glass-bg: rgba(253, 253, 253, 0.7);
     --glass-border: rgba(0, 0, 0, 0.1);
     --secondary-text: #3c3c43;
-    --blur-intensity: 30px; /* Default value */
 }
 
 
@@ -602,6 +600,40 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 }
 
 
+.slider-container {
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#blur-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #3c3c3c;
+    border-radius: 4px;
+    outline: none;
+    transition: height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* The "Liquid" Expansion Effect */
+#blur-slider:active {
+    height: 16px;
+    border-radius: 8px;
+}
+
+#blur-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+
 
 
 /* Ensure profile images are always circular */
@@ -636,49 +668,14 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 .profile-icon { width: 24px; height: 24px; }
 .profile-img { width: 100%; height: 100%; object-fit: cover; }
 
-.mini-player { 
-    position: fixed; 
-    bottom: 95px; 
-    left: 10px; 
-    right: 10px; 
-    height: 60px; 
-    /* Lowered opacity to 0.4 for more blur visibility */
-    background: rgba(40, 40, 40, 0.4); 
-    backdrop-filter: blur(30px) saturate(180%); 
-    border: 0.5px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 12px; 
-    display: flex; 
-    align-items: center; 
-    padding: 0 15px; 
-    z-index: 999; 
-}
-
-/* Update these components to use the variable */
-.mini-player, .main-tabs, .search-tab {
-    backdrop-filter: blur(var(--blur-intensity)) saturate(180%);
-}
-
-input[type=range] {
-    accent-color: var(--ios-blue);
-    width: 150px;
-}
-
-
-
+.mini-player { position: fixed; bottom: 95px; left: 10px; right: 10px; height: 60px; background: var(--glass-bg); backdrop-filter: blur(20px) saturate(180%); border: 0.5px solid var(--glass-border); border-radius: 12px; display: flex; align-items: center; padding: 0 15px; z-index: 999; }
 .mini-art { width: 44px; height: 44px; background: #333; border-radius: 6px; margin-right: 12px; }
 .mini-title { font-size: 15px; font-weight: 500; }
 .mini-sub { font-size: 13px; color: var(--secondary-text); }
 .mini-controls { display: flex; align-items: center; gap: 20px; margin-left: auto; }
 .mini-icon { width: 24px; height: 24px; cursor: pointer; opacity: 0.9; }
 
-.main-tabs, .search-tab { 
-    background: rgba(40, 40, 40, 0.4); /* Matches mini-player */
-    backdrop-filter: blur(30px) saturate(180%); 
-    border: 0.5px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 36px; 
-}
-
-
+.main-tabs, .search-tab { background: var(--glass-bg); backdrop-filter: blur(20px) saturate(180%); border: 0.5px solid var(--glass-border); border-radius: 36px; }
 #bottom-nav { position: fixed; bottom: 20px; left: 10px; right: 10px; display: flex; gap: 10px; z-index: 1000; height: 70px; }
 .main-tabs { flex: 1; display: flex; position: relative; padding: 0 10px; }
 .search-tab { padding: 10px 20px; display: flex; align-items: center; }
