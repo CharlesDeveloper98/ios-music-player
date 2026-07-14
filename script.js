@@ -48,7 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('last-name').value = lName;
 
     updateAllProfileUI(savedPic, fName, lName);
+
+
+         const savedBlur = localStorage.getItem('blur-intensity') || '30px';
+    document.documentElement.style.setProperty('--blur-intensity', savedBlur);
     
+    const slider = document.getElementById('blur-slider');
+    if (slider) {
+        slider.value = parseInt(savedBlur);
+    }
+});
+
     lucide.createIcons();
 });
 
@@ -391,6 +401,13 @@ function resetLibraryOrder() {
     toggleEditMode(false);
 }
 
+
+// Update the blur dynamically
+function updateBlur(value) {
+    const intensity = `${value}px`;
+    document.documentElement.style.setProperty('--blur-intensity', intensity);
+    localStorage.setItem('blur-intensity', intensity);
+}
 
 
 
