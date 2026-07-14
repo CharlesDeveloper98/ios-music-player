@@ -49,24 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateAllProfileUI(savedPic, fName, lName);
     
-    // 4. Initialize Blur Intensity
-    const savedBlur = localStorage.getItem('blur-intensity') || '30px';
-    document.documentElement.style.setProperty('--blur-intensity', savedBlur);
-    
-    const slider = document.getElementById('blur-slider');
-    if (slider) {
-        slider.value = parseInt(savedBlur);
-    }
-    
-    // 5. Initialize Theme
-    const savedTheme = localStorage.getItem('user-theme') || 'system';
-    setTheme(savedTheme);
-    
     lucide.createIcons();
 });
-
-
-
 
 // --- UI Updates ---
 function updateAllProfileUI(imageData, firstName, lastName) {
@@ -357,7 +341,12 @@ function applySystemTheme() {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
 }
 
-
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('user-theme') || 'system';
+    setTheme(savedTheme);
+    // ... existing init code ...
+});
 
 function updateUIActiveState(activeTheme) {
     // Logic to highlight the checkmark in the UI modal
@@ -402,14 +391,10 @@ function resetLibraryOrder() {
     toggleEditMode(false);
 }
 
-
-// Update the blur dynamically
 function updateBlur(value) {
-    const intensity = `${value}px`;
-    document.documentElement.style.setProperty('--blur-intensity', intensity);
-    localStorage.setItem('blur-intensity', intensity);
+    // Apply the blur value to a CSS variable on the root
+    document.documentElement.style.setProperty('--dynamic-blur', `${value}px`);
 }
-
 
 
 function previewFile(input) {
