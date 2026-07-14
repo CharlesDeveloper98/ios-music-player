@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slider = document.getElementById('blur-slider');
     if (slider) {
         slider.value = parseInt(savedBlur);
-    }
+
 
 
     lucide.createIcons();
