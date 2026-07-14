@@ -49,18 +49,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateAllProfileUI(savedPic, fName, lName);
 
-
-         const savedBlur = localStorage.getItem('blur-intensity') || '30px';
+    // 4. Initialize Blur Intensity
+    const savedBlur = localStorage.getItem('blur-intensity') || '30px';
     document.documentElement.style.setProperty('--blur-intensity', savedBlur);
     
     const slider = document.getElementById('blur-slider');
     if (slider) {
         slider.value = parseInt(savedBlur);
-
-
-
+    }
+    
+    // 5. Initialize Theme
+    const savedTheme = localStorage.getItem('user-theme') || 'system';
+    setTheme(savedTheme);
+    
     lucide.createIcons();
 });
+
 
 // --- UI Updates ---
 function updateAllProfileUI(imageData, firstName, lastName) {
