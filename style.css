@@ -31,6 +31,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     --glass-bg: rgba(40, 40, 40, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
     --secondary-text: #8e8e93;
+    --blur-intensity: 30px; /* Default value */
 }
 
 [data-theme='light'] {
@@ -41,6 +42,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     --glass-bg: rgba(253, 253, 253, 0.7);
     --glass-border: rgba(0, 0, 0, 0.1);
     --secondary-text: #3c3c43;
+    --blur-intensity: 30px; /* Default value */
 }
 
 
@@ -650,6 +652,17 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     padding: 0 15px; 
     z-index: 999; 
 }
+
+/* Update these components to use the variable */
+.mini-player, .main-tabs, .search-tab {
+    backdrop-filter: blur(var(--blur-intensity)) saturate(180%);
+}
+
+input[type=range] {
+    accent-color: var(--ios-blue);
+    width: 150px;
+}
+
 
 
 .mini-art { width: 44px; height: 44px; background: #333; border-radius: 6px; margin-right: 12px; }
