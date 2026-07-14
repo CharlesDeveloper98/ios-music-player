@@ -136,7 +136,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     
     /* Native iOS Styling */
     background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(25px) saturate(180%);
+    backdrop-filter: blur(var(--dynamic-blur, 20px)) saturate(180%);
     border: 0.5px solid rgba(255, 255, 255, 0.2);
     border-radius: 26px;
     padding: 4px;
@@ -477,7 +477,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 .ios-alert-box {
     width: 270px;
     background: rgba(30, 30, 30, 0.85);
-    backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(var(--dynamic-blur, 20px)) saturate(180%);
     border-radius: 14px;
     text-align: left; /* Shifted to left to match system */
     color: white;
@@ -579,7 +579,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 /* Liquid glass container for reset button */
 .glass-btn-reset {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--dynamic-blur, 20px)) saturate(180%);
     border-radius: 18px;
     padding: 6px 12px;
     margin-right: 10px;
