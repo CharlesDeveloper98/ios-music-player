@@ -48,6 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('last-name').value = lName;
 
     updateAllProfileUI(savedPic, fName, lName);
+
+
+    // 1. Get saved blur or default to 20
+    const savedBlur = localStorage.getItem('userBlurIntensity') || '20';
+    
+    // 2. Set the CSS variable
+    document.documentElement.style.setProperty('--dynamic-blur', `${savedBlur}px`);
+    
+    // 3. Set the slider position if it exists on the current page
+    const blurSlider = document.getElementById('blur-slider');
+    if (blurSlider) {
+        blurSlider.value = savedBlur;
+    }
     
     lucide.createIcons();
 });
@@ -392,8 +405,11 @@ function resetLibraryOrder() {
 }
 
 function updateBlur(value) {
-    // Apply the blur value to a CSS variable on the root
+    // 1. Update the CSS variable
     document.documentElement.style.setProperty('--dynamic-blur', `${value}px`);
+    
+    // 2. Save the value to LocalStorage
+    localStorage.setItem('userBlurIntensity', value);
 }
 
 
