@@ -50,6 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAllProfileUI(savedPic, fName, lName);
 
 
+  
+    const savedTheme = localStorage.getItem('user-theme') || 'system';
+    setTheme(savedTheme);
+
+
     // 1. Get saved blur or default to 20
     const savedBlur = localStorage.getItem('userBlurIntensity') || '20';
     
@@ -64,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     lucide.createIcons();
 });
+
+
+ 
 
 // --- UI Updates ---
 function updateAllProfileUI(imageData, firstName, lastName) {
@@ -354,12 +362,6 @@ function applySystemTheme() {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
 }
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('user-theme') || 'system';
-    setTheme(savedTheme);
-    // ... existing init code ...
-});
 
 function updateUIActiveState(activeTheme) {
     // Logic to highlight the checkmark in the UI modal
