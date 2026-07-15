@@ -653,8 +653,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     
-    /* Semi-transparent background to enhance the blur visibility */
-    background: rgba(0, 0, 0, 0.3); 
+    
     
     /* Ensure it doesn't block clicks */
     pointer-events: none; 
