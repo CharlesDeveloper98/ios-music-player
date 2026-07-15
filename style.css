@@ -642,7 +642,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     left: 0;
     width: 100%;
     /* This height covers the Mini Player and the gap to the Nav */
-    height: 180px; 
+    height: 380px; 
     
     /* Transparent at the top (where content is visible), 
        solid background color at the bottom to hide content */
@@ -659,11 +659,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     z-index: 500; 
 }
 
-/* Ensure #content allows the mask to be fixed relative to the viewport */
-#content {
-    position: relative;
-    padding-bottom: 200px; /* Ensure you can scroll past the blur */
-}
+
 
 
 
