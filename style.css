@@ -648,7 +648,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     background: linear-gradient(
         to bottom, 
         rgba(0, 0, 0, 0) 0%, 
-        var(--bg-color) 70%
+        var(--bg-color) 92%
     );
   
     width: 100%;
