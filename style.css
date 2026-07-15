@@ -645,7 +645,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     height: 150px; 
     
     /* 1. The Glass Effect */
-    background: var(--glass-bg);
+    background: var(--bg-color);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     
