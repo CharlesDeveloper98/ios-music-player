@@ -642,7 +642,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     left: 0;
     width: 100%;
     /* Set height to cover the area from the middle to the bottom */
-    height: 125px; 
+    height: 145px; 
     
     /* 1. The Glass Effect */
     background: rgba(0, 0, 0, 0.4); /* Subtle semi-transparent base */
