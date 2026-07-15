@@ -29,6 +29,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     --modal-bg: #161616;
     --card-bg: #3c3c3c;
     --glass-bg: rgba(40, 40, 40, 0.7);
+    --bg-subtle: rgba(0, 0, 0, 0.4);
     --glass-border: rgba(255, 255, 255, 0.1);
     --secondary-text: #8e8e93;
 }
@@ -39,6 +40,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     --modal-bg: #f2f1f6;
     --card-bg: #ffffff;
     --glass-bg: rgba(253, 253, 253, 0.7);
+    --bg-subtle: rgba(255, 255, 255, 0.4);
     --glass-border: rgba(0, 0, 0, 0.1);
     --secondary-text: #3c3c43;
 }
@@ -645,7 +647,7 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     height: 150px; 
     
     /* 1. The Glass Effect */
-    background: var(--bg-color);
+    background: var(--bg-subtle);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     
