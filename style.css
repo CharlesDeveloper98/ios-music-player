@@ -634,6 +634,38 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 }
 
 
+/* --- Bottom Scroll Fade-Out Mask --- */
+#content::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* This height covers the Mini Player and the gap to the Nav */
+    height: 180px; 
+    
+    /* Transparent at the top (where content is visible), 
+       solid background color at the bottom to hide content */
+    background: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 0) 0%, 
+        var(--bg-color) 70%
+    );
+    
+    /* Ensure it doesn't block clicks to the mini-player or nav */
+    pointer-events: none; 
+    
+    /* Ensure it sits above the list but below the Mini Player */
+    z-index: 500; 
+}
+
+/* Ensure #content allows the mask to be fixed relative to the viewport */
+#content {
+    position: relative;
+    padding-bottom: 200px; /* Ensure you can scroll past the blur */
+}
+
+
 
 
 /* Ensure profile images are always circular */
