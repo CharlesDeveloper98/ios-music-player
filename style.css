@@ -643,8 +643,13 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     bottom: 0;
     left: 0;
 
-  /* Subtle background tint that respects the theme */
-    background: var(--glass-bg); 
+  /* Transparent at the top (where content is visible), 
+       solid background color at the bottom to hide content */
+    background: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 0) 0%, 
+        var(--bg-color) 70%
+    );
   
     width: 100%;
     height: 125px; 
