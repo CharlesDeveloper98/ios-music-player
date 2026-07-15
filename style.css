@@ -634,30 +634,31 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 }
 
 
-/* --- Bottom Scroll Fade-Out Mask --- */
+/* --- Bottom "Glass" Blur Zone --- */
 #content::after {
     content: '';
     position: fixed;
+    /* Start from the middle of the Mini Player */
+    /* Mini player is at bottom: 95px, height: 60px. Middle is at 95 + 30 = 125px from bottom */
     bottom: 0;
     left: 0;
     width: 100%;
-    /* This height covers the Mini Player and the gap to the Nav */
-    height: 380px; 
+    height: 125px; 
     
-    /* Transparent at the top (where content is visible), 
-       solid background color at the bottom to hide content */
-    background: linear-gradient(
-        to bottom, 
-        rgba(0, 0, 0, 0) 0%, 
-        var(--bg-color) 70%
-    );
+    /* Strong Blur Effect */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     
-    /* Ensure it doesn't block clicks to the mini-player or nav */
+    /* Semi-transparent background to enhance the blur visibility */
+    background: rgba(0, 0, 0, 0.3); 
+    
+    /* Ensure it doesn't block clicks */
     pointer-events: none; 
     
-    /* Ensure it sits above the list but below the Mini Player */
-    z-index: 500; 
+    /* Place it behind the player/nav but above the list */
+    z-index: 998; 
 }
+
 
 
 
