@@ -638,48 +638,35 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 #content::after {
     content: '';
     position: fixed;
-    /* Start from the middle of the Mini Player */
-    /* Mini player is at bottom: 95px, height: 60px. Middle is at 95 + 30 = 125px from bottom */
     bottom: 0;
     left: 0;
-
-  /* Transparent at the top (where content is visible), 
-       solid background color at the bottom to hide content */
-    background: linear-gradient(
-        to bottom, 
-        rgba(0, 0, 0, 0) 0%, 
-        var(--bg-color) 60%
-    );
-  
     width: 100%;
+    /* Set height to cover the area from the middle to the bottom */
     height: 125px; 
     
-    /* Strong Blur Effect */
+    /* 1. The Glass Effect */
+    background: rgba(0, 0, 0, 0.4); /* Subtle semi-transparent base */
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     
-
-
-    The mask creates the "fade" from transparent to solid blur */
+    /* 2. The Fading Mask */
+    /* This starts fading in at 0% (top of this element) 
+       and becomes fully opaque at 50% (the middle) */
     -webkit-mask-image: linear-gradient(
         to bottom, 
-        rgba(0, 0, 0, 0) 20%,   /* Fully transparent at the top */
-        rgba(0, 0, 0, 1) 40%   /* Becomes fully blurred/solid by the middle */
+        rgba(0, 0, 0, 0) 0%,   
+        rgba(0, 0, 0, 1) 50%   
     );
     mask-image: linear-gradient(
         to bottom, 
-        rgba(0, 0, 0, 0) 20%, 
-        rgba(0, 0, 0, 1) 40%
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 1) 50%
     );
 
-  
-    
-    /* Ensure it doesn't block clicks */
     pointer-events: none; 
-    
-    /* Place it behind the player/nav but above the list */
     z-index: 998; 
 }
+
 
 
 
