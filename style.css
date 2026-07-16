@@ -1,11 +1,6 @@
 body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-family: 'MyCustomFont', sans-serif; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; 
 
 
-padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    background-color: var(--bg-color); /* Matches your app theme */
-
-
 
 background: var(--bg-color); color: var(--text-color); transition: background 0.3s, color 0.3s; }
 .settings-modal { background: var(--modal-bg); }
@@ -27,8 +22,6 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 :root {
     --ios-red: #ff3b30;
     --ios-blue: #0a84ff;
-    --status-bar-height: env(safe-area-inset-top);
-
     
     /* Default Dark Theme Variables */
     --bg-color: #000000;
@@ -65,7 +58,6 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    padding-top: calc(20px + env(safe-area-inset-top));
     padding: 20px 20px 10px 20px; 
 }
 
@@ -715,7 +707,7 @@ backdrop-filter: blur(20px) saturate(180%);
 .profile-icon { width: 24px; height: 24px; }
 .profile-img { width: 100%; height: 100%; object-fit: cover; }
 
-.mini-player { position: fixed; bottom: calc(95px + env(safe-area-inset-bottom)); left: 10px; right: 10px; height: 60px; background: var(--glass-bg); backdrop-filter: blur(var(--dynamic-blur, 20px)) saturate(180%); border: 0.5px solid var(--glass-border); border-radius: 12px; display: flex; align-items: center; padding: 0 15px; z-index: 999; }
+.mini-player { position: fixed; bottom: 95px; left: 10px; right: 10px; height: 60px; background: var(--glass-bg); backdrop-filter: blur(var(--dynamic-blur, 20px)) saturate(180%); border: 0.5px solid var(--glass-border); border-radius: 12px; display: flex; align-items: center; padding: 0 15px; z-index: 999; }
 .mini-art { width: 44px; height: 44px; background: #333; border-radius: 6px; margin-right: 12px; }
 .mini-title { font-size: 15px; font-weight: 500; }
 .mini-sub { font-size: 13px; color: var(--secondary-text); }
@@ -723,8 +715,7 @@ backdrop-filter: blur(20px) saturate(180%);
 .mini-icon { width: 24px; height: 24px; cursor: pointer; opacity: 0.9; }
 
 .main-tabs, .search-tab { background: var(--glass-bg); backdrop-filter: blur(var(--dynamic-blur, 20px)) saturate(180%); border: 0.5px solid var(--glass-border); border-radius: 36px; }
-#bottom-nav { position: fixed; bottom: 20px; left: 10px; right: 10px; display: flex; gap: 10px; z-index: 1000; padding-bottom: env(safe-area-inset-bottom);
-    height: calc(70px + env(safe-area-inset-bottom)); }
+#bottom-nav { position: fixed; bottom: 20px; left: 10px; right: 10px; display: flex; gap: 10px; z-index: 1000; height: 70px; }
 .main-tabs { flex: 1; display: flex; position: relative; padding: 0 10px; }
 .search-tab { padding: 10px 20px; display: flex; align-items: center; }
 .nav-item { flex: 1; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--secondary-text); cursor: pointer; }
