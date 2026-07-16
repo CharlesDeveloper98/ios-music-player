@@ -132,6 +132,11 @@ function openDetail(title, iconName) {
     
     const iconElement = document.getElementById('empty-icon');
     iconElement.setAttribute('data-lucide', iconName);
+
+    if (title === 'Songs') {
+        renderSongsList(); // Populate list when opening
+    }
+    
     lucide.createIcons();
 }
 
@@ -421,6 +426,48 @@ function updateBlur(value) {
     // 2. Save the value to LocalStorage
     localStorage.setItem('userBlurIntensity', value);
 }
+
+
+let musicLibrary = [];
+const audioPlayer = new Audio();
+
+function handleMusicFiles(input) {
+    const files = Array.from(input.files).filter(file => file.type.startsWith('audio/'));
+    musicLibrary = files; // Store files
+    renderSongsList();
+    closeSettings();
+}
+
+function renderSongsList() {
+    const songPage = document.getElementById('page-detail');
+    // Clear previous items (assuming you add a container for list items)
+    let listContainer = document.getElementById('songs-list-container');
+    if (!listContainer) {
+        listContainer = document.createElement('div');
+        listContainer.id = 'songs-list-container';
+        songPage.appendChild(listContainer);
+    }
+    listContainer.innerHTML = ''; 
+
+    musicLibrary.forEach((file, index) => {
+        const item = document.createElement('div');
+        item.className = 'menu-item';
+        item.innerHTML = `<span>${file.name}</span>`;
+        item.onclick = () => playSong(file);
+        listContainer.appendChild(item);
+    });
+}
+
+function playSong(file) {
+    const url = URL.createObjectURL(file);
+    audioPlayer.src = url;
+    audioPlayer.play();
+    
+    // Update mini-player UI
+    document.querySelector('.mini-title').innerText = file.name;
+    document.querySelector('.mini-sub').innerText = "Playing Now";
+}
+
 
 
 function previewFile(input) {
