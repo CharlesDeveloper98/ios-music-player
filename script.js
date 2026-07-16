@@ -411,27 +411,37 @@ function resetLibraryOrder() {
 
 const blurSlider = document.getElementById('blur-slider');
 const blurBubble = document.getElementById('blur-value-bubble');
-const sliderWrapper = document.querySelector('.slider-wrapper');
 
 function showValue() {
-    sliderWrapper.classList.add('active');
-    blurBubble.innerText = blurSlider.value;
+    blurBubble.style.opacity = "1";
 }
 
 function hideValue() {
-    sliderWrapper.classList.remove('active');
+    blurBubble.style.opacity = "0";
 }
 
 function updateBlur(value) {
-    // Update the bubble text dynamically while dragging
+    // 1. Update text
     blurBubble.innerText = value;
+
+    // 2. Position the bubble based on slider percentage
+    const percent = (value - blurSlider.min) / (blurSlider.max - blurSlider.min);
+    blurBubble.style.left = `calc(${percent * 100}% - 10px)`;
+
+    // 3. Apply the blur to your app
+    // Ensure this matches the variable used in your main glass-effect CSS
+    document.documentElement.style.setProperty('--dynamic-blur', `${value / 2}px`); 
     
-    // 1. Update the CSS variable
-    document.documentElement.style.setProperty('--dynamic-blur', `${value}px`);
-    
-    // 2. Save the value to LocalStorage
     localStorage.setItem('userBlurIntensity', value);
 }
+
+// Initialize on load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedBlur = localStorage.getItem('userBlurIntensity') || '20';
+    blurSlider.value = savedBlur;
+    updateBlur(savedBlur);
+});
+
 
 
 
