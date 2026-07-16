@@ -1,17 +1,46 @@
-body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-family: 'MyCustomFont', sans-serif; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; 
+body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-family: 'MyCustomFont', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; 
 
 
 
 background: var(--bg-color); color: var(--text-color); transition: background 0.3s, color 0.3s; }
 .settings-modal { background: var(--modal-bg); }
-.settings-card { background: var(--card-bg);
+.settings-card { background: var(--card-bg);              
                }
 
 
-@font-face { font-family: 'MyCustomFont'; src: url('fonts/regular.otf') format('opentype'); font-weight: 400; }
-@font-face { font-family: 'MyCustomFont'; src: url('fonts/medium.otf') format('opentype'); font-weight: 500; }
-@font-face { font-family: 'MyCustomFont'; src: url('fonts/semibold.otf') format('opentype'); font-weight: 600; }
-@font-face { font-family: 'MyCustomFont'; src: url('fonts/bold.otf') format('opentype'); font-weight: 700; }
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('fonts/regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; /* Improves loading performance */
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('fonts/medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('fonts/semibold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('fonts/bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 
 .page-title, .header-row h1 { font-weight: 700; font-size: 34px; margin: 0; }
 .section-title { font-weight: 600; padding: 0 20px; }
