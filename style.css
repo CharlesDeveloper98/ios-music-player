@@ -1,6 +1,16 @@
 body { margin: 0; background: #000; color: #fff; padding-bottom: 120px; font-family: 'MyCustomFont', sans-serif; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; 
 
 
+/* Use env() variables to respect iOS safe areas */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 120px);
+    
+    /* Ensure the background color fills the whole screen */
+    background-color: var(--bg-color);
+    height: 100%;
+    overflow-y: auto;
+      
+      
 
 background: var(--bg-color); color: var(--text-color); transition: background 0.3s, color 0.3s; }
 .settings-modal { background: var(--modal-bg); }
@@ -715,7 +725,7 @@ backdrop-filter: blur(20px) saturate(180%);
 .mini-icon { width: 24px; height: 24px; cursor: pointer; opacity: 0.9; }
 
 .main-tabs, .search-tab { background: var(--glass-bg); backdrop-filter: blur(var(--dynamic-blur, 20px)) saturate(180%); border: 0.5px solid var(--glass-border); border-radius: 36px; }
-#bottom-nav { position: fixed; bottom: 20px; left: 10px; right: 10px; display: flex; gap: 10px; z-index: 1000; height: 70px; }
+#bottom-nav { position: fixed; bottom: calc(env(safe-area-inset-bottom) + 20px); left: 10px; right: 10px; display: flex; gap: 10px; z-index: 1000; height: 70px; }
 .main-tabs { flex: 1; display: flex; position: relative; padding: 0 10px; }
 .search-tab { padding: 10px 20px; display: flex; align-items: center; }
 .nav-item { flex: 1; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--secondary-text); cursor: pointer; }
