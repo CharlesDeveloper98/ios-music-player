@@ -57,8 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Get saved blur or default to 20
     const savedBlur = localStorage.getItem('userBlurIntensity') || '20';
-    const display = document.getElementById('blur-value-display');
-    if (display) display.innerText = savedBlur;
     
     // 2. Set the CSS variable
     document.documentElement.style.setProperty('--dynamic-blur', `${savedBlur}px`);
@@ -408,19 +406,34 @@ function resetLibraryOrder() {
     toggleEditMode(false);
 }
 
+
+
+
+const blurSlider = document.getElementById('blur-slider');
+const blurBubble = document.getElementById('blur-value-bubble');
+const sliderWrapper = document.querySelector('.slider-wrapper');
+
+function showValue() {
+    sliderWrapper.classList.add('active');
+    blurBubble.innerText = blurSlider.value;
+}
+
+function hideValue() {
+    sliderWrapper.classList.remove('active');
+}
+
 function updateBlur(value) {
+    // Update the bubble text dynamically while dragging
+    blurBubble.innerText = value;
+    
     // 1. Update the CSS variable
     document.documentElement.style.setProperty('--dynamic-blur', `${value}px`);
     
-    // 2. Update the text display
-    const display = document.getElementById('blur-value-display');
-    if (display) {
-        display.innerText = value;
-    }
-    
-    // 3. Save to LocalStorage
+    // 2. Save the value to LocalStorage
     localStorage.setItem('userBlurIntensity', value);
 }
+
+
 
 
 function previewFile(input) {
