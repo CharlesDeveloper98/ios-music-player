@@ -340,10 +340,14 @@
     <div class="section-label" style="margin-top: 30px;">Effects</div>
 <div class="settings-card">
     <div class="slider-container">
-        <label>Blur Intensity</label>
-        <input type="range" id="blur-slider" min="0" max="40" value="20" oninput="updateBlur(this.value)">
+        <div class="slider-header">
+            <label>Blur Intensity</label>
+            <span id="blur-value-display">20</span>
+        </div>
+        <input type="range" id="blur-slider" min="0" max="100" value="20" oninput="updateBlur(this.value)">
     </div>
 </div>
+
 
 
 
