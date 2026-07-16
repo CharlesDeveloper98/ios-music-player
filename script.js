@@ -66,6 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (blurSlider) {
         blurSlider.value = savedBlur;
     }
+
+    if (document.fonts) {
+        document.fonts.ready.then(() => {
+            console.log("Custom fonts are loaded and ready.");
+            document.body.classList.add('fonts-loaded');
+        });
+    }
+    
     
     lucide.createIcons();
 });
