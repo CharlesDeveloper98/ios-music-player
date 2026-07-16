@@ -602,28 +602,43 @@ background: var(--bg-color); color: var(--text-color); transition: background 0.
 }
 
 
-.slider-container {
-    padding: 16px 0;
+.slider-header {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+#blur-value-display {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ios-blue);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show number when slider is active */
+#blur-slider:active + #blur-value-display,
+#blur-slider:active ~ #blur-value-display {
+    opacity: 1;
 }
 
 #blur-slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 8px;
+    height: 8px; /* Normal height */
     background: #3c3c3c;
     border-radius: 4px;
     outline: none;
     transition: height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* The "Liquid" Expansion Effect */
+/* Expansion animation */
 #blur-slider:active {
-    height: 16px;
-    border-radius: 8px;
+  height: 12px;
+  border-radius: 8px;
 }
+
 
 #blur-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
