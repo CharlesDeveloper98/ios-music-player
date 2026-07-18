@@ -438,25 +438,48 @@ function handleMusicFiles(input) {
     closeSettings();
 }
 
-function renderSongsList() {
-    const songPage = document.getElementById('page-detail');
-    // Clear previous items (assuming you add a container for list items)
-    let listContainer = document.getElementById('songs-list-container');
-    if (!listContainer) {
-        listContainer = document.createElement('div');
-        listContainer.id = 'songs-list-container';
-        songPage.appendChild(listContainer);
-    }
-    listContainer.innerHTML = ''; 
 
-    musicLibrary.forEach((file, index) => {
+
+
+function renderSongsList() {
+    const listContainer = document.getElementById('songs-list-container');
+    listContainer.innerHTML = '';
+    
+    // Sort songs alphabetically
+    const sortedSongs = musicLibrary.sort((a, b) => a.name.localeCompare(b.name));
+    
+    let currentLetter = '';
+    
+    sortedSongs.forEach(file => {
+        const firstLetter = file.name[0].toUpperCase();
+        
+        // Render Alphabet Header
+        if (firstLetter !== currentLetter) {
+            currentLetter = firstLetter;
+            const header = document.createElement('div');
+            header.className = 'alpha-header';
+            header.innerText = currentLetter;
+            listContainer.appendChild(header);
+        }
+        
+        // Render Song Item
         const item = document.createElement('div');
-        item.className = 'menu-item';
-        item.innerHTML = `<span>${file.name}</span>`;
-        item.onclick = () => playSong(file);
+        item.className = 'song-item';
+        item.innerHTML = `
+            <img src="placeholder.jpg" class="song-art">
+            <div class="song-info">
+                <div class="title">${file.name}</div>
+                <div class="artist">Unknown Artist</div>
+            </div>
+            <i data-lucide="more-horizontal"></i>
+        `;
         listContainer.appendChild(item);
     });
+    lucide.createIcons();
 }
+
+
+
 
 function playSong(file) {
     const url = URL.createObjectURL(file);
