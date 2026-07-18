@@ -154,22 +154,30 @@
 
 
         <div id="page-detail" class="page">
-            <div class="header-row">
-                <div class="back-btn" onclick="backToLibrary()">
-                    <i data-lucide="chevron-left"></i>
-                </div>
-                <div class="header-right-group">
-                    <i data-lucide="plus"></i> 
-                    <i data-lucide="list-filter"></i>
-                    <i data-lucide="more-horizontal"></i>
-                </div>
-            </div>
-            <h1 class="page-title" id="detail-title">Title</h1>
-            <div class="empty-state">
-                <i data-lucide="music" id="empty-icon"></i>
-                <p id="empty-text">Content will appear here.</p>
-            </div>
+    <div class="header-row">
+        <div class="back-btn" onclick="backToLibrary()">
+            <i data-lucide="chevron-left"></i>
         </div>
+        <div class="header-right-group">
+            <i data-lucide="more-horizontal"></i>
+        </div>
+    </div>
+    
+    <h1 class="page-title" id="detail-title">Songs</h1>
+    
+    <!-- Action Buttons -->
+    <div class="song-actions">
+        <div class="glass-btn"><i data-lucide="play"></i> Play</div>
+        <div class="glass-btn"><i data-lucide="shuffle"></i> Shuffle</div>
+    </div>
+
+    <!-- Scrollable Song List -->
+    <div id="songs-list-container" class="songs-list">
+        <!-- Songs will be rendered here -->
+    </div>
+</div>
+
+            
 
         <div id="page-search" class="page">
             <div class="header-row">
