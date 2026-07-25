@@ -845,19 +845,6 @@ const worldLanguages = [
     "Swedish (Svenska)", "Thai (ไทย)", "Turkish (Türkçe)", "Ukrainian (Українська)", "Vietnamese (Tiếng Việt)"
 ];
 
-const worldLanguages = [
-    "English (United States)", "English (United Kingdom)", "English (Australia)", "English (Canada)",
-    "Spanish (España)", "Spanish (Latinoamérica)", "French (France)", "French (Canada)",
-    "German (Deutschland)", "Arabic (العربية)", "Armenian (Հայերեն)", "Asturian (Asturianu)",
-    "Azerbaijani (Azərbaycan)", "Bangla (বাংলাদেশ)", "Bulgarian (България)", "Chinese (简体中文)",
-    "Chinese (繁體中文)", "Croatian (Hrvatski)", "Czech (Čeština)", "Danish (Dansk)",
-    "Dutch (Nederlands)", "Estonian (Eesti)", "Filipino", "Finnish (Suomi)", "Greek (Ελληνικά)",
-    "Hebrew (עברית)", "Hindi (हिन्दी)", "Hungarian (Magyar)", "Indonesian (Bahasa Indonesia)",
-    "Italian (Italiano)", "Japanese (日本語)", "Korean (한국어)", "Malay (Bahasa Melayu)",
-    "Norwegian (Norsk)", "Polish (Polski)", "Portuguese (Brasil)", "Portuguese (Portugal)",
-    "Romanian (Română)", "Russian (Русский)", "Serbian (Српски)", "Slovak (Slovenčina)",
-    "Swedish (Svenska)", "Thai (ไทย)", "Turkish (Türkçe)", "Ukrainian (Українська)", "Vietnamese (Tiếng Việt)"
-];
 
 let currentSelectedLanguage = localStorage.getItem('appLanguage') || "English (United States)";
 
