@@ -1,3 +1,10 @@
+document.addEventListener('deviceready', function() {
+    // Your app code that interacts with Cordova plugins goes here
+    console.log('Cordova is ready, running offline-safe mode.');
+}, false);
+
+
+
 let tempProfilePic = null; 
 
 const translations = {
