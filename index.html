@@ -13,29 +13,24 @@
     <div id="content">
         <div id="page-home" class="page active">
             <div class="header-row">
-                <h1 class="page-title">Home</h1>
+                <h1 class="page-title" data-i18n="home">Home</h1>
                 <div class="profile-container" onclick="openSettings()">
-    <i data-lucide="user"></i>
-</div>
-
+                    <i data-lucide="user"></i>
+                </div>
             </div>
         </div>
 
         <div id="page-new" class="page">
             <div class="header-row">
-                <h1>New</h1>
+                <h1 data-i18n="new">New</h1>
             </div>
         </div>
 
         <div id="page-library" class="page">
             <div class="header-row">
-                <h1 class="page-title">Library</h1>
-    
-
-
-
+                <h1 class="page-title" data-i18n="library">Library</h1>
           <div id="done-container" class="done-container">
-    <div class="glass-btn-reset" onclick="showResetPopup()">Reset Order</div>
+    <div class="glass-btn-reset" onclick="showResetPopup()" data-i18n="reset_order">Reset Order</div>
     <div onclick="toggleEditMode(false)">
         <i data-lucide="check"></i>
     </div>
@@ -43,27 +38,23 @@
 
 <div id="reset-alert" class="ios-alert-overlay" style="display:none;">
     <div class="ios-alert-box">
-        <div class="ios-alert-title">Reset Library?</div>
-        <div class="ios-alert-text">Do you want to reset the library order to its default layout?</div>
+        <div class="ios-alert-title" data-i18n="reset_library">Reset Library?</div>
+        <div class="ios-alert-text" data-i18n="reset_library_text">Do you want to reset the library order to its default layout?</div>
         <div class="ios-alert-buttons">
-            <div class="ios-alert-btn" onclick="closeResetPopup()">No</div>
-            <div class="ios-alert-btn ios-alert-btn-destructive" onclick="resetLibraryOrder()">Yes</div>
+            <div class="ios-alert-btn" onclick="closeResetPopup()" data-i18n="no">No</div>
+            <div class="ios-alert-btn ios-alert-btn-destructive" onclick="resetLibraryOrder()" data-i18n="yes">Yes</div>
         </div>
     </div>
 </div>
 
-
-                
-    
     <div class="header-right-group" id="library-actions">
                     <div class="glass-header-actions" id="header-glass">
                         <i data-lucide="library-big"></i>
                         <i data-lucide="more-horizontal" class="clickable-icon" onclick="togglePopup()"></i>
                     </div>
                     <div class="profile-container" onclick="openSettings()">
-    <i data-lucide="user"></i>
-</div>
-
+                        <i data-lucide="user"></i>
+                    </div>
                 </div>
             </div>
 
@@ -73,7 +64,7 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="music-4" class="main-icon"></i>
-        <span>Playlists</span>
+        <span data-i18n="playlists">Playlists</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
@@ -82,7 +73,7 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="mic-2" class="main-icon"></i>
-        <span>Artists</span>
+        <span data-i18n="artists">Artists</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
@@ -91,7 +82,7 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="album" class="main-icon"></i>
-        <span>Albums</span>
+        <span data-i18n="albums">Albums</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
@@ -100,7 +91,7 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="music" class="main-icon"></i>
-        <span>Songs</span>
+        <span data-i18n="songs">Songs</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
@@ -109,7 +100,7 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="tv" class="main-icon"></i>
-        <span>TV & Movies</span>
+        <span data-i18n="tv_movies">TV & Movies</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
@@ -118,7 +109,7 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="monitor-play" class="main-icon"></i>
-        <span>Music Videos</span>
+        <span data-i18n="music_videos">Music Videos</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
@@ -127,7 +118,7 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="guitar" class="main-icon"></i>
-        <span>Genres</span>
+        <span data-i18n="genres">Genres</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
@@ -136,7 +127,7 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="package" class="main-icon"></i>
-        <span>Compilations</span>
+        <span data-i18n="compilations">Compilations</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
@@ -145,13 +136,11 @@
             <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
         </div>
         <i data-lucide="music-2" class="main-icon"></i>
-        <span>Composers</span>
+        <span data-i18n="composers">Composers</span>
         <i data-lucide="menu" class="reorder-handle"></i>
         <i data-lucide="chevron-right" class="nav-arrow"></i>
     </div>
 </div>
-
-
 
         <div id="page-detail" class="page">
     <div class="header-row">
@@ -162,26 +151,17 @@
             <i data-lucide="more-horizontal"></i>
         </div>
     </div>
-    
     <h1 class="page-title" id="detail-title">Songs</h1>
-    
-    <!-- Action Buttons -->
     <div class="song-actions">
-        <div class="glass-btn"><i data-lucide="play"></i> Play</div>
-        <div class="glass-btn"><i data-lucide="shuffle"></i> Shuffle</div>
+        <div class="glass-btn"><i data-lucide="play"></i> <span data-i18n="play">Play</span></div>
+        <div class="glass-btn"><i data-lucide="shuffle"></i> <span data-i18n="shuffle">Shuffle</span></div>
     </div>
-
-    <!-- Scrollable Song List -->
-    <div id="songs-list-container" class="songs-list">
-        <!-- Songs will be rendered here -->
-    </div>
+    <div id="songs-list-container" class="songs-list"></div>
 </div>
-
-            
 
         <div id="page-search" class="page">
             <div class="header-row">
-                <h1>Search</h1>
+                <h1 data-i18n="search">Search</h1>
             </div>
         </div>
     </div>
@@ -189,8 +169,8 @@
     <div class="mini-player">
         <div class="mini-art"></div>
         <div class="mini-info">
-            <div class="mini-title">Unknown Art</div>
-            <div class="mini-sub">Not Playing</div>
+            <div class="mini-title" data-i18n="unknown_art">Unknown Art</div>
+            <div class="mini-sub" data-i18n="not_playing">Not Playing</div>
         </div>
         <div class="mini-controls">
             <img src="https://img.icons8.com/ios-filled/24/ffffff/play--v1.png" class="mini-icon" alt="Play">
@@ -202,13 +182,13 @@
         <div class="main-tabs" id="tab-container">
             <div class="tab-selector" id="active-selector"></div>
             <div class="nav-item active" onclick="showPage('page-home', this, 0)">
-                <i data-lucide="home"></i><span class="nav-label">Home</span>
+                <i data-lucide="home"></i><span class="nav-label" data-i18n="home">Home</span>
             </div>
             <div class="nav-item" onclick="showPage('page-new', this, 1)">
-                <i data-lucide="layout-grid"></i><span class="nav-label">New</span>
+                <i data-lucide="layout-grid"></i><span class="nav-label" data-i18n="new">New</span>
             </div>
             <div class="nav-item" onclick="showPage('page-library', this, 2)">
-                <i data-lucide="library"></i><span class="nav-label">Library</span>
+                <i data-lucide="library"></i><span class="nav-label" data-i18n="library">Library</span>
             </div>
         </div>
         <div class="search-tab">
@@ -222,154 +202,169 @@
     <div id="popup-menu" class="popup-menu">
         <div class="popup-item" onclick="toggleEditMode(true)">
             <i data-lucide="check-square"></i>
-            <span>Edit Sections</span>
+            <span data-i18n="edit_sections">Edit Sections</span>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-overlay" class="settings-overlay" onclick="closeSettings()"></div>
+    <div class="settings-modal" id="settings-modal">
+        <div class="settings-header">
+            <h2 data-i18n="settings">Settings</h2>
+            <div class="close-x" onclick="closeSettings()"><i data-lucide="x"></i></div>
+        </div>
+
+        <div class="section-label" data-i18n="profile">Profile</div>
+        <div class="settings-card">
+            <div class="profile-section">
+                <div class="avatar-placeholder"><i data-lucide="user"></i></div>
+                <div class="profile-info">
+                    <div class="title" data-i18n="unknown_id">Unknown ID</div>
+                    <div class="subtitle" data-i18n="account_info">Account Information</div>
+                </div>
+                <i data-lucide="chevron-right" class="nav-arrow"></i>
+            </div>
+            <div class="divider"></div>
+            <div class="edit-section">
+                <div class="badge"><i data-lucide="user"></i></div>
+                <div class="edit-info">
+                    <div class="name-text" data-i18n="enter_details">Enter Details</div>
+                </div>
+                <div class="edit-btn" onclick="openEditProfile()" data-i18n="edit">Edit</div>
+            </div>
+        </div>
+
+        <div class="section-label" data-i18n="appearance">Appearance</div>
+        <div class="settings-card" style="margin-top: 10px;">
+            <div class="profile-section" onclick="openUI()">
+                <div class="avatar-placeholder" style="background:#555;"><i data-lucide="palette"></i></div>
+                <div class="profile-info">
+                    <div class="title" data-i18n="user_interface">User Interface</div>
+                </div>
+                <i data-lucide="chevron-right" class="nav-arrow"></i>
+            </div>
+        </div>
+
+        <!-- LANGUAGES CONTAINER SECTION -->
+        <div class="section-label" data-i18n="languages_header">LANGUAGES</div>
+        <div class="settings-card" style="margin-top: 10px;">
+            <div class="profile-section" onclick="openLanguagesModal()">
+                <div class="avatar-placeholder" style="background:#0a84ff;"><i data-lucide="globe"></i></div>
+                <div class="profile-info">
+                    <div class="title" data-i18n="select_language">Languages</div>
+                    <div class="subtitle" id="current-lang-subtitle">English (United States)</div>
+                </div>
+                <i data-lucide="chevron-right" class="nav-arrow"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-overlay" class="settings-overlay" onclick="closeEditProfile()"></div>
+    <div class="settings-modal edit-profile-modal" id="edit-profile-modal">
+        <div class="settings-header">
+            <div class="close-x" onclick="closeEditProfile()"><i data-lucide="x"></i></div>
+            <h2 data-i18n="edit_profile">Edit Profile</h2>
+            <div class="save-check" onclick="saveProfileChanges()"><i data-lucide="check"></i></div>
+        </div>
+        
+        <div class="profile-pic-picker" onclick="document.getElementById('photo-upload').click()">
+            <div class="avatar-large" id="avatar-preview"><i data-lucide="user"></i></div>
+            <div class="picker-text" data-i18n="choose_photo">Choose Photo</div>
+        </div>
+        <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
+
+        <div class="action-buttons-row">
+            <div class="glass-btn blue-btn" onclick="showCustomAlert('photo')" data-i18n="remove_photo">Remove Photo</div>
+            <div class="glass-btn red-btn" onclick="showCustomAlert('data')" data-i18n="clear_data">Clear Data</div>
+        </div>
+
+        <div id="custom-alert" class="ios-alert-overlay" style="display:none;">
+            <div class="ios-alert-box">
+                <div class="ios-alert-title" id="alert-title">Title</div>
+                <div class="ios-alert-text" id="alert-msg">Message</div>
+                <div class="ios-alert-buttons">
+                    <div class="ios-alert-btn" onclick="closeAlert()" data-i18n="no">No</div>
+                    <div class="ios-alert-btn ios-alert-btn-destructive" id="confirm-btn" data-i18n="yes">Yes</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <input type="text" id="first-name" placeholder="First Name" class="name-input">
+            <div class="divider"></div>
+            <input type="text" id="last-name" placeholder="Last Name" class="name-input">
+        </div>
+    </div>
+
+    <!-- User Interface Modal -->
+    <div id="ui-overlay" class="settings-overlay" onclick="closeUI()"></div>
+    <div class="settings-modal" id="ui-modal">
+        <div class="settings-header">
+            <div class="close-x" onclick="closeUI()"><i data-lucide="x"></i></div>
+            <h2 data-i18n="user_interface">User Interface</h2>
+            <div style="width:30px;"></div>
+        </div>
+
+        <div class="section-label" data-i18n="theme">Theme</div>
+        <div class="settings-card" id="ui-modal-list">
+            <div class="theme-option" data-theme="system" onclick="setTheme('system')">
+                <div class="title" data-i18n="system">System</div>
+                <i data-lucide="check" class="check-icon" style="color:var(--ios-blue);"></i>
+            </div>
+            <div class="divider"></div>
+            <div class="theme-option" data-theme="light" onclick="setTheme('light')">
+                <div class="title" data-i18n="light">Light</div>
+                <i data-lucide="check" class="check-icon" style="display:none; color:var(--ios-blue);"></i>
+            </div>
+            <div class="divider"></div>
+            <div class="theme-option" data-theme="dark" onclick="setTheme('dark')">
+                <div class="title" data-i18n="dark">Dark</div>
+                <i data-lucide="check" class="check-icon" style="display:none; color:var(--ios-blue);"></i>
+            </div>
+        </div>
+
+        <div class="section-label" style="margin-top: 30px;" data-i18n="effects">Effects</div>
+        <div class="settings-card">
+            <div class="slider-container">
+                <label data-i18n="blur_intensity">Blur Intensity</label>
+                <input type="range" id="blur-slider" min="0" max="40" value="20" oninput="updateBlur(this.value)">
+            </div>
+        </div>
+
+        <div class="section-label" data-i18n="music">Music</div>
+        <div class="settings-card" style="margin-top: 10px;">
+            <div class="profile-section" onclick="document.getElementById('music-picker').click()">
+                <div class="avatar-placeholder" style="background:#555;"><i data-lucide="folder-music"></i></div>
+                <div class="profile-info">
+                    <div class="title" data-i18n="browse_music">Browse Your Music</div>
+                </div>
+                <i data-lucide="chevron-right" class="nav-arrow"></i>
+            </div>
+        </div>
+        <input type="file" id="music-picker" webkitdirectory directory multiple style="display:none" onchange="handleMusicFiles(this)">
+    </div>
+
+    <!-- LANGUAGES MODAL (Exact Style Match) -->
+    <div id="languages-overlay" class="settings-overlay" onclick="closeLanguagesModal()"></div>
+    <div class="settings-modal edit-profile-modal" id="languages-modal" style="height: 85%;">
+        <div class="settings-header">
+            <div class="close-x" onclick="closeLanguagesModal()"><i data-lucide="x"></i></div>
+            <h2 data-i18n="languages_title">Languages</h2>
+            <div style="width:30px;"></div>
+        </div>
+
+        <div class="section-label" data-i18n="selected_language_label">Selected Language</div>
+        <div class="settings-card" id="selected-language-container" style="margin-bottom: 20px;">
+            <!-- Rendered dynamically -->
+        </div>
+
+        <div class="section-label" data-i18n="other_languages_label">Other Languages</div>
+        <div class="settings-card" id="other-languages-container" style="max-height: 45vh; overflow-y: auto; padding: 0 16px;">
+            <!-- Rendered dynamically -->
         </div>
     </div>
 
     <script src="script.js"></script>
-
-        <div id="settings-overlay" class="settings-overlay" onclick="closeSettings()"></div>
-<div class="settings-modal" id="settings-modal">
-    <div class="settings-header">
-        <h2>Settings</h2>
-        <div class="close-x" onclick="closeSettings()"><i data-lucide="x"></i></div>
-    </div>
-
-
-    <div class="section-label">Profile</div>
-    <div class="settings-card">
-        <div class="profile-section">
-            <div class="avatar-placeholder"><i data-lucide="user"></i></div>
-            <div class="profile-info">
-                <div class="title">Unknown ID</div>
-                <div class="subtitle">Account Information</div>
-            </div>
-            <i data-lucide="chevron-right" class="nav-arrow"></i>
-        </div>
-        
-        <div class="divider"></div>
-        
-<div class="edit-section">
-    <div class="badge"><i data-lucide="user"></i></div>
-    <div class="edit-info">
-        <div class="name-text">Enter Details</div>
- 
-    </div>
-    <div class="edit-btn" onclick="openEditProfile()">Edit</div>
-</div>
-        
-    </div>
-
-    <div class="section-label">Appearance</div>
-<div class="settings-card" style="margin-top: 20px;">
-    <div class="profile-section" onclick="openUI()">
-        <div class="avatar-placeholder" style="background:#555;"><i data-lucide="palette"></i></div>
-        <div class="profile-info">
-            <div class="title">User Interface</div>
-        </div>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-</div>
-
-
-
-</div>
-
-        
-
-
-        <div id="edit-profile-overlay" class="settings-overlay" onclick="closeEditProfile()"></div>
-<div class="settings-modal edit-profile-modal" id="edit-profile-modal">
-    <div class="settings-header">
-        <div class="close-x" onclick="closeEditProfile()"><i data-lucide="x"></i></div>
-        <h2>Edit Profile</h2>
-        <div class="save-check" onclick="saveProfileChanges()"><i data-lucide="check"></i></div>
-    </div>
-    
-    <div class="profile-pic-picker" onclick="document.getElementById('photo-upload').click()">
-        <div class="avatar-large" id="avatar-preview"><i data-lucide="user"></i></div>
-        <div class="picker-text">Choose Photo</div>
-    </div>
-    <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
-
-<div class="action-buttons-row">
-    <div class="glass-btn blue-btn" onclick="showCustomAlert('photo')">Remove Photo</div>
-    <div class="glass-btn red-btn" onclick="showCustomAlert('data')">Clear Data</div>
-</div>
-
-<div id="custom-alert" class="ios-alert-overlay" style="display:none;">
-    <div class="ios-alert-box">
-        <div class="ios-alert-title" id="alert-title">Title</div>
-        <div class="ios-alert-text" id="alert-msg">Message</div>
-        <div class="ios-alert-buttons">
-            <div class="ios-alert-btn" onclick="closeAlert()">No</div>
-            <div class="ios-alert-btn ios-alert-btn-destructive" id="confirm-btn">Yes</div>
-        </div>
-    </div>
-</div>
-
-    
-    <div class="settings-card">
-        <input type="text" id="first-name" placeholder="First Name" class="name-input">
-        <div class="divider"></div>
-        <input type="text" id="last-name" placeholder="Last Name" class="name-input">
-    </div>
-</div>
-
-
-  <div id="ui-overlay" class="settings-overlay" onclick="closeUI()"></div>
-<div class="settings-modal" id="ui-modal">
-    <div class="settings-header">
-        <div class="close-x" onclick="closeUI()"><i data-lucide="x"></i></div>
-        <h2>User Interface</h2>
-        <div style="width:30px;"></div> </div>
-
-    
-
-    <div class="section-label">Theme</div>
-    <div class="settings-card" id="ui-modal-list">
-    <div class="theme-option" data-theme="system" onclick="setTheme('system')">
-        <div class="title">System</div>
-        <i data-lucide="check" class="check-icon" style="color:var(--ios-blue);"></i>
-    </div>
-    <div class="divider"></div>
-    <div class="theme-option" data-theme="light" onclick="setTheme('light')">
-        <div class="title">Light</div>
-        <i data-lucide="check" class="check-icon" style="display:none; color:var(--ios-blue);"></i>
-    </div>
-    <div class="divider"></div>
-    <div class="theme-option" data-theme="dark" onclick="setTheme('dark')">
-        <div class="title">Dark</div>
-        <i data-lucide="check" class="check-icon" style="display:none; color:var(--ios-blue);"></i>
-    </div>
-</div>
-
-
-    <div class="section-label" style="margin-top: 30px;">Effects</div>
-<div class="settings-card">
-    <div class="slider-container">
-        <label>Blur Intensity</label>
-        <input type="range" id="blur-slider" min="0" max="40" value="20" oninput="updateBlur(this.value)">
-    </div>
-</div>
-
-
-<div class="section-label">Music</div>
-<div class="settings-card" style="margin-top: 10px;">
-    <div class="profile-section" onclick="document.getElementById('music-picker').click()">
-        <div class="avatar-placeholder" style="background:#555;"><i data-lucide="folder-music"></i></div>
-        <div class="profile-info">
-            <div class="title">Browse Your Music</div>
-        </div>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-</div>
-<input type="file" id="music-picker" webkitdirectory directory multiple style="display:none" onchange="handleMusicFiles(this)">
-
-    
-    
-</div>
-                
-        
 </body>
-                                                             </html>
+</html>
