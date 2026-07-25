@@ -29,25 +29,25 @@
         <div id="page-library" class="page">
             <div class="header-row">
                 <h1 class="page-title" data-i18n="library">Library</h1>
-          <div id="done-container" class="done-container">
-    <div class="glass-btn-reset" onclick="showResetPopup()" data-i18n="reset_order">Reset Order</div>
-    <div onclick="toggleEditMode(false)">
-        <i data-lucide="check"></i>
-    </div>
-</div>
+                <div id="done-container" class="done-container">
+                    <div class="glass-btn-reset" onclick="showResetPopup()" data-i18n="reset_order">Reset Order</div>
+                    <div onclick="toggleEditMode(false)">
+                        <i data-lucide="check"></i>
+                    </div>
+                </div>
 
-<div id="reset-alert" class="ios-alert-overlay" style="display:none;">
-    <div class="ios-alert-box">
-        <div class="ios-alert-title" data-i18n="reset_library">Reset Library?</div>
-        <div class="ios-alert-text" data-i18n="reset_library_text">Do you want to reset the library order to its default layout?</div>
-        <div class="ios-alert-buttons">
-            <div class="ios-alert-btn" onclick="closeResetPopup()" data-i18n="no">No</div>
-            <div class="ios-alert-btn ios-alert-btn-destructive" onclick="resetLibraryOrder()" data-i18n="yes">Yes</div>
-        </div>
-    </div>
-</div>
+                <div id="reset-alert" class="ios-alert-overlay" style="display:none;">
+                    <div class="ios-alert-box">
+                        <div class="ios-alert-title" data-i18n="reset_library">Reset Library?</div>
+                        <div class="ios-alert-text" data-i18n="reset_library_text">Do you want to reset the library order to its default layout?</div>
+                        <div class="ios-alert-buttons">
+                            <div class="ios-alert-btn" onclick="closeResetPopup()" data-i18n="no">No</div>
+                            <div class="ios-alert-btn ios-alert-btn-destructive" onclick="resetLibraryOrder()" data-i18n="yes">Yes</div>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="header-right-group" id="library-actions">
+                <div class="header-right-group" id="library-actions">
                     <div class="glass-header-actions" id="header-glass">
                         <i data-lucide="library-big"></i>
                         <i data-lucide="more-horizontal" class="clickable-icon" onclick="togglePopup()"></i>
@@ -58,106 +58,85 @@
                 </div>
             </div>
 
-           <div class="library-menu" id="library-menu">
-    <div class="menu-item" data-id="Playlists">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
+            <div class="library-menu" id="library-menu">
+                <div class="menu-item" data-id="Playlists">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="music-4" class="main-icon"></i>
+                    <span data-i18n="playlists">Playlists</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+                <div class="menu-item" data-id="Artists">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="mic-2" class="main-icon"></i>
+                    <span data-i18n="artists">Artists</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+                <div class="menu-item" data-id="Albums">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="album" class="main-icon"></i>
+                    <span data-i18n="albums">Albums</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+                <div class="menu-item" data-id="Songs" onclick="openDetail('Songs', 'music')">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="music" class="main-icon"></i>
+                    <span data-i18n="songs">Songs</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+                <div class="menu-item" data-id="TV-Movies">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="tv" class="main-icon"></i>
+                    <span data-i18n="tv_movies">TV & Movies</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+                <div class="menu-item" data-id="Music-Videos">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="monitor-play" class="main-icon"></i>
+                    <span data-i18n="music_videos">Music Videos</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+                <div class="menu-item" data-id="Genres">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="guitar" class="main-icon"></i>
+                    <span data-i18n="genres">Genres</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+                <div class="menu-item" data-id="Compilations">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="package" class="main-icon"></i>
+                    <span data-i18n="compilations">Compilations</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+                <div class="menu-item" data-id="Composers">
+                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
+                    <i data-lucide="music-2" class="main-icon"></i>
+                    <span data-i18n="composers">Composers</span>
+                    <i data-lucide="menu" class="reorder-handle"></i>
+                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                </div>
+            </div>
         </div>
-        <i data-lucide="music-4" class="main-icon"></i>
-        <span data-i18n="playlists">Playlists</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-    <div class="menu-item" data-id="Artists">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
-        </div>
-        <i data-lucide="mic-2" class="main-icon"></i>
-        <span data-i18n="artists">Artists</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-    <div class="menu-item" data-id="Albums">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
-        </div>
-        <i data-lucide="album" class="main-icon"></i>
-        <span data-i18n="albums">Albums</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-    <div class="menu-item" data-id="Songs" onclick="openDetail('Songs', 'music')">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
-        </div>
-        <i data-lucide="music" class="main-icon"></i>
-        <span data-i18n="songs">Songs</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-    <div class="menu-item" data-id="TV-Movies">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
-        </div>
-        <i data-lucide="tv" class="main-icon"></i>
-        <span data-i18n="tv_movies">TV & Movies</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-    <div class="menu-item" data-id="Music-Videos">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
-        </div>
-        <i data-lucide="monitor-play" class="main-icon"></i>
-        <span data-i18n="music_videos">Music Videos</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-    <div class="menu-item" data-id="Genres">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
-        </div>
-        <i data-lucide="guitar" class="main-icon"></i>
-        <span data-i18n="genres">Genres</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-    <div class="menu-item" data-id="Compilations">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
-        </div>
-        <i data-lucide="package" class="main-icon"></i>
-        <span data-i18n="compilations">Compilations</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-    <div class="menu-item" data-id="Composers">
-        <div class="edit-action">
-            <i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i>
-        </div>
-        <i data-lucide="music-2" class="main-icon"></i>
-        <span data-i18n="composers">Composers</span>
-        <i data-lucide="menu" class="reorder-handle"></i>
-        <i data-lucide="chevron-right" class="nav-arrow"></i>
-    </div>
-</div>
 
         <div id="page-detail" class="page">
-    <div class="header-row">
-        <div class="back-btn" onclick="backToLibrary()">
-            <i data-lucide="chevron-left"></i>
+            <div class="header-row">
+                <div class="back-btn" onclick="backToLibrary()"><i data-lucide="chevron-left"></i></div>
+                <div class="header-right-group"><i data-lucide="more-horizontal"></i></div>
+            </div>
+            <h1 class="page-title" id="detail-title">Songs</h1>
+            <div class="song-actions">
+                <div class="glass-btn"><i data-lucide="play"></i> <span data-i18n="play">Play</span></div>
+                <div class="glass-btn"><i data-lucide="shuffle"></i> <span data-i18n="shuffle">Shuffle</span></div>
+            </div>
+            <div id="songs-list-container" class="songs-list"></div>
         </div>
-        <div class="header-right-group">
-            <i data-lucide="more-horizontal"></i>
-        </div>
-    </div>
-    <h1 class="page-title" id="detail-title">Songs</h1>
-    <div class="song-actions">
-        <div class="glass-btn"><i data-lucide="play"></i> <span data-i18n="play">Play</span></div>
-        <div class="glass-btn"><i data-lucide="shuffle"></i> <span data-i18n="shuffle">Shuffle</span></div>
-    </div>
-    <div id="songs-list-container" class="songs-list"></div>
-</div>
 
         <div id="page-search" class="page">
             <div class="header-row">
@@ -181,20 +160,12 @@
     <nav id="bottom-nav">
         <div class="main-tabs" id="tab-container">
             <div class="tab-selector" id="active-selector"></div>
-            <div class="nav-item active" onclick="showPage('page-home', this, 0)">
-                <i data-lucide="home"></i><span class="nav-label" data-i18n="home">Home</span>
-            </div>
-            <div class="nav-item" onclick="showPage('page-new', this, 1)">
-                <i data-lucide="layout-grid"></i><span class="nav-label" data-i18n="new">New</span>
-            </div>
-            <div class="nav-item" onclick="showPage('page-library', this, 2)">
-                <i data-lucide="library"></i><span class="nav-label" data-i18n="library">Library</span>
-            </div>
+            <div class="nav-item active" onclick="showPage('page-home', this, 0)"><i data-lucide="home"></i><span class="nav-label" data-i18n="home">Home</span></div>
+            <div class="nav-item" onclick="showPage('page-new', this, 1)"><i data-lucide="layout-grid"></i><span class="nav-label" data-i18n="new">New</span></div>
+            <div class="nav-item" onclick="showPage('page-library', this, 2)"><i data-lucide="library"></i><span class="nav-label" data-i18n="library">Library</span></div>
         </div>
         <div class="search-tab">
-            <div class="nav-item" onclick="showPage('page-search', this, 3)">
-                <i data-lucide="search"></i>
-            </div>
+            <div class="nav-item" onclick="showPage('page-search', this, 3)"><i data-lucide="search"></i></div>
         </div>
     </nav>
 
@@ -227,9 +198,7 @@
             <div class="divider"></div>
             <div class="edit-section">
                 <div class="badge"><i data-lucide="user"></i></div>
-                <div class="edit-info">
-                    <div class="name-text" data-i18n="enter_details">Enter Details</div>
-                </div>
+                <div class="edit-info"><div class="name-text" data-i18n="enter_details">Enter Details</div></div>
                 <div class="edit-btn" onclick="openEditProfile()" data-i18n="edit">Edit</div>
             </div>
         </div>
@@ -238,14 +207,11 @@
         <div class="settings-card" style="margin-top: 10px;">
             <div class="profile-section" onclick="openUI()">
                 <div class="avatar-placeholder" style="background:#555;"><i data-lucide="palette"></i></div>
-                <div class="profile-info">
-                    <div class="title" data-i18n="user_interface">User Interface</div>
-                </div>
+                <div class="profile-info"><div class="title" data-i18n="user_interface">User Interface</div></div>
                 <i data-lucide="chevron-right" class="nav-arrow"></i>
             </div>
         </div>
 
-        <!-- LANGUAGES CONTAINER SECTION -->
         <div class="section-label" data-i18n="languages_header">LANGUAGES</div>
         <div class="settings-card" style="margin-top: 10px;">
             <div class="profile-section" onclick="openLanguagesModal()">
@@ -336,32 +302,32 @@
         <div class="settings-card" style="margin-top: 10px;">
             <div class="profile-section" onclick="document.getElementById('music-picker').click()">
                 <div class="avatar-placeholder" style="background:#555;"><i data-lucide="folder-music"></i></div>
-                <div class="profile-info">
-                    <div class="title" data-i18n="browse_music">Browse Your Music</div>
-                </div>
+                <div class="profile-info"><div class="title" data-i18n="browse_music">Browse Your Music</div></div>
                 <i data-lucide="chevron-right" class="nav-arrow"></i>
             </div>
         </div>
         <input type="file" id="music-picker" webkitdirectory directory multiple style="display:none" onchange="handleMusicFiles(this)">
     </div>
 
-    <!-- LANGUAGES MODAL (Exact Style Match) -->
+    <!-- LANGUAGES MODAL (Full Height & Blurred Sticky Header Style) -->
     <div id="languages-overlay" class="settings-overlay" onclick="closeLanguagesModal()"></div>
-    <div class="settings-modal edit-profile-modal" id="languages-modal" style="height: 85%;">
-        <div class="settings-header">
+    <div class="settings-modal languages-fullscreen-modal" id="languages-modal">
+        <div class="settings-header languages-sticky-header">
             <div class="close-x" onclick="closeLanguagesModal()"><i data-lucide="x"></i></div>
             <h2 data-i18n="languages_title">Languages</h2>
             <div style="width:30px;"></div>
         </div>
 
-        <div class="section-label" data-i18n="selected_language_label">Selected Language</div>
-        <div class="settings-card" id="selected-language-container" style="margin-bottom: 20px;">
-            <!-- Rendered dynamically -->
-        </div>
+        <div class="languages-scrollable-body">
+            <div class="section-label" data-i18n="selected_language_label">Selected Language</div>
+            <div class="settings-card" id="selected-language-container" style="margin-bottom: 20px;">
+                <!-- Rendered dynamically -->
+            </div>
 
-        <div class="section-label" data-i18n="other_languages_label">Other Languages</div>
-        <div class="settings-card" id="other-languages-container" style="max-height: 45vh; overflow-y: auto; padding: 0 16px;">
-            <!-- Rendered dynamically -->
+            <div class="section-label" data-i18n="other_languages_label">Other Languages</div>
+            <div class="settings-card" id="other-languages-container" style="padding: 0 16px; margin-bottom: 40px;">
+                <!-- Rendered dynamically -->
+            </div>
         </div>
     </div>
 
