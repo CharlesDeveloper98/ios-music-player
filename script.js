@@ -1,4 +1,151 @@
-let tempProfilePic = null; // Add this variable at the top of your script.js
+let tempProfilePic = null; 
+
+// --- Translations Dictionary for Global Language Support ---
+const translations = {
+    "English (United States)": {
+        home: "Home", new: "New", library: "Library", search: "Search",
+        playlists: "Playlists", artists: "Artists", albums: "Albums", songs: "Songs",
+        tv_movies: "TV & Movies", music_videos: "Music Videos", genres: "Genres",
+        compilations: "Compilations", composers: "Composers", play: "Play", shuffle: "Shuffle",
+        unknown_art: "Unknown Art", not_playing: "Not Playing", edit_sections: "Edit Sections",
+        settings: "Settings", profile: "Profile", unknown_id: "Unknown ID",
+        account_info: "Account Information", enter_details: "Enter Details", edit: "Edit",
+        appearance: "Appearance", user_interface: "User Interface", languages_header: "LANGUAGES",
+        select_language: "Languages", edit_profile: "Edit Profile", choose_photo: "Choose Photo",
+        remove_photo: "Remove Photo", clear_data: "Clear Data", theme: "Theme",
+        system: "System", light: "Light", dark: "Dark", effects: "Effects",
+        blur_intensity: "Blur Intensity", music: "Music", browse_music: "Browse Your Music",
+        languages_title: "Languages", selected_language_label: "Selected Language",
+        other_languages_label: "Other Languages", reset_order: "Reset Order",
+        reset_library: "Reset Library?", reset_library_text: "Do you want to reset the library order to its default layout?",
+        no: "No", yes: "Yes"
+    },
+    "Spanish (España)": {
+        home: "Inicio", new: "Nuevo", library: "Biblioteca", search: "Buscar",
+        playlists: "Listas", artists: "Artistas", albums: "Álbumes", songs: "Canciones",
+        tv_movies: "TV y Películas", music_videos: "Videos musicales", genres: "Géneros",
+        compilations: "Recopilaciones", composers: "Compositores", play: "Reproducir", shuffle: "Aleatorio",
+        unknown_art: "Arte Desconocido", not_playing: "No se reproduce", edit_sections: "Editar secciones",
+        settings: "Ajustes", profile: "Perfil", unknown_id: "ID Desconocido",
+        account_info: "Información de cuenta", enter_details: "Ingresar detalles", edit: "Editar",
+        appearance: "Apariencia", user_interface: "Interfaz de usuario", languages_header: "IDIOMAS",
+        select_language: "Idiomas", edit_profile: "Editar perfil", choose_photo: "Elegir foto",
+        remove_photo: "Eliminar foto", clear_data: "Borrar datos", theme: "Tema",
+        system: "Sistema", light: "Claro", dark: "Oscuro", effects: "Efectos",
+        blur_intensity: "Intensidad de desenfoque", music: "Música", browse_music: "Explorar tu música",
+        languages_title: "Idiomas", selected_language_label: "Idioma seleccionado",
+        other_languages_label: "Otros idiomas", reset_order: "Restablecer orden",
+        reset_library: "¿Restablecer biblioteca?", reset_library_text: "¿Deseas restablecer el orden de la biblioteca al diseño predeterminado?",
+        no: "No", yes: "Sí"
+    },
+    "French (France)": {
+        home: "Accueil", new: "Nouveau", library: "Bibliothèque", search: "Rechercher",
+        playlists: "Listes", artists: "Artistes", albums: "Albums", songs: "Morceaux",
+        tv_movies: "TV & Films", music_videos: "Vidéos", genres: "Genres",
+        compilations: "Compilations", composers: "Compositeurs", play: "Lecture", shuffle: "Aleatoire",
+        unknown_art: "Art Inconnu", not_playing: "Pas de lecture", edit_sections: "Modifier les sections",
+        settings: "Réglages", profile: "Profil", unknown_id: "ID Inconnu",
+        account_info: "Informations de compte", enter_details: "Entrer les détails", edit: "Modifier",
+        appearance: "Apparence", user_interface: "Interface utilisateur", languages_header: "LANGUES",
+        select_language: "Langues", edit_profile: "Modifier le profil", choose_photo: "Choisir une photo",
+        remove_photo: "Supprimer la photo", clear_data: "Effacer les données", theme: "Thème",
+        system: "Système", light: "Clair", dark: "Sombre", effects: "Effets",
+        blur_intensity: "Intensité du flou", music: "Musique", browse_music: "Parcourir votre musique",
+        languages_title: "Langues", selected_language_label: "Langue sélectionnée",
+        other_languages_label: "Autres langues", reset_order: "Réinitialiser l'ordre",
+        reset_library: "Réinitialiser la bibliothèque ?", reset_library_text: "Voulez-vous réinitialiser l'ordre de la bibliothèque à sa disposition par défaut ?",
+        no: "Non", yes: "Oui"
+    }
+};
+
+// Comprehensive world languages list
+const worldLanguages = [
+    "English (United States)", "English (United Kingdom)", "English (Australia)", "English (Canada)",
+    "Spanish (España)", "Spanish (Latinoamérica)", "French (France)", "French (Canada)",
+    "German (Deutschland)", "Arabic (العربية)", "Armenian (Հայերեն)", "Asturian (Asturianu)",
+    "Azerbaijani (Azərbaycan)", "Bangla (বাংলাদেশ)", "Bulgarian (България)", "Chinese (简体中文)",
+    "Chinese (繁體中文)", "Croatian (Hrvatski)", "Czech (Čeština)", "Danish (Dansk)",
+    "Dutch (Nederlands)", "Estonian (Eesti)", "Filipino", "Finnish (Suomi)", "Greek (Ελληνικά)",
+    "Hebrew (עברית)", "Hindi (हिन्दी)", "Hungarian (Magyar)", "Indonesian (Bahasa Indonesia)",
+    "Italian (Italiano)", "Japanese (日本語)", "Korean (한국어)", "Malay (Bahasa Melayu)",
+    "Norwegian (Norsk)", "Polish (Polski)", "Portuguese (Brasil)", "Portuguese (Portugal)",
+    "Romanian (Română)", "Russian (Русский)", "Serbian (Српски)", "Slovak (Slovenčina)",
+    "Swedish (Svenska)", "Thai (ไทย)", "Turkish (Türkçe)", "Ukrainian (Українська)", "Vietnamese (Tiếng Việt)"
+];
+
+let currentSelectedLanguage = localStorage.getItem('appLanguage') || "English (United States)";
+
+// --- Language Application Engine ---
+function setAppLanguage(lang) {
+    currentSelectedLanguage = lang;
+    localStorage.setItem('appLanguage', lang);
+    document.getElementById('current-lang-subtitle').innerText = lang;
+    
+    // Update translation text strings across elements with data-i18n
+    const dict = translations[lang] || translations["English (United States)"];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+            el.innerText = dict[key];
+        }
+    });
+
+    renderLanguagesModalLists();
+    closeLanguagesModal();
+}
+
+function openLanguagesModal() {
+    const modal = document.getElementById('languages-modal');
+    const overlay = document.getElementById('languages-overlay');
+    overlay.style.display = 'block';
+    modal.style.display = 'block';
+    renderLanguagesModalLists();
+    setTimeout(() => modal.classList.add('show'), 10);
+}
+
+function closeLanguagesModal() {
+    const modal = document.getElementById('languages-modal');
+    const overlay = document.getElementById('languages-overlay');
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }, 400);
+}
+
+function renderLanguagesModalLists() {
+    // Render Selected Language Box
+    const selectedContainer = document.getElementById('selected-language-container');
+    selectedContainer.innerHTML = `
+        <div class="theme-option" onclick="setAppLanguage('${currentSelectedLanguage}')" style="padding: 12px 0;">
+            <div class="title" style="font-weight: 600;">${currentSelectedLanguage}</div>
+            <i data-lucide="check" class="check-icon" style="color:var(--ios-blue);"></i>
+        </div>
+    `;
+
+    // Render Other Languages List
+    const otherContainer = document.getElementById('other-languages-container');
+    otherContainer.innerHTML = '';
+    
+    worldLanguages.forEach((lang, idx) => {
+        const item = document.createElement('div');
+        item.className = 'theme-option';
+        item.style.padding = '14px 0';
+        item.innerHTML = `
+            <div class="title">${lang}</div>
+            ${lang === currentSelectedLanguage ? '<i data-lucide="check" class="check-icon" style="color:var(--ios-blue);"></i>' : ''}
+        `;
+        item.onclick = () => setAppLanguage(lang);
+        otherContainer.appendChild(item);
+
+        if (idx < worldLanguages.length - 1) {
+            const div = document.createElement('div');
+            div.className = 'divider';
+            otherContainer.appendChild(div);
+        }
+    });
+    lucide.createIcons();
+}
 
 // --- Navigation Logic ---
 function showPage(pageId, element, index) {
@@ -23,13 +170,11 @@ function showPage(pageId, element, index) {
 // --- App Startup ---
 let sortableInstance;
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Nav Selector
     const selector = document.getElementById('active-selector');
     const container = document.getElementById('tab-container');
     selector.style.width = `${(container.offsetWidth / 3) - 10}px`;
     selector.style.left = "5px";
 
-    // 2. Restore Library Order
     const savedOrder = JSON.parse(localStorage.getItem('libraryOrder'));
     if (savedOrder) {
         const menu = document.getElementById('library-menu');
@@ -39,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Restore Profile Data
     const savedPic = localStorage.getItem('userProfilePic');
     const fName = localStorage.getItem('userFirstName') || "";
     const lName = localStorage.getItem('userLastName') || "";
@@ -49,94 +193,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateAllProfileUI(savedPic, fName, lName);
 
-
-  
     const savedTheme = localStorage.getItem('user-theme') || 'system';
     setTheme(savedTheme);
 
-
-    // 1. Get saved blur or default to 20
     const savedBlur = localStorage.getItem('userBlurIntensity') || '20';
-    
-    // 2. Set the CSS variable
     document.documentElement.style.setProperty('--dynamic-blur', `${savedBlur}px`);
     
-    // 3. Set the slider position if it exists on the current page
     const blurSlider = document.getElementById('blur-slider');
-    if (blurSlider) {
-        blurSlider.value = savedBlur;
-    }
+    if (blurSlider) blurSlider.value = savedBlur;
+
+    // Apply saved language on load
+    setAppLanguage(currentSelectedLanguage);
 
     if (document.fonts) {
         document.fonts.ready.then(() => {
-            console.log("Custom fonts are loaded and ready.");
             document.body.classList.add('fonts-loaded');
         });
     }
-    
-    
     lucide.createIcons();
 });
 
-
- 
-
 // --- UI Updates ---
 function updateAllProfileUI(imageData, firstName, lastName) {
-    // 1. Get all relevant UI elements
     const containers = document.querySelectorAll('.profile-container');
     const badge = document.querySelector('.badge');
     const title = document.querySelector('.profile-info .title');
     const avatarPreview = document.getElementById('avatar-preview');
-    
-    // Target the specific avatar icon in the Settings modal (next to the name)
     const settingsAvatar = document.querySelector('.settings-card .avatar-placeholder');
 
-    // 2. Update Images
     if (imageData) {
         const imgHTML = `<img src="${imageData}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
-        
-        // Update Nav Bar icons
         containers.forEach(c => c.innerHTML = imgHTML);
-        
-        // Update Edit Profile preview
         if (avatarPreview) avatarPreview.innerHTML = imgHTML;
-        
-        // Update Settings Modal icon (next to name)
         if (settingsAvatar) {
             settingsAvatar.innerHTML = imgHTML;
-            settingsAvatar.style.background = 'transparent'; // Remove gray bg if image exists
+            settingsAvatar.style.background = 'transparent';
         }
     }
     
-    // 3. Update Name
     const nameString = `${firstName || ""} ${lastName || ""}`.trim();
     if (title) title.innerText = nameString || "Unknown ID";
     
-    // 4. Update Badge Initials
     if (badge && (firstName || lastName)) {
         const initials = ((firstName ? firstName[0] : "") + (lastName ? lastName[0] : "")).toUpperCase();
         badge.innerText = initials || "";
     }
 }
 
-
-// --- Library & Detail Navigation ---
 function openDetail(title, iconName) {
     document.getElementById('page-library').classList.remove('active');
     const detailPage = document.getElementById('page-detail');
     detailPage.classList.add('active');
-    
     document.getElementById('detail-title').innerText = title;
-    document.getElementById('empty-text').innerText = `${title} will appear here.`;
-    
-    const iconElement = document.getElementById('empty-icon');
-    iconElement.setAttribute('data-lucide', iconName);
-
-    if (title === 'Songs') {
-        renderSongsList(); // Populate list when opening
-    }
-    
+    if (title === 'Songs') renderSongsList();
     lucide.createIcons();
 }
 
@@ -145,7 +254,6 @@ function backToLibrary() {
     document.getElementById('page-library').classList.add('active');
 }
 
-// --- Popup & Edit Mode ---
 function closePopup() {
     const menu = document.getElementById('popup-menu');
     const overlay = document.getElementById('popup-overlay');
@@ -166,13 +274,6 @@ function togglePopup() {
         setTimeout(() => { menu.classList.add('show'); }, 10);
     }
 }
-
-document.addEventListener('click', (event) => {
-    const menu = document.getElementById('popup-menu');
-    if (menu.classList.contains('show') && !menu.contains(event.target) && !event.target.closest('.clickable-icon')) {
-        closePopup();
-    }
-});
 
 function toggleEditMode(isEditing) {
     const libraryPage = document.getElementById('page-library');
@@ -207,7 +308,6 @@ function toggleTick(element) {
     setTimeout(() => icon.classList.remove('tick-transition'), 200);
 }
 
-// --- Settings & Profile ---
 function openSettings() {
     const modal = document.getElementById('settings-modal');
     const overlay = document.getElementById('settings-overlay');
@@ -234,15 +334,12 @@ function openEditProfile() {
 function closeEditProfile() {
     const modal = document.getElementById('edit-profile-modal');
     const overlay = document.getElementById('edit-profile-overlay');
-    
-    // Reset the inputs to the last saved data from localStorage
     const savedFName = localStorage.getItem('userFirstName') || "";
     const savedLName = localStorage.getItem('userLastName') || "";
     
     document.getElementById('first-name').value = savedFName;
     document.getElementById('last-name').value = savedLName;
 
-    // Reset the image preview to the last saved image
     const savedPic = localStorage.getItem('userProfilePic');
     const avatarPreview = document.getElementById('avatar-preview');
     if (savedPic && avatarPreview) {
@@ -251,8 +348,6 @@ function closeEditProfile() {
         avatarPreview.innerHTML = `<i data-lucide="user"></i>`;
         lucide.createIcons();
     }
-    
-    // Clear the temporary variable
     tempProfilePic = null;
 
     modal.classList.remove('show');
@@ -265,44 +360,16 @@ function closeEditProfile() {
 function saveProfileChanges() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
-    
-    // Save names to LocalStorage
     localStorage.setItem('userFirstName', firstName);
     localStorage.setItem('userLastName', lastName);
     
-    // Only save the picture if a new one was selected (tempProfilePic is not null)
     if (tempProfilePic) {
         localStorage.setItem('userProfilePic', tempProfilePic);
-        tempProfilePic = null; // Clear temporary variable after saving
+        tempProfilePic = null;
     }
-    
-    // Update UI everywhere
     updateAllProfileUI(localStorage.getItem('userProfilePic'), firstName, lastName);
     closeEditProfile();
 }
-
-
-let currentPopupType = "";
-
-
-function removePhoto() {
-    localStorage.removeItem('userProfilePic');
-    updateAllProfileUI(null, document.getElementById('first-name').value, document.getElementById('last-name').value);
-    closeDynamicPopup();
-}
-
-function clearAllData() {
-    localStorage.removeItem('userProfilePic');
-    localStorage.removeItem('userFirstName');
-    localStorage.removeItem('userLastName');
-    document.getElementById('first-name').value = "";
-    document.getElementById('last-name').value = "";
-    updateAllProfileUI(null, "", "");
-    closeDynamicPopup();
-}
-
-
-// Replace your existing showCustomAlert function with this:
 
 function showCustomAlert(type) {
     const overlay = document.getElementById('custom-alert');
@@ -310,7 +377,6 @@ function showCustomAlert(type) {
     const msg = document.getElementById('alert-msg');
     const confirmBtn = document.getElementById('confirm-btn');
 
-    // Reset button class
     confirmBtn.className = 'ios-alert-btn ios-alert-btn-destructive';
 
     if (type === 'photo') {
@@ -336,12 +402,10 @@ function showCustomAlert(type) {
     overlay.style.display = 'flex';
 }
 
-
 function closeAlert() {
     document.getElementById('custom-alert').style.display = 'none';
 }
 
-// --- User Interface Page Logic ---
 function openUI() {
     const modal = document.getElementById('ui-modal');
     const overlay = document.getElementById('ui-overlay');
@@ -357,8 +421,6 @@ function closeUI() {
     setTimeout(() => { modal.style.display = 'none'; overlay.style.display = 'none'; }, 400);
 }
 
-
-// --- Theme Management ---
 function setTheme(theme) {
     if (theme === 'system') {
         localStorage.removeItem('user-theme');
@@ -375,20 +437,17 @@ function applySystemTheme() {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
 }
 
-
 function updateUIActiveState(activeTheme) {
-    // Logic to highlight the checkmark in the UI modal
     document.querySelectorAll('.theme-option').forEach(el => {
-        el.querySelector('.check-icon').style.display = 
-            (el.dataset.theme === activeTheme) ? 'block' : 'none';
+        if (el.dataset.theme) {
+            el.querySelector('.check-icon').style.display = 
+                (el.dataset.theme === activeTheme) ? 'block' : 'none';
+        }
     });
 }
 
-
-// 1. Define your default order constant at the top
 const DEFAULT_ORDER = ["Playlists", "Artists", "Albums", "Songs", "TV-Movies", "Music-Videos", "Genres", "Compilations", "Composers"];
 
-// 2. Add these functions to your script
 function showResetPopup() {
     document.getElementById('reset-alert').style.display = 'flex';
 }
@@ -400,60 +459,43 @@ function closeResetPopup() {
 function resetLibraryOrder() {
     const menu = document.getElementById('library-menu');
     const items = Array.from(menu.querySelectorAll('.menu-item'));
-    
-    // Animate the reset
     items.forEach(item => {
         item.classList.add('resetting');
         setTimeout(() => item.classList.remove('resetting'), 400);
     });
 
-    // Reorder DOM based on default
     DEFAULT_ORDER.forEach(id => {
         const item = menu.querySelector(`[data-id="${id}"]`);
         if (item) menu.appendChild(item);
     });
 
-    // Clear saved preference and close popups
     localStorage.removeItem('libraryOrder');
     closeResetPopup();
     toggleEditMode(false);
 }
 
 function updateBlur(value) {
-    // 1. Update the CSS variable
     document.documentElement.style.setProperty('--dynamic-blur', `${value}px`);
-    
-    // 2. Save the value to LocalStorage
     localStorage.setItem('userBlurIntensity', value);
 }
-
 
 let musicLibrary = [];
 const audioPlayer = new Audio();
 
 function handleMusicFiles(input) {
-    const files = Array.from(input.files).filter(file => file.type.startsWith('audio/'));
-    musicLibrary = files; // Store files
+    musicLibrary = Array.from(input.files).filter(file => file.type.startsWith('audio/'));
     renderSongsList();
     closeSettings();
 }
 
-
-
-
 function renderSongsList() {
     const listContainer = document.getElementById('songs-list-container');
     listContainer.innerHTML = '';
-    
-    // Sort songs alphabetically
     const sortedSongs = musicLibrary.sort((a, b) => a.name.localeCompare(b.name));
-    
     let currentLetter = '';
     
     sortedSongs.forEach(file => {
         const firstLetter = file.name[0].toUpperCase();
-        
-        // Render Alphabet Header
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
             const header = document.createElement('div');
@@ -461,12 +503,9 @@ function renderSongsList() {
             header.innerText = currentLetter;
             listContainer.appendChild(header);
         }
-        
-        // Render Song Item
         const item = document.createElement('div');
         item.className = 'song-item';
         item.innerHTML = `
-            <img src="placeholder.jpg" class="song-art">
             <div class="song-info">
                 <div class="title">${file.name}</div>
                 <div class="artist">Unknown Artist</div>
@@ -478,49 +517,15 @@ function renderSongsList() {
     lucide.createIcons();
 }
 
-
-
-
-function playSong(file) {
-    const url = URL.createObjectURL(file);
-    audioPlayer.src = url;
-    audioPlayer.play();
-    
-    // Update mini-player UI
-    document.querySelector('.mini-title').innerText = file.name;
-    document.querySelector('.mini-sub').innerText = "Playing Now";
-}
-
-
-
 function previewFile(input) {
     const file = input.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            tempProfilePic = e.target.result; // Store temporarily
-            // Update only the preview area so the user sees their choice
+            tempProfilePic = e.target.result;
             document.getElementById('avatar-preview').innerHTML = 
                 `<img src="${tempProfilePic}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;">`;
         };
         reader.readAsDataURL(file);
     }
 }
-
-
-// --- Touch Navigation ---
-const tabContainer = document.getElementById('tab-container');
-const selector = document.getElementById('active-selector');
-let isDragging = false;
-
-tabContainer.addEventListener('touchstart', () => { isDragging = true; selector.classList.add('expanded'); });
-tabContainer.addEventListener('touchend', (e) => {
-    isDragging = false;
-    selector.classList.remove('expanded');
-    const touchX = e.changedTouches[0].clientX - tabContainer.getBoundingClientRect().left;
-    const tabWidth = tabContainer.offsetWidth / 3;
-    const index = Math.max(0, Math.min(2, Math.floor(touchX / tabWidth)));
-    const pages = ['page-home', 'page-new', 'page-library'];
-    const navItems = document.querySelectorAll('.main-tabs .nav-item');
-    showPage(pages[index], navItems[index], index);
-});
