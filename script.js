@@ -1,6 +1,5 @@
 let tempProfilePic = null; 
 
-// --- Translations Dictionary for Global Language Support ---
 const translations = {
     "English (United States)": {
         home: "Home", new: "New", library: "Library", search: "Search",
@@ -58,7 +57,6 @@ const translations = {
     }
 };
 
-// Comprehensive world languages list
 const worldLanguages = [
     "English (United States)", "English (United Kingdom)", "English (Australia)", "English (Canada)",
     "Spanish (España)", "Spanish (Latinoamérica)", "French (France)", "French (Canada)",
@@ -75,13 +73,11 @@ const worldLanguages = [
 
 let currentSelectedLanguage = localStorage.getItem('appLanguage') || "English (United States)";
 
-// --- Language Application Engine ---
 function setAppLanguage(lang) {
     currentSelectedLanguage = lang;
     localStorage.setItem('appLanguage', lang);
     document.getElementById('current-lang-subtitle').innerText = lang;
     
-    // Update translation text strings across elements with data-i18n
     const dict = translations[lang] || translations["English (United States)"];
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -97,8 +93,12 @@ function setAppLanguage(lang) {
 function openLanguagesModal() {
     const modal = document.getElementById('languages-modal');
     const overlay = document.getElementById('languages-overlay');
+    // Ensure independent overlay layer over settings
+    overlay.style.zIndex = "10000";
+    modal.style.zIndex = "10001";
+    
     overlay.style.display = 'block';
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
     renderLanguagesModalLists();
     setTimeout(() => modal.classList.add('show'), 10);
 }
@@ -110,11 +110,12 @@ function closeLanguagesModal() {
     setTimeout(() => {
         modal.style.display = 'none';
         overlay.style.display = 'none';
+        overlay.style.zIndex = "";
+        modal.style.zIndex = "";
     }, 400);
 }
 
 function renderLanguagesModalLists() {
-    // Render Selected Language Box
     const selectedContainer = document.getElementById('selected-language-container');
     selectedContainer.innerHTML = `
         <div class="theme-option" onclick="setAppLanguage('${currentSelectedLanguage}')" style="padding: 12px 0;">
@@ -123,7 +124,6 @@ function renderLanguagesModalLists() {
         </div>
     `;
 
-    // Render Other Languages List
     const otherContainer = document.getElementById('other-languages-container');
     otherContainer.innerHTML = '';
     
@@ -147,7 +147,6 @@ function renderLanguagesModalLists() {
     lucide.createIcons();
 }
 
-// --- Navigation Logic ---
 function showPage(pageId, element, index) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
@@ -167,7 +166,6 @@ function showPage(pageId, element, index) {
     }
 }
 
-// --- App Startup ---
 let sortableInstance;
 document.addEventListener('DOMContentLoaded', () => {
     const selector = document.getElementById('active-selector');
@@ -202,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const blurSlider = document.getElementById('blur-slider');
     if (blurSlider) blurSlider.value = savedBlur;
 
-    // Apply saved language on load
     setAppLanguage(currentSelectedLanguage);
 
     if (document.fonts) {
@@ -213,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 });
 
-// --- UI Updates ---
 function updateAllProfileUI(imageData, firstName, lastName) {
     const containers = document.querySelectorAll('.profile-container');
     const badge = document.querySelector('.badge');
