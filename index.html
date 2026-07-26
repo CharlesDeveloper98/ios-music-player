@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- LOCAL DEPENDENCIES -->
-    <script src="Sortable.min.js"></script>
-    <script src="lucide.min.js"></script>
-    <link rel="stylesheet" href="style.css">
     <title>iOS Music Player</title>
+    
+    <!-- LOCAL STYLESHEET -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- LOCAL SORTABLE SCRIPT (Replaces CDN) -->
+    <script src="Sortable.min.js" defer></script>
+    
+    <!-- LOCAL MAIN SCRIPT -->
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -153,9 +158,10 @@
             <div class="mini-sub" data-i18n="not_playing">Not Playing</div>
         </div>
         <div class="mini-controls">
-            <img src="https://img.icons8.com/ios-filled/24/ffffff/play--v1.png" class="mini-icon" alt="Play">
-            <img src="https://img.icons8.com/ios-filled/24/ffffff/fast-forward.png" class="mini-icon" alt="Forward">
-        </div>
+    <img src="icons/play.png" class="mini-icon" alt="Play">
+    <img src="icons/forward.png" class="mini-icon" alt="Forward">
+</div>
+
     </div>
 
     <nav id="bottom-nav">
