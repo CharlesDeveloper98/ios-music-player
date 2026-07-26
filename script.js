@@ -1288,6 +1288,26 @@ function renderSongsList() {
     lucide.createIcons();
 }
 
+
+
+
+function openPlayerModal() {
+    const modal = document.getElementById('player-modal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function closePlayerModal() {
+    const modal = document.getElementById('player-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+
+
+
 function previewFile(input) {
     const file = input.files[0];
     if (file) {
