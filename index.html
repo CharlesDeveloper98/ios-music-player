@@ -21,7 +21,7 @@
             <div class="header-row">
                 <h1 class="page-title" data-i18n="home">Home</h1>
                 <div class="profile-container" onclick="openSettings()">
-                    <i data-lucide="user"></i>
+                    <img src="assets/monogram_person.png" class="local-icon" alt="User">
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <div id="done-container" class="done-container">
                     <div class="glass-btn-reset" onclick="showResetPopup()" data-i18n="reset_order">Reset Order</div>
                     <div onclick="toggleEditMode(false)">
-                        <i data-lucide="check"></i>
+                        <img src="assets/tabbar_library.png" class="local-icon" alt="Check">
                     </div>
                 </div>
 
@@ -55,91 +55,91 @@
 
                 <div class="header-right-group" id="library-actions">
                     <div class="glass-header-actions" id="header-glass">
-                        <i data-lucide="library-big"></i>
-                        <i data-lucide="more-horizontal" class="clickable-icon" onclick="togglePopup()"></i>
+                        <img src="assets/library-big.png" class="local-icon" alt="Library">
+                        <img src="assets/more-horizontal.png" class="local-icon clickable-icon" alt="More" onclick="togglePopup()">
                     </div>
                     <div class="profile-container" onclick="openSettings()">
-                        <i data-lucide="user"></i>
+                        <img src="assets/user.png" class="local-icon" alt="User">
                     </div>
                 </div>
             </div>
 
             <div class="library-menu" id="library-menu">
                 <div class="menu-item" data-id="Playlists">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="music-4" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/library_playlists.png" class="local-icon main-icon" alt="Playlists">
                     <span data-i18n="playlists">Playlists</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
                 <div class="menu-item" data-id="Artists">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="mic-2" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/library_artists.png" class="local-icon main-icon" alt="Artists">
                     <span data-i18n="artists">Artists</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
                 <div class="menu-item" data-id="Albums">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="album" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/library_album.png" class="local-icon main-icon" alt="Albums">
                     <span data-i18n="albums">Albums</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
                 <div class="menu-item" data-id="Songs" onclick="openDetail('Songs', 'music')">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="music" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/library_songs.png" class="local-icon main-icon" alt="Songs">
                     <span data-i18n="songs">Songs</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
                 <div class="menu-item" data-id="TV-Movies">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="tv" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/tv.png" class="local-icon main-icon" alt="TV & Movies">
                     <span data-i18n="tv_movies">TV & Movies</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
                 <div class="menu-item" data-id="Music-Videos">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="monitor-play" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/monitor-play.png" class="local-icon main-icon" alt="Music Videos">
                     <span data-i18n="music_videos">Music Videos</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
                 <div class="menu-item" data-id="Genres">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="guitar" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/guitar.png" class="local-icon main-icon" alt="Genres">
                     <span data-i18n="genres">Genres</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
                 <div class="menu-item" data-id="Compilations">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="package" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/package.png" class="local-icon main-icon" alt="Compilations">
                     <span data-i18n="compilations">Compilations</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
                 <div class="menu-item" data-id="Composers">
-                    <div class="edit-action"><i data-lucide="circle" class="edit-circle" onclick="toggleTick(this.parentElement.parentElement)"></i></div>
-                    <i data-lucide="music-2" class="main-icon"></i>
+                    <div class="edit-action"><img src="assets/circle.png" class="local-icon edit-circle" alt="Select" onclick="toggleTick(this.parentElement.parentElement)"></div>
+                    <img src="assets/music-2.png" class="local-icon main-icon" alt="Composers">
                     <span data-i18n="composers">Composers</span>
-                    <i data-lucide="menu" class="reorder-handle"></i>
-                    <i data-lucide="chevron-right" class="nav-arrow"></i>
+                    <img src="assets/menu.png" class="local-icon reorder-handle" alt="Reorder">
+                    <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
                 </div>
             </div>
         </div>
 
         <div id="page-detail" class="page">
             <div class="header-row">
-                <div class="back-btn" onclick="backToLibrary()"><i data-lucide="chevron-left"></i></div>
-                <div class="header-right-group"><i data-lucide="more-horizontal"></i></div>
+                <div class="back-btn" onclick="backToLibrary()"><img src="assets/chevron-left.png" class="local-icon" alt="Back"></div>
+                <div class="header-right-group"><img src="assets/more-horizontal.png" class="local-icon" alt="More"></div>
             </div>
             <h1 class="page-title" id="detail-title">Songs</h1>
             <div class="song-actions">
-                <div class="glass-btn"><i data-lucide="play"></i> <span data-i18n="play">Play</span></div>
-                <div class="glass-btn"><i data-lucide="shuffle"></i> <span data-i18n="shuffle">Shuffle</span></div>
+                <div class="glass-btn"><img src="assets/play.png" class="local-icon" alt="Play"> <span data-i18n="play">Play</span></div>
+                <div class="glass-btn"><img src="assets/shuffle.png" class="local-icon" alt="Shuffle"> <span data-i18n="shuffle">Shuffle</span></div>
             </div>
             <div id="songs-list-container" class="songs-list"></div>
         </div>
@@ -158,28 +158,27 @@
             <div class="mini-sub" data-i18n="not_playing">Not Playing</div>
         </div>
         <div class="mini-controls">
-    <img src="assets/play.png" class="mini-icon" alt="Play">
-    <img src="assets/forward.png" class="mini-icon" alt="Forward">
-</div>
-
+            <img src="assets/play.png" class="mini-icon" alt="Play">
+            <img src="assets/forward.png" class="mini-icon" alt="Forward">
+        </div>
     </div>
 
     <nav id="bottom-nav">
         <div class="main-tabs" id="tab-container">
             <div class="tab-selector" id="active-selector"></div>
-            <div class="nav-item active" onclick="showPage('page-home', this, 0)"><i data-lucide="home"></i><span class="nav-label" data-i18n="home">Home</span></div>
-            <div class="nav-item" onclick="showPage('page-new', this, 1)"><i data-lucide="layout-grid"></i><span class="nav-label" data-i18n="new">New</span></div>
-            <div class="nav-item" onclick="showPage('page-library', this, 2)"><i data-lucide="library"></i><span class="nav-label" data-i18n="library">Library</span></div>
+            <div class="nav-item active" onclick="showPage('page-home', this, 0)"><img src="assets/home.png" class="local-icon" alt="Home"><span class="nav-label" data-i18n="home">Home</span></div>
+            <div class="nav-item" onclick="showPage('page-new', this, 1)"><img src="assets/layout-grid.png" class="local-icon" alt="New"><span class="nav-label" data-i18n="new">New</span></div>
+            <div class="nav-item" onclick="showPage('page-library', this, 2)"><img src="assets/library.png" class="local-icon" alt="Library"><span class="nav-label" data-i18n="library">Library</span></div>
         </div>
         <div class="search-tab">
-            <div class="nav-item" onclick="showPage('page-search', this, 3)"><i data-lucide="search"></i></div>
+            <div class="nav-item" onclick="showPage('page-search', this, 3)"><img src="assets/search.png" class="local-icon" alt="Search"></div>
         </div>
     </nav>
 
     <div id="popup-overlay" onclick="togglePopup()"></div>
     <div id="popup-menu" class="popup-menu">
         <div class="popup-item" onclick="toggleEditMode(true)">
-            <i data-lucide="check-square"></i>
+            <img src="assets/check-square.png" class="local-icon" alt="Edit Sections">
             <span data-i18n="edit_sections">Edit Sections</span>
         </div>
     </div>
@@ -189,22 +188,22 @@
     <div class="settings-modal" id="settings-modal">
         <div class="settings-header">
             <h2 data-i18n="settings">Settings</h2>
-            <div class="close-x" onclick="closeSettings()"><i data-lucide="x"></i></div>
+            <div class="close-x" onclick="closeSettings()"><img src="assets/x.png" class="local-icon" alt="Close"></div>
         </div>
 
         <div class="section-label" data-i18n="profile">Profile</div>
         <div class="settings-card">
             <div class="profile-section">
-                <div class="avatar-placeholder"><i data-lucide="user"></i></div>
+                <div class="avatar-placeholder"><img src="assets/user.png" class="local-icon" alt="User"></div>
                 <div class="profile-info">
                     <div class="title" data-i18n="unknown_id">Unknown ID</div>
                     <div class="subtitle" data-i18n="account_info">Account Information</div>
                 </div>
-                <i data-lucide="chevron-right" class="nav-arrow"></i>
+                <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
             </div>
             <div class="divider"></div>
             <div class="edit-section">
-                <div class="badge"><i data-lucide="user"></i></div>
+                <div class="badge"><img src="assets/user.png" class="local-icon" alt="User"></div>
                 <div class="edit-info"><div class="name-text" data-i18n="enter_details">Enter Details</div></div>
                 <div class="edit-btn" onclick="openEditProfile()" data-i18n="edit">Edit</div>
             </div>
@@ -213,21 +212,21 @@
         <div class="section-label" data-i18n="appearance">Appearance</div>
         <div class="settings-card" style="margin-top: 10px;">
             <div class="profile-section" onclick="openUI()">
-                <div class="avatar-placeholder" style="background:#555;"><i data-lucide="palette"></i></div>
+                <div class="avatar-placeholder" style="background:#555;"><img src="assets/palette.png" class="local-icon" alt="Appearance"></div>
                 <div class="profile-info"><div class="title" data-i18n="user_interface">User Interface</div></div>
-                <i data-lucide="chevron-right" class="nav-arrow"></i>
+                <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
             </div>
         </div>
 
         <div class="section-label" data-i18n="languages_header">LANGUAGES</div>
         <div class="settings-card" style="margin-top: 10px;">
             <div class="profile-section" onclick="openLanguagesModal()">
-                <div class="avatar-placeholder" style="background:#0a84ff;"><i data-lucide="globe"></i></div>
+                <div class="avatar-placeholder" style="background:#0a84ff;"><img src="assets/globe.png" class="local-icon" alt="Languages"></div>
                 <div class="profile-info">
                     <div class="title" data-i18n="select_language">Languages</div>
                     <div class="subtitle" id="current-lang-subtitle">English (United States)</div>
                 </div>
-                <i data-lucide="chevron-right" class="nav-arrow"></i>
+                <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
             </div>
         </div>
     </div>
@@ -236,13 +235,13 @@
     <div id="edit-profile-overlay" class="settings-overlay" onclick="closeEditProfile()"></div>
     <div class="settings-modal edit-profile-modal" id="edit-profile-modal">
         <div class="settings-header">
-            <div class="close-x" onclick="closeEditProfile()"><i data-lucide="x"></i></div>
+            <div class="close-x" onclick="closeEditProfile()"><img src="assets/x.png" class="local-icon" alt="Close"></div>
             <h2 data-i18n="edit_profile">Edit Profile</h2>
-            <div class="save-check" onclick="saveProfileChanges()"><i data-lucide="check"></i></div>
+            <div class="save-check" onclick="saveProfileChanges()"><img src="assets/check.png" class="local-icon" alt="Save"></div>
         </div>
         
         <div class="profile-pic-picker" onclick="document.getElementById('photo-upload').click()">
-            <div class="avatar-large" id="avatar-preview"><i data-lucide="user"></i></div>
+            <div class="avatar-large" id="avatar-preview"><img src="assets/user.png" class="local-icon" alt="User"></div>
             <div class="picker-text" data-i18n="choose_photo">Choose Photo</div>
         </div>
         <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="previewFile(this)">
@@ -274,7 +273,7 @@
     <div id="ui-overlay" class="settings-overlay" onclick="closeUI()"></div>
     <div class="settings-modal" id="ui-modal">
         <div class="settings-header">
-            <div class="close-x" onclick="closeUI()"><i data-lucide="x"></i></div>
+            <div class="close-x" onclick="closeUI()"><img src="assets/x.png" class="local-icon" alt="Close"></div>
             <h2 data-i18n="user_interface">User Interface</h2>
             <div style="width:30px;"></div>
         </div>
@@ -283,17 +282,17 @@
         <div class="settings-card" id="ui-modal-list">
             <div class="theme-option" data-theme="system" onclick="setTheme('system')">
                 <div class="title" data-i18n="system">System</div>
-                <i data-lucide="check" class="check-icon" style="color:var(--ios-blue);"></i>
+                <img src="assets/check.png" class="local-icon check-icon" alt="Check" style="color:var(--ios-blue);">
             </div>
             <div class="divider"></div>
             <div class="theme-option" data-theme="light" onclick="setTheme('light')">
                 <div class="title" data-i18n="light">Light</div>
-                <i data-lucide="check" class="check-icon" style="display:none; color:var(--ios-blue);"></i>
+                <img src="assets/check.png" class="local-icon check-icon" alt="Check" style="display:none; color:var(--ios-blue);">
             </div>
             <div class="divider"></div>
             <div class="theme-option" data-theme="dark" onclick="setTheme('dark')">
                 <div class="title" data-i18n="dark">Dark</div>
-                <i data-lucide="check" class="check-icon" style="display:none; color:var(--ios-blue);"></i>
+                <img src="assets/check.png" class="local-icon check-icon" alt="Check" style="display:none; color:var(--ios-blue);">
             </div>
         </div>
 
@@ -308,33 +307,29 @@
         <div class="section-label" data-i18n="music">Music</div>
         <div class="settings-card" style="margin-top: 10px;">
             <div class="profile-section" onclick="document.getElementById('music-picker').click()">
-                <div class="avatar-placeholder" style="background:#555;"><i data-lucide="folder-music"></i></div>
+                <div class="avatar-placeholder" style="background:#555;"><img src="assets/folder-music.png" class="local-icon" alt="Music"></div>
                 <div class="profile-info"><div class="title" data-i18n="browse_music">Browse Your Music</div></div>
-                <i data-lucide="chevron-right" class="nav-arrow"></i>
+                <img src="assets/chevron-right.png" class="local-icon nav-arrow" alt="Next">
             </div>
         </div>
         <input type="file" id="music-picker" webkitdirectory directory multiple style="display:none" onchange="handleMusicFiles(this)">
     </div>
 
-    <!-- LANGUAGES MODAL (Full Height & Blurred Sticky Header Style) -->
+    <!-- LANGUAGES MODAL -->
     <div id="languages-overlay" class="settings-overlay" onclick="closeLanguagesModal()"></div>
     <div class="settings-modal languages-fullscreen-modal" id="languages-modal">
         <div class="settings-header languages-sticky-header">
-            <div class="close-x" onclick="closeLanguagesModal()"><i data-lucide="x"></i></div>
+            <div class="close-x" onclick="closeLanguagesModal()"><img src="assets/x.png" class="local-icon" alt="Close"></div>
             <h2 data-i18n="languages_title">Languages</h2>
             <div style="width:30px;"></div>
         </div>
 
         <div class="languages-scrollable-body">
             <div class="section-label" data-i18n="selected_language_label">Selected Language</div>
-            <div class="settings-card" id="selected-language-container" style="margin-bottom: 20px;">
-                <!-- Rendered dynamically -->
-            </div>
+            <div class="settings-card" id="selected-language-container" style="margin-bottom: 20px;"></div>
 
             <div class="section-label" data-i18n="other_languages_label">Other Languages</div>
-            <div class="settings-card" id="other-languages-container" style="padding: 0 16px; margin-bottom: 40px;">
-                <!-- Rendered dynamically -->
-            </div>
+            <div class="settings-card" id="other-languages-container" style="padding: 0 16px; margin-bottom: 40px;"></div>
         </div>
     </div>
 
