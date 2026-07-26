@@ -815,6 +815,13 @@ backdrop-filter: blur(20px) saturate(180%);
 }
 
 
+.mini-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
 
 .profile-container {
     width: 36px;
