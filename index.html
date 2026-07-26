@@ -220,17 +220,82 @@
         </div>
     </div>
 
-    <div class="mini-player" onclick="openPlayerModal()" style="cursor: pointer;">
-        <div class="mini-art"></div>
-        <div class="mini-info">
-            <div class="mini-title" data-i18n="unknown_art">Unknown Art</div>
-            <div class="mini-sub" data-i18n="not_playing">Not Playing</div>
+    <!-- BOTTOM MINI-PLAYER CONTAINER (Clickable to trigger fluid expansion) -->
+<div class="mini-player" onclick="openPlayerModal()">
+    <div class="mini-art"></div>
+    <div class="mini-info">
+        <div class="mini-title">Неизвестная обложка</div>
+        <div class="mini-sub">Не играет</div>
+    </div>
+    <div class="mini-controls" onclick="event.stopPropagation()">
+        <button class="mini-btn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+        <button class="mini-btn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+    </div>
+</div>
+
+<!-- FULL SCREEN PLAYER MODAL (Fluid Bubble Expansion Layout) -->
+<div id="player-modal" class="player-modal">
+    <!-- Full Screen Background Album Art -->
+    <div class="player-bg-art" style="background-image: url('assets/gem_cover.jpg');"></div>
+    <div class="player-gradient-overlay"></div>
+    
+    <div class="player-content">
+        <!-- Top Pull Grabber Bar -->
+        <div class="player-grabber-container" onclick="closePlayerModal()">
+            <div class="player-grabber"></div>
         </div>
-        <div class="mini-controls">
-            <img src="assets/play.png" class="mini-icon" alt="Play">
-            <img src="assets/forward.png" class="mini-icon" alt="Forward">
+
+        <!-- Track Title & Action Icons Row -->
+        <div class="player-main-info">
+            <div class="track-text-group">
+                <h2 class="modal-track-title">老人与海 - OLD MAN & SEA</h2>
+                <p class="modal-track-artist">G.E.M.</p>
+            </div>
+            <div class="player-action-buttons">
+                <!-- Favorite/Star Button -->
+                <button class="icon-btn-glass"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+                <!-- Options / Three Dots Button -->
+                <button class="icon-btn-glass"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></button>
+            </div>
+        </div>
+
+        <!-- Progress Bar Section -->
+        <div class="player-progress-section">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 4.5%;"></div>
+            </div>
+            <div class="progress-timestamps">
+                <span>0:07</span>
+                <span>-3:05</span>
+            </div>
+        </div>
+
+        <!-- Large Center Playback Controls -->
+        <div class="player-big-controls">
+            <button class="control-skip-btn"><svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+            <button class="control-play-pause-btn"><svg viewBox="0 0 24 24" width="44" height="44" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></button>
+            <button class="control-skip-btn"><svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+        </div>
+
+        <!-- Bottom Controls (Volume and Footer Tools) -->
+        <div class="player-bottom-controls">
+            <div class="volume-slider-row">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/></svg>
+                <div class="volume-bar-bg"><div class="volume-bar-fill" style="width: 55%;"></div></div>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            </div>
+            
+            <div class="player-footer-icons">
+                <button class="footer-icon-btn"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></button>
+                <button class="footer-icon-btn"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></button>
+                <button class="footer-icon-btn"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg></button>
+            </div>
         </div>
     </div>
+</div>
+
+
+    
 
     <nav id="bottom-nav">
         <div class="main-tabs" id="tab-container">
