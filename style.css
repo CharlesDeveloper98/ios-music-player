@@ -804,9 +804,10 @@ backdrop-filter: blur(20px) saturate(180%);
 
 
 
-/* Featured Picks Section Layout */
+
+        /* Featured Section Alignment */
 .featured-section {
-    margin-top: 20px;
+    margin-top: 12px;
     width: 100%;
 }
 
@@ -815,44 +816,37 @@ backdrop-filter: blur(20px) saturate(180%);
     font-weight: 700;
     letter-spacing: -0.4px;
     margin-bottom: 12px;
-    color: var(--text-primary, #000);
+    color: var(--text-primary, #fff);
 }
 
-[data-theme="dark"] .section-heading {
-    color: #fff;
-}
-
-/* Horizontal Scrolling Container */
+/* Horizontal Scroll Layout */
 .featured-scroll-container {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding-bottom: 10px;
-    scrollbar-width: none; /* Hide scrollbar for clean iOS feel */
+    padding-bottom: 8px;
+    scrollbar-width: none;
 }
 
 .featured-scroll-container::-webkit-scrollbar {
     display: none;
 }
 
-/* Individual Music Container Card */
+/* Clean Music Container (Inner box removed) */
 .music-container {
     position: relative;
-    flex: 0 0 160px; /* Exact sizing tailored for horizontal fit */
+    flex: 0 0 160px;
     height: 220px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(var(--dynamic-blur, 20px));
-    -webkit-backdrop-filter: blur(var(--dynamic-blur, 20px));
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 22px;
     overflow: hidden;
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 12px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -860,79 +854,111 @@ backdrop-filter: blur(20px) saturate(180%);
     transform: scale(0.96);
 }
 
-/* Dynamic Self-Changing Lighting Effect */
-.dynamic-light {
+/* Apple Music Style Liquid Mesh Background */
+.liquid-bg {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    opacity: 0.45;
-    background: radial-gradient(circle, rgba(0,122,255,0.8) 0%, rgba(175,82,222,0.5) 40%, transparent 70%);
-    animation: shiftLight 12s infinite alternate ease-in-out;
-    animation-delay: var(--delay, 0s);
+    inset: 0;
     z-index: 0;
-    pointer-events: none;
+    overflow: hidden;
+    background: #111;
+    filter: blur(24px);
+    transform: scale(1.3); /* Prevents hard edges during warping */
 }
 
-@keyframes shiftLight {
+.liquid-blob {
+    position: absolute;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    opacity: 0.85;
+    animation: liquidMove 14s infinite alternate cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+/* Individual organic glowing blobs */
+.blob-1 {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 45, 85, 0.85);
+    top: -10%;
+    left: -10%;
+    animation-duration: 12s;
+}
+
+.blob-2 {
+    width: 140px;
+    height: 140px;
+    background: rgba(0, 122, 255, 0.85);
+    bottom: -20%;
+    right: -10%;
+    animation-duration: 16s;
+    animation-delay: -3s;
+}
+
+.blob-3 {
+    width: 100px;
+    height: 100px;
+    background: rgba(175, 82, 222, 0.75);
+    top: 40%;
+    left: 30%;
+    animation-duration: 10s;
+    animation-delay: -6s;
+}
+
+/* Variation based on container seed so cards don't match identically */
+.music-container[style*="--seed: 2"] .blob-1 { background: rgba(52, 199, 89, 0.85); }
+.music-container[style*="--seed: 2"] .blob-2 { background: rgba(255, 149, 0, 0.85); }
+
+.music-container[style*="--seed: 3"] .blob-1 { background: rgba(90, 200, 250, 0.85); }
+.music-container[style*="--seed: 3"] .blob-2 { background: rgba(88, 86, 214, 0.85); }
+
+.music-container[style*="--seed: 4"] .blob-1 { background: rgba(255, 204, 0, 0.85); }
+.music-container[style*="--seed: 4"] .blob-2 { background: rgba(255, 59, 48, 0.85); }
+
+.music-container[style*="--seed: 5"] .blob-1 { background: rgba(175, 82, 222, 0.85); }
+.music-container[style*="--seed: 5"] .blob-2 { background: rgba(0, 199, 190, 0.85); }
+
+@keyframes liquidMove {
     0% {
-        transform: translate(-10%, -10%) scale(1);
-        background: radial-gradient(circle, rgba(0,122,255,0.7) 0%, rgba(52,199,89,0.4) 50%, transparent 70%);
+        transform: translate(0px, 0px) scale(1);
     }
-    33% {
-        transform: translate(15%, -10%) scale(1.2);
-        background: radial-gradient(circle, rgba(255,45,85,0.7) 0%, rgba(88,86,214,0.4) 50%, transparent 70%);
-    }
-    66% {
-        transform: translate(0%, 15%) scale(1.1);
-        background: radial-gradient(circle, rgba(255,204,0,0.7) 0%, rgba(255,59,48,0.4) 50%, transparent 70%);
+    50% {
+        transform: translate(35px, 50px) scale(1.25) rotate(45deg);
     }
     100% {
-        transform: translate(-10%, 0%) scale(1);
-        background: radial-gradient(circle, rgba(90,200,250,0.7) 0%, rgba(175,82,222,0.4) 50%, transparent 70%);
+        transform: translate(-25px, 25px) scale(0.9) rotate(-30deg);
     }
 }
 
-/* Card Content Details */
-.container-art {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 135px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 8px;
-    background-size: cover;
-    background-position: center;
-}
-
+/* Card Metadata Overlay */
 .container-meta {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin: -6px -6px -6px -6px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .container-title {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-primary, #1c1c1e);
+    color: #ffffff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-[data-theme="dark"] .container-title {
-    color: #f2f2f7;
 }
 
 .container-sub {
     font-size: 12px;
-    color: var(--text-secondary, #8e8e93);
+    color: rgba(255, 255, 255, 0.65);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-top: 1px;
 }
+
 
 
 
