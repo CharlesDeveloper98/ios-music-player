@@ -26,7 +26,7 @@ jobs:
         run: |
           cordova create myApp com.charles.zoneplay "ZonePlay"
           rm -rf myApp/www/*
-          # Copying all necessary files and the assets folder to the www directory
+          # Copying all necessary files and the assets folder (including icons and fonts) to the www directory
           cp index.html myApp/www/
           cp script.js myApp/www/
           cp style.css myApp/www/
