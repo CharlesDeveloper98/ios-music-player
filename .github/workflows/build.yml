@@ -22,7 +22,7 @@ jobs:
       - name: Install Cordova
         run: npm install -g cordova
 
-            - name: Create Cordova Project
+      - name: Create Cordova Project
         run: |
           cordova create myApp com.charles.zoneplay "ZonePlay"
           rm -rf myApp/www/*
@@ -32,7 +32,6 @@ jobs:
           cp style.css myApp/www/
           cp -r assets/ myApp/www/
           cp -r fonts/ myApp/www/
-
 
       - name: Setup Android Platform
         run: |
